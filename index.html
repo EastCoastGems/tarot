@@ -108,7 +108,7 @@
   <div class="reading-types">
     <p><strong>🃏 Daily Card:</strong> One card pulled to reflect the energy of your day, what to embrace, or a message from spirit.</p>
     <p><strong>🔮 Three-Card Spread:</strong> A general Past – Present – Future reading to offer insight on your current path.</p>
-    <p><strong>🔁 Full Deck Shuffle<strong> A free-form reading drawn from the entire deck. Just a message you're meant to receive.</p>
+    <p><strong>🔁 Full Deck Shuffle</strong>strong> A free-form reading drawn from the entire deck. Just a message you're meant to receive.</p>
     <p><strong>💖 Love Reading:</strong> A relationship-focused three-card pull to explore love, emotional connection, or divine timing in your love life.</p>
   </div>
 
@@ -615,24 +615,21 @@
       }
     ];
 
-  <script>
-    // Shuffle function
-    function shuffle(array) {
-      const newArr = array.slice();
-      for (let i = newArr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
-      }
-      return newArr;
-    }
+<script>
+function shuffle(a) {
+  const arr = a.slice();
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
 
-    // Draw cards function
-    function drawCards(num, isLove = false, isFull = false) {
+function drawCards(num, isLove = false, isFull = false) {
   const area = document.getElementById('reading');
   area.innerHTML = '';
 
   const title = document.createElement('h2');
-
   if (isLove) {
     title.textContent = "💖 Love Reading";
   } else if (isFull) {
@@ -642,7 +639,6 @@
   } else if (num === 3) {
     title.textContent = "🔮 Past, Present & Future";
   }
-
   area.appendChild(title);
 
   const cont = document.createElement('div');
@@ -650,7 +646,6 @@
   area.appendChild(cont);
 
   const cards = shuffle(deck).slice(0, num);
-
   cards.forEach(card => {
     const rev = Math.random() < 0.5;
 
@@ -679,7 +674,7 @@
     cont.appendChild(wrap);
   });
 }
-  </script>
+</script>
 
 </body>
 </html>
