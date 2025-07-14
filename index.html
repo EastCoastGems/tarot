@@ -108,15 +108,13 @@
   <div class="reading-types">
     <p><strong>🃏 Daily Card:</strong> One card pulled to reflect the energy of your day, what to embrace, or a message from spirit.</p>
     <p><strong>🔮 Three-Card Spread:</strong> A general Past – Present – Future reading to offer insight on your current path.</p>
-    <p><strong>🔁 Full Deck Shuffle</strong> A free-form reading drawn from the entire deck. Just a message you're meant to receive.</p>
     <p><strong>💖 Love Reading:</strong> A relationship-focused three-card pull to explore love, emotional connection, or divine timing in your love life.</p>
   </div>
 
   <div class="button-row">
     <button onclick="drawCards(1)">Daily Card</button>
     <button onclick="drawCards(3)">3 Card Spread</button>
-    <button onclick="drawCards(3, true)">Full Deck Shuffle</button>
-    <button onclick="drawCards(7, false, true)">Love Reading</button>
+    <button onclick="drawCards(3, false, true)">Love Reading</button>
   </div>
 
   <div id="reading"></div>
@@ -637,9 +635,7 @@ area.innerHTML = '';
 container.innerHTML = '';
 readingText.innerHTML = '';
   const title = document.createElement('h2');
-  if (isLove) {
-    title.textContent = "🌌 Full Deck Shuffle";
-  } else if (isFull) {
+if (isFull) {
     title.textContent = "💖 Love Reading";
   } else if (num === 1) {
     title.textContent = "✨ Daily Card";
