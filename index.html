@@ -30,25 +30,28 @@
       font-style: italic;
       margin-top: 2em;
     }
-    .buttons {
+    .button-row {
       display: flex;
       flex-wrap: wrap;
+      gap: 1rem;
       justify-content: center;
-      gap: 10px;
-      margin-bottom: 2em;
+      margin-bottom: 2rem;
     }
-    .buttons button {
-      flex: 1 1 200px;
-      padding: 1em;
-      font-size: 1.1em;
+    .button-row button {
+      flex: 1;
+      min-width: 180px;
+      font-size: 1.1rem;
+      padding: 1rem;
       background-color: #b23cf0;
       color: white;
       border: none;
+      border-radius: 8px;
       cursor: pointer;
+      font-weight: 600;
       transition: background-color 0.3s ease;
     }
-    .buttons button:hover {
-      background-color: #8e2cba;
+    .button-row button:hover {
+      background-color: #871dcc;
     }
     .card-container {
       display: flex;
