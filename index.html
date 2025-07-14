@@ -628,6 +628,7 @@
   }
  
   function drawCards(num, isLove = false, isFull = false) {
+const area = document.getElementById('reading');
 const container = document.getElementById('cardContainer');
 const readingText = document.getElementById('readingText');
 
@@ -635,7 +636,6 @@ const readingText = document.getElementById('readingText');
 area.innerHTML = '';
 container.innerHTML = '';
 readingText.innerHTML = '';
-  const area = document.getElementById('reading');
   const title = document.createElement('h2');
   if (isLove) {
     title.textContent = "🌌 Full Deck Shuffle";
