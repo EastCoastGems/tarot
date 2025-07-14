@@ -119,6 +119,7 @@
     <button onclick="drawReading('love')">💘 Love Reading</button>
   </div>
 
+  <div id="reading"></div>
   <div class="card-container" id="cardContainer"></div>
   <div class="reading-text" id="readingText"></div>
 
@@ -614,6 +615,7 @@
       }
     ];
 
+  </script>
     // Shuffle function
     function shuffle(array) {
       const newArr = array.slice();
@@ -625,61 +627,58 @@
     }
 
     // Draw cards function
-    function drawCards(num, isLove = false) {
-      const readingArea = document.getElementById('reading');
-      readingArea.innerHTML = '';
+    function drawCards(num, isLove = false, isFull = false) {
+  const area = document.getElementById('reading');
+  area.innerHTML = '';
 
-      const shuffled = shuffle(deck);
-      const cardsDrawn = shuffled.slice(0, num);
+  const title = document.createElement('h2');
 
-      // Heading based on reading type
-      const heading = document.createElement('h2');
-      if (isLove) {
-        heading.textContent = "💖 Love Reading";
-      } else if (num === 1) {
-        heading.textContent = "✨ Daily Card";
-      } else {
-        heading.textContent = "🔮 Past, Present & Future Reading";
-      }
-      readingArea.appendChild(heading);
+  if (isLove) {
+    title.textContent = "💖 Love Reading";
+  } else if (isFull) {
+    title.textContent = "🌌 Full Deck Shuffle";
+  } else if (num === 1) {
+    title.textContent = "✨ Daily Card";
+  } else if (num === 3) {
+    title.textContent = "🔮 Past, Present & Future";
+  }
 
-      const container = document.createElement('div');
-      container.className = 'card-container';
-      readingArea.appendChild(container);
+  area.appendChild(title);
 
-      cardsDrawn.forEach(card => {
-        // 50/50 chance reversed
-        const isReversed = Math.random() < 0.5;
+  const cont = document.createElement('div');
+  cont.className = 'card-container';
+  area.appendChild(cont);
 
-        const cardWrap = document.createElement('div');
-        cardWrap.className = 'card-wrapper';
+  const cards = shuffle(deck).slice(0, num);
 
-        const cardDiv = document.createElement('div');
-        cardDiv.className = 'tarot-card';
+  cards.forEach(card => {
+    const rev = Math.random() < 0.5;
 
-        // Front with card image (rotated if reversed)
-        const front = document.createElement('div');
-        front.className = 'front';
-        front.innerHTML = `<img src="${card.image}" alt="${card.name}" style="transform: rotate(${isReversed ? 180 : 0}deg);" />`;
+    const wrap = document.createElement('div');
+    wrap.className = 'card-wrapper';
 
-        // Back card image
-        const back = document.createElement('div');
-        back.className = 'back';
-        back.innerHTML = `<img src="${deck.find(c => c.name === 'Card Back').image}" alt="Card Back" />`;
+    const tc = document.createElement('div');
+    tc.className = 'tarot-card';
 
-        cardDiv.appendChild(front);
-        cardDiv.appendChild(back);
-        cardWrap.appendChild(cardDiv);
+    const front = document.createElement('div');
+    front.className = 'front';
+    front.innerHTML = `<img src="${card.image}" alt="${card.name}" style="transform: rotate(${rev ? 180 : 0}deg);">`;
 
-        // Meaning text
-        const meaning = document.createElement('p');
-        meaning.innerHTML = `<strong>${card.name} (${isReversed ? 'Reversed' : 'Upright'}):</strong><br>` + 
-          (isReversed ? card.meaning_reversed : card.meaning_upright);
-        cardWrap.appendChild(meaning);
+    const back = document.createElement('div');
+    back.className = 'back';
+    back.innerHTML = `<img src="${deck.find(c => c.name === 'Card Back').image}" alt="Card Back">`;
 
-        container.appendChild(cardWrap);
-      });
-    }
+    tc.appendChild(front);
+    tc.appendChild(back);
+    wrap.appendChild(tc);
+
+    const meaning = document.createElement('p');
+    meaning.innerHTML = `<strong>${card.name} (${rev ? 'Reversed' : 'Upright'}):</strong><br>${rev ? card.meaning_reversed : card.meaning_upright}`;
+    wrap.appendChild(meaning);
+
+    cont.appendChild(wrap);
+  });
+}
   </script>
 
 </body>
