@@ -2,99 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tarot Card Reading</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Tarot Readings</title>
   <style>
     body {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Georgia', serif;
+      background: #fff;
+      color: #222;
+      padding: 2rem;
       max-width: 900px;
       margin: auto;
-      padding: 1rem;
-      background: #faf9f6;
-      color: #333;
+      text-align: center;
     }
 
-    h2 {
-      text-align: center;
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
 
     .button-row {
       display: flex;
-      justify-content: center;
+      flex-wrap: wrap;
       gap: 1rem;
-      margin-bottom: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
     }
 
-    button {
+    .button-row button {
       flex: 1;
+      min-width: 200px;
+      font-size: 1rem;
       padding: 1rem;
-      font-size: 1.2rem;
-      cursor: pointer;
-      background: #b23cf0;
+      background-color: #b23cf0;
       color: white;
       border: none;
-      border-radius: 6px;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background: #8a2cc7;
-    }
-
-    #reading {
-      margin-top: 20px;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
     .card-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
+      gap: 2rem;
+      margin-top: 2rem;
     }
 
-    .card-wrapper {
-      width: 180px;
-      perspective: 1000px;
+    .card {
+      width: 150px;
       text-align: center;
     }
 
-    .tarot-card {
+    .card img {
       width: 100%;
-      height: auto;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.8s;
-      cursor: pointer;
-      user-select: none;
+      transition: transform 0.3s;
     }
 
-    .tarot-card:hover {
-      transform: rotateY(180deg);
+    .reversed {
+      transform: rotate(180deg);
     }
 
-    .front, .back {
-      position: absolute;
-      width: 100%;
-      backface-visibility: hidden;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    .front img, .back img {
-      width: 100%;
-      border-radius: 10px;
-      display: block;
-    }
-
-    .back {
-      transform: rotateY(180deg);
-    }
-
-    .card-wrapper p {
+    .card-name {
+      font-weight: bold;
       margin-top: 0.5rem;
+    }
+
+    .card-meaning {
       font-size: 0.9rem;
-      line-height: 1.3;
+      margin-top: 0.25rem;
     }
   </style>
 </head>
