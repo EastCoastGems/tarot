@@ -628,6 +628,13 @@
   }
  
   function drawCards(num, isLove = false, isFull = false) {
+const container = document.getElementById('cardContainer');
+const readingText = document.getElementById('readingText');
+
+// Clear old content
+area.innerHTML = '';
+container.innerHTML = '';
+readingText.innerHTML = '';
   const area = document.getElementById('reading');
   const title = document.createElement('h2');
   if (isLove) {
