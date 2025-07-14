@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Tarot Reading</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background-color: #fdfcf9;
+      color: #2d1e2f;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.2em;
+    }
+    .reading-types {
+      max-width: 600px;
+      margin: 0 auto 1.5em auto;
+      font-size: 1.05em;
+      color: #4a3b4e;
+      text-align: left;
+    }
+    .disclaimer {
+      font-size: 0.9em;
+      color: #777;
+      font-style: italic;
+      margin-top: 2em;
+    }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 2em;
+    }
+    .buttons button {
+      flex: 1 1 200px;
+      padding: 1em;
+      font-size: 1.1em;
+      background-color: #b23cf0;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .buttons button:hover {
+      background-color: #8e2cba;
+    }
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 2em;
+    }
+    .card {
+      width: 150px;
+      height: 270px;
+      perspective: 1000px;
+    }
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+    }
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+    .card-back img,
+    .card-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .card-back {
+      background: #ddd;
+    }
+    .card-front {
+      transform: rotateY(180deg);
+    }
+    .reading-text {
+      max-width: 600px;
+      margin: 0 auto 1em auto;
+      text-align: left;
+    }
+    .reading-text h3 {
+      margin-top: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pick Your Tarot Reading</h1>
+
+  <div class="reading-types">
+    <p><strong>🃏 Daily Card:</strong> One card pulled to reflect the energy of your day, what to embrace, or a message from spirit.</p>
+    <p><strong>🔮 Three-Card Spread:</strong> A general Past – Present – Future reading to offer insight on your current path.</p>
+    <p><strong>💖 Love Reading:</strong> A relationship-focused three-card pull to explore love, emotional connection, or divine timing in your love life.</p>
+  </div>
+
+  <div class="buttons">
+    <button onclick="drawCards(1)">🃏 Daily Card</button>
+    <button onclick="drawCards(3)">🔮 Three-Card Spread</button>
+    <button onclick="drawCards(3, true)">💖 Love Reading</button>
+  </div>
+
+  <div class="card-container" id="cardContainer"></div>
+  <div class="reading-text" id="readingText"></div>
+
+  <p class="disclaimer">
+    🔮 Tarot readings are for entertainment and spiritual reflection purposes only. They are not a substitute for medical, legal, or professional advice. Please use your own judgment and intuition when interpreting the messages.
+  </p>
+<script>
+  const cardBackURL = "https://photos.app.goo.gl/RkrFSYUkqvFcAqwe8";
+
+  const tarotDeck = [
+    {
+      name: "The Fool",
+      image: "https://photos.app.goo.gl/ee41GK4AZi3VHkVM7",
+      meaning_upright: "New beginnings, spontaneity, free spirit. You're on the edge of something beautiful—leap with faith.",
+      meaning_reversed: "Recklessness, fear of the unknown, holding back. You may be doubting your journey before it even begins."
+    },
+    {
+      name: "The Magician",
+      image: "https://photos.app.goo.gl/a9U6D6zysT8YyW9Y6",
+      meaning_upright: "Manifestation, resourcefulness, power. You have everything you need to succeed—trust your magic.",
+      meaning_reversed: "Manipulation, illusion, untapped potential. Step back and realign with your true intentions."
+    },
+    {
+      name: "The High Priestess",
+      image: "https://photos.app.goo.gl/e6EQmK3dXhfXS4EE6",
+      meaning_upright: "Intuition, divine feminine, mystery. Trust your inner voice and allow yourself to receive.",
+      meaning_reversed: "Secrets, disconnection, blocked intuition. You may be ignoring what your spirit already knows."
+    },
+    {
+      name: "The Empress",
+      image: "https://photos.app.goo.gl/2EF3KAaQHyUEw3Qs9",
+      meaning_upright: "Fertility, beauty, nurturing. Abundance is blooming around you—lean into your creative power.",
+      meaning_reversed: "Creative block, dependence, imbalance. Reconnect with your inner goddess and personal growth."
+    },
+    {
+      name: "The Emperor",
+      image: "https://photos.app.goo.gl/7zdtd7XoEpGUTXf76",
+      meaning_upright: "Authority, stability, protection. Structure brings clarity—stand strong in your leadership.",
+      meaning_reversed: "Control issues, rigidity, domination. Let go of power struggles and reclaim your inner sovereignty."
+    },
+    {
+      name: "The Hierophant",
+      image: "https://photos.app.goo.gl/y77cCztsPHqh93AX7",
+      meaning_upright: "Tradition, spiritual wisdom, guidance. Seek meaning through ritual or ancestral knowledge.",
+      meaning_reversed: "Rebellion, misalignment, unconventionality. Follow your own path—trust what feels right for *you*."
+    },
+    {
+      name: "The Lovers",
+      image: "https://photos.app.goo.gl/A12qyqRr3vzABAmP6",
+      meaning_upright: "Love, harmony, union. Deep connection and choice—follow your heart with clarity.",
+      meaning_reversed: "Imbalance, disharmony, misalignment. A heart-led decision must be made—are you choosing love or fear?"
+    },
+    {
+      name: "The Chariot",
+      image: "https://photos.app.goo.gl/vnZwjD6KeHGyBFa57",
+      meaning_upright: "Willpower, direction, determination. Take the reins and move forward with confidence.",
+      meaning_reversed: "Lack of control, scattered energy. Regroup and realign before pushing ahead."
+    },
+    {
+      name: "Strength",
+      image: "https://photos.app.goo.gl/SFo1mfmVDyxvrNtW6",
+      meaning_upright: "Inner strength, courage, compassion. You are braver and softer than you think—trust both.",
+      meaning_reversed: "Self-doubt, fear, avoidance. You may be underestimating your inner resilience."
+    },
+    {
+      name: "The Hermit",
+      image: "https://photos.app.goo.gl/5k5FGpohEyfDWUQW9",
+      meaning_upright: "Solitude, soul-searching, guidance. Retreat to hear your own voice again.",
+      meaning_reversed: "Isolation, avoidance, withdrawal. Are you hiding, or truly healing?"
+    },
+  {
+    name: "Wheel of Fortune",
+    image: "https://photos.app.goo.gl/M93tJ6zVfC9jGTrNA",
+    meaning_upright: "Cycles, change, destiny. Life’s turning — embrace the flow and trust the timing.",
+    meaning_reversed: "Resistance to change, bad luck, delays. Sometimes the wheel slows — patience is your ally."
+  },
+  {
+    name: "Justice",
+    image: "https://photos.app.goo.gl/ot5JbPwDNQpFvufp7",
+    meaning_upright: "Fairness, truth, law. Decisions made with clarity will balance your path.",
+    meaning_reversed: "Dishonesty, imbalance, unfairness. Reflect and correct what’s out of alignment."
+  },
+  {
+    name: "The Hanged Man",
+    image: "https://photos.app.goo.gl/WSR8sZn453cSbM1W6",
+    meaning_upright: "Pause, surrender, perspective. Let go to see the bigger picture and grow.",
+    meaning_reversed: "Stagnation, resistance, fear of sacrifice. Holding on too tightly may block progress."
+  },
+  {
+    name: "Death",
+    image: "https://photos.app.goo.gl/1oFtASZDmBPJtBC77",
+    meaning_upright: "Transformation, endings, new beginnings. Release the old — rebirth is near.",
+    meaning_reversed: "Fear of change, holding on, stagnation. Resist the natural flow and growth."
+  },
+  {
+    name: "Temperance",
+    image: "https://photos.app.goo.gl/gKVPY4zJfUzHNs2B7",
+    meaning_upright: "Balance, healing, moderation. Harmonize opposing forces and find your center.",
+    meaning_reversed: "Imbalance, excess, discord. Realign your energy and restore peace."
+  },
+  {
+    name: "The Devil",
+    image: "https://photos.app.goo.gl/oZp9ujQgeTtTA9i88",
+    meaning_upright: "Attachment, temptation, shadow self. Face your fears and reclaim your power.",
+    meaning_reversed: "Breaking free, release, awareness. Liberation from unhealthy bonds is underway."
+  },
+  {
+    name: "The Tower",
+    image: "https://photos.app.goo.gl/mAK2h3JmLtcQT9K38",
+    meaning_upright: "Sudden change, upheaval, awakening. Foundations shake — embrace the opportunity to rebuild.",
+    meaning_reversed: "Resistance to change, fear of upheaval. Clinging to the old blocks transformation."
+  },
+  {
+    name: "The Star",
+    image: "https://photos.app.goo.gl/a7TNfCjwayzfTBM79",
+    meaning_upright: "Hope, inspiration, serenity. The universe shines light on your path — keep the faith.",
+    meaning_reversed: "Despair, lack of faith, discouragement. Renew your spirit and open to possibility."
+  },
+  {
+    name: "The Moon",
+    image: "https://photos.app.goo.gl/ku2QF4VCWu5pp3HH6",
+    meaning_upright: "Intuition, mystery, subconscious. Trust your dreams and hidden knowledge.",
+    meaning_reversed: "Confusion, fear, deception. Beware illusions and ground yourself in truth."
+  },
+  {
+    name: "The Sun",
+    image: "https://photos.app.goo.gl/pXdti7aGUFt8puik7",
+    meaning_upright: "Joy, success, vitality. Brightness fills your life — celebrate your accomplishments.",
+    meaning_reversed: "Temporary setbacks, lack of clarity. Keep your optimism alive through challenges."
+  },
+  {
+    name: "Judgement",
+    image: "https://photos.app.goo.gl/9VdhoarDERZM7uAcA",
+    meaning_upright: "Rebirth, inner calling, awakening. A spiritual reckoning invites you to rise.",
+    meaning_reversed: "Self-doubt, denial, fear of change. Answer the call with courage and honesty."
+  },
+  {
+    name: "The World",
+    image: "https://photos.app.goo.gl/eWWS32JZmr57mokRA",
+    meaning_upright: "Completion, fulfillment, wholeness. Celebrate your journey’s success and new horizons.",
+    meaning_reversed: "Incomplete goals, delays, lack of closure. Reflect and prepare for the next cycle."
+  },
+
+  // Minor Arcana - Cups (starting)
+
+  {
+    name: "Ace of Cups",
+    image: "https://photos.app.goo.gl/cZvKNKCu35WbH7D68",
+    meaning_upright: "Emotional beginnings, love, compassion. Your heart opens to new possibilities.",
+    meaning_reversed: "Blocked emotions, emptiness, insecurity. Take time to heal and nurture yourself."
+  },
+  {
+    name: "Two of Cups",
+    image: "https://photos.app.goo.gl/q8qJgB77rXUT4s4R8",
+    meaning_upright: "Partnership, unity, connection. Mutual love and respect bloom beautifully.",
+    meaning_reversed: "Imbalance, tension, misunderstandings. Communication is key to healing."
+  },
+  {
+    name: "Three of Cups",
+    image: "https://photos.app.goo.gl/gUzJ38m8zorbRiB18",
+    meaning_upright: "Celebration, friendship, joy. Gather with loved ones and share happiness.",
+    meaning_reversed: "Overindulgence, gossip, isolation. Focus on meaningful connections."
+  },
+  {
+    name: "Four of Cups",
+    image: "https://photos.app.goo.gl/JLbuAUyWHGNC5tSb6",
+    meaning_upright: "Contemplation, reevaluation, apathy. Reflect on what truly matters to you.",
+    meaning_reversed: "New opportunities, awareness, motivation. Open your heart to what’s coming."
+  },
+  {
+    name: "Five of Cups",
+    image: "https://photos.app.goo.gl/MKm6i14PNewFWmbE9",
+    meaning_upright: "Loss, grief, regret. Acknowledge your feelings and allow healing.",
+    meaning_reversed: "Moving on, acceptance, forgiveness. The past no longer holds you back."
+  },
+  {
+    name: "Six of Cups",
+    image: "https://photos.app.goo.gl/rmCSbtQ4kuLgLbMb7",
+    meaning_upright: "Nostalgia, innocence, reunion. Sweet memories and heartfelt connections surround you.",
+    meaning_reversed: "Stuck in the past, naivety, unrealistic. Embrace the present with open eyes."
+  },
+  {
+    name: "Seven of Cups",
+    image: "https://photos.app.goo.gl/nEuKSPdysC9dJ2xe7",
+    meaning_upright: "Choices, dreams, illusions. Many paths lie ahead—choose with clarity and intention.",
+    meaning_reversed: "Confusion, lack of focus, temptation. Ground yourself before deciding."
+  },
+  {
+    name: "Eight of Cups",
+    image: "https://photos.app.goo.gl/B26HGmPXB9QvocgX6",
+    meaning_upright: "Walking away, letting go, spiritual quest. You’re seeking deeper meaning beyond comfort.",
+    meaning_reversed: "Fear of change, stagnation, avoidance. Courage calls you to move forward."
+  },
+  {
+    name: "Nine of Cups",
+    image: "https://photos.app.goo.gl/LnDBS9WL2CzTP92W8",
+    meaning_upright: "Contentment, wishes fulfilled, satisfaction. Celebrate your blessings with gratitude.",
+    meaning_reversed: "Greed, dissatisfaction, overindulgence. Reflect on what truly nourishes you."
+  },
+  {
+    name: "Ten of Cups",
+    image: "https://photos.app.goo.gl/hYbrXBv66F55fhXD9",
+    meaning_upright: "Harmony, family, lasting happiness. Joyful connections and emotional fulfillment abound.",
+    meaning_reversed: "Broken relationships, misalignment, discontent. Heal and rebuild with love."
+  },
+  {
+    name: "Page of Cups",
+    image: "https://photos.app.goo.gl/WTWHsXY1tn5d2Ufp7",
+    meaning_upright: "Creative inspiration, new emotions, curiosity. Let your heart and imagination guide you.",
+    meaning_reversed: "Emotional immaturity, insecurity, doubt. Ground your feelings and embrace growth."
+  },
+  {
+    name: "Knight of Cups",
+    image: "https://photos.app.goo.gl/Qmxtfi9sgVBBqYfX6",
+    meaning_upright: "Romantic, idealistic, messenger. Love approaches—stay open to its flow.",
+    meaning_reversed: "Moodiness, jealousy, disappointment. Manage expectations and communicate honestly."
+  },
+  {
+    name: "Queen of Cups",
+    image: "https://photos.app.goo.gl/A3PKrDJRSp1UaRvGA",
+    meaning_upright: "Compassionate, intuitive, nurturing. You radiate emotional wisdom and kindness.",
+    meaning_reversed: "Emotional insecurity, codependency. Take care to set healthy boundaries."
+  },
+  {
+    name: "King of Cups",
+    image: "https://photos.app.goo.gl/MLmWhKm7DCJqfH7dA",
+    meaning_upright: "Balance, diplomacy, emotional control. Master your feelings with grace and strength.",
+    meaning_reversed: "Manipulation, volatility, emotional repression. Express your true emotions honestly."
+  },
+
+  // Pentacles start
+
+  {
+    name: "Ace of Pentacles",
+    image: "https://photos.app.goo.gl/GurB1rzMVKztj22J6",
+    meaning_upright: "New financial opportunities, prosperity, abundance. Seeds of wealth and growth are planted.",
+    meaning_reversed: "Missed opportunities, instability, lack. Reassess your resources and plans."
+  },
+  {
+    name: "Two of Pentacles",
+    image: "https://photos.app.goo.gl/PV27GjgqkU2Ddoea9",
+    meaning_upright: "Balance, adaptability, time management. Juggle your priorities with grace.",
+    meaning_reversed: "Overwhelm, disorganization, stress. Slow down and prioritize."
+  },
+  {
+    name: "Three of Pentacles",
+    image: "https://photos.app.goo.gl/UU6F9HYdQtA1vnkb6",
+    meaning_upright: "Collaboration, craftsmanship, learning. Teamwork builds your vision with skill and care.",
+    meaning_reversed: "Lack of teamwork, disorganized, low quality. Reevaluate your cooperation and standards."
+  },
+  {
+    name: "Four of Pentacles",
+    image: "https://photos.app.goo.gl/kZ9pVMn6CmFngEHZ6",
+    meaning_upright: "Security, control, conservatism. Hold your ground but beware clinging too tightly.",
+    meaning_reversed: "Greed, possessiveness, fear of loss. Release what no longer serves your growth."
+  },
+  {
+    name: "Five of Pentacles",
+    image: "https://photos.app.goo.gl/MnEgAb2oeiPXwoDP7",
+    meaning_upright: "Hardship, loss, isolation. Difficult times test your resilience—help is near.",
+    meaning_reversed: "Recovery, improvement, hope. Light returns after darkness."
+  },
+  {
+    name: "Six of Pentacles",
+    image: "https://photos.app.goo.gl/9ry2H9sva65aP3vi7",
+    meaning_upright: "Generosity, charity, sharing. Balance in giving and receiving creates harmony.",
+    meaning_reversed: "Selfishness, debt, inequality. Reflect on fairness in your exchanges."
+  },
+  {
+    name: "Seven of Pentacles",
+    image: "https://photos.app.goo.gl/kycgmkpYw1Z25GXJ9",
+    meaning_upright: "Patience, assessment, growth. Hard work begins to bear fruit—stay the course.",
+    meaning_reversed: "Impatience, lack of reward, discouragement. Reassess your goals and effort."
+  },
+  {
+    name: "Eight of Pentacles",
+    image: "https://photos.app.goo.gl/25FxfQTZLyAfG6T79",
+    meaning_upright: "Diligence, skill development, dedication. Master your craft through persistent work.",
+    meaning_reversed: "Lack of focus, mediocrity, burnout. Find renewed passion or adjust your path."
+  },
+  {
+    name: "Nine of Pentacles",
+    image: "https://photos.app.goo.gl/ygTE32AkpdGjZ5aNA",
+    meaning_upright: "Self-sufficiency, luxury, success. Enjoy the rewards of your independence and effort.",
+    meaning_reversed: "Financial setbacks, overindulgence, dependence. Rebuild with discipline and balance."
+  },
+  {
+    name: "Ten of Pentacles",
+    image: "https://photos.app.goo.gl/LxkZosyidwULnGBu8",
+    meaning_upright: "Legacy, family, long-term success. Foundations are strong—enjoy prosperity and stability.",
+    meaning_reversed: "Family disputes, financial loss, insecurity. Address underlying tensions with care."
+  },
+  {
+    name: "Page of Pentacles",
+    image: "https://photos.app.goo.gl/oci3SSDdweeiUdwJ9",
+    meaning_upright: "Manifestation, new opportunities, study. Curiosity and effort open doors ahead.",
+    meaning_reversed: "Lack of progress, procrastination, distractions. Focus on your goals to advance."
+  },
+  {
+    name: "Knight of Pentacles",
+    image: "https://photos.app.goo.gl/Y9aCNK7T7w9T3xhG6",
+    meaning_upright: "Hard work, responsibility, routine. Steady progress leads to lasting results.",
+    meaning_reversed: "Stubbornness, laziness, inefficiency. Adapt and re-energize your approach."
+  },
+  {
+    name: "Queen of Pentacles",
+    image: "https://photos.app.goo.gl/MN7xgPiCgiYfyVWEA",
+    meaning_upright: "Nurturing, practicality, prosperity. Grounded energy supports your home and finances.",
+    meaning_reversed: "Self-care neglect, financial insecurity. Rebalance your priorities and boundaries."
+  },
+  {
+    name: "King of Pentacles",
+    image: "https://photos.app.goo.gl/ekazc4PHHaKuoarq8",
+    meaning_upright: "Wealth, leadership, security. You embody success and responsible stewardship.",
+    meaning_reversed: "Greed, rigidity, materialism. Stay connected to your values beyond possessions."
+  },
+
+  // Swords start
+
+  {
+    name: "Ace of Swords",
+    image: "https://photos.app.goo.gl/EM95W5bzYjYRP7HKA",
+    meaning_upright: "Clarity, breakthroughs, new ideas. A sharp mind cuts through confusion.",
+    meaning_reversed: "Confusion, misinformation, delays. Stay clear-headed and patient."
+  },
+  {
+    name: "Two of Swords",
+    image: "https://photos.app.goo.gl/WdhRYUpCihzv2nkW8",
+    meaning_upright: "Indecision, stalemate, choices. Weigh your options and trust your intuition.",
+    meaning_reversed: "Confusion, information overload. Seek clarity before deciding."
+  },
+  {
+    name: "Three of Swords",
+    image: "https://photos.app.goo.gl/3K6Hzu8tz7MHXSgQ9",
+    meaning_upright: "Heartbreak, sorrow, grief. Allow yourself to feel and begin healing.",
+    meaning_reversed: "Releasing pain, forgiveness, recovery. The heart mends, opening to love again."
+  },
+  {
+    name: "Four of Swords",
+    image: "https://photos.app.goo.gl/gVK24uVwm6u8AoZS8",
+    meaning_upright: "Rest, recuperation, contemplation. Take time to recharge and reflect.",
+    meaning_reversed: "Burnout, restlessness, stress. Prioritize self-care to restore balance."
+  },
+  {
+    name: "Five of Swords",
+    image: "https://photos.app.goo.gl/2GPG6KwmU8EsnN7P6",
+    meaning_upright: "Conflict, tension, defeat. Choose your battles wisely and seek peace.",
+    meaning_reversed: "Reconciliation, resolution, forgiveness. Healing follows honest communication."
+  },
+  {
+    name: "Six of Swords",
+    image: "https://photos.app.goo.gl/YQiowFhHaJU1r6zH7",
+    meaning_upright: "Transition, moving on, travel. A journey toward calmer waters is ahead.",
+    meaning_reversed: "Resistance to change, unfinished business. Embrace growth and closure."
+  },
+  {
+    name: "Seven of Swords",
+    image: "https://photos.app.goo.gl/bAeq7gqxZ34wFGf2A",
+    meaning_upright: "Strategy, stealth, cunning. Be mindful of your actions and their motives.",
+    meaning_reversed: "Deception, guilt, coming clean. Truth reveals and clears the way."
+  },
+  {
+    name: "Eight of Swords",
+    image: "https://photos.app.goo.gl/o7Ydp2LT6fSsQ2Yu5",
+    meaning_upright: "Restriction, fear, feeling trapped. Your limits are often self-imposed.",
+    meaning_reversed: "Release, empowerment, breakthrough. Step forward with courage and clarity."
+  },
+  {
+    name: "Nine of Swords",
+    image: "https://photos.app.goo.gl/cc9Smmr4uua9AjeJ9",
+    meaning_upright: "Anxiety, nightmares, worry. Confront your fears to dissolve their power.",
+    meaning_reversed: "Hope, recovery, reassurance. Light pierces the darkness — healing is near."
+  },
+  {
+    name: "Ten of Swords",
+    image: "https://photos.app.goo.gl/27rFpGXWcD8cbM1f7",
+    meaning_upright: "Endings, betrayal, loss. Though painful, this marks a turning point.",
+    meaning_reversed: "Recovery, regeneration, resilience. New beginnings rise from past endings."
+  },
+  {
+    name: "Page of Swords",
+    image: "https://photos.app.goo.gl/JgAdQJXd3VU5edXD9",
+    meaning_upright: "Curiosity, vigilance, new ideas. Stay alert and open to learning.",
+    meaning_reversed: "All talk, deception, haste. Be careful with words and intentions."
+  },
+  {
+    name: "Knight of Swords",
+    image: "https://photos.app.goo.gl/dsdugNwsQWT1GVke9",
+    meaning_upright: "Action, speed, ambition. Charge forward with focus and determination.",
+    meaning_reversed: "Impulsiveness, recklessness, scattered energy. Slow down and plan carefully."
+  },
+  {
+    name: "Queen of Swords",
+    image: "https://photos.app.goo.gl/f2nXCqHBL1VU6LUdA",
+    meaning_upright: "Independence, perception, clear communication. Speak your truth with compassion.",
+    meaning_reversed: "Coldness, bitterness, manipulation. Balance intellect with empathy."
+  },
+  {
+    name: "King of Swords",
+    image: "https://photos.app.goo.gl/gE4pr5CcdvNn1Z568",
+    meaning_upright: "Authority, truth, mental clarity. Lead with integrity and wisdom.",
+    meaning_reversed: "Abuse of power, rigidity, cruelty. Check your intentions and listen deeply."
+  },
+
+  // Wands start
+
+  {
+    name: "Ace of Wands",
+    image: "https://photos.app.goo.gl/qZumKsoH9upi3pJV6",
+    meaning_upright: "Inspiration, new opportunities, growth. A spark ignites your passion and creativity.",
+    meaning_reversed: "Delays, lack of motivation, weighed down. Rekindle your fire and believe in yourself."
+  },
+  {
+    name: "Two of Wands",
+    image: "https://photos.app.goo.gl/aNRbdAEij1YgG7Mw9",
+    meaning_upright: "Planning, decisions, discovery. Look ahead with optimism and clear vision.",
+    meaning_reversed: "Fear of unknown, hesitation, limited options. Push past doubt and expand your view."
+  },
+  {
+    name: "Three of Wands",
+    image: "https://photos.app.goo.gl/grrrnPYU7c3nNgTY8",
+    meaning_upright: "Expansion, foresight, progress. Your plans are setting sail; trust the journey.",
+    meaning_reversed: "Obstacles, delays, frustration. Reevaluate your approach and stay patient."
+  },
+  {
+    name: "Four of Wands",
+    image: "https://photos.app.goo.gl/hZGzRj5T16NCYprM9",
+    meaning_upright: "Celebration, harmony, home. Enjoy milestones and shared happiness.",
+    meaning_reversed: "Conflict, instability, lack of support. Focus on healing and foundation building."
+  },
+  {
+    name: "Five of Wands",
+    image: "https://photos.app.goo.gl/oRW1Wd5gMcf8BY1P7",
+    meaning_upright: "Competition, challenges, energy. Healthy conflict sparks growth and learning.",
+    meaning_reversed: "Avoidance, compromise, tension release. Seek peace and mutual understanding."
+  },
+  {
+    name: "Six of Wands",
+    image: "https://photos.app.goo.gl/hieZCn6bx9J1RX3M6",
+    meaning_upright: "Victory, recognition, confidence. Your efforts are noticed and celebrated.",
+    meaning_reversed: "Ego, fall from grace, lack of confidence. Stay humble and focus on growth."
+  },
+  {
+    name: "Seven of Wands",
+    image: "https://photos.app.goo.gl/m4MD4HMpp4vRSZ9f7",
+    meaning_upright: "Defiance, perseverance, courage. Stand your ground and defend your beliefs.",
+    meaning_reversed: "Giving up, feeling overwhelmed, insecurity. Find your strength and keep fighting."
+  },
+  {
+    name: "Eight of Wands",
+    image: "https://photos.app.goo.gl/d4Vk47V2cuH8Hi768",
+    meaning_upright: "Speed, action, swift change. Things are moving quickly — stay ready.",
+    meaning_reversed: "Delays, frustration, miscommunication. Be patient and clarify your intentions."
+  },
+  {
+    name: "Nine of Wands",
+    image: "https://photos.app.goo.gl/wFrdoBgEwS9SQRyh9",
+    meaning_upright: "Resilience, persistence, boundaries. You’ve weathered storms — keep going.",
+    meaning_reversed: "Exhaustion, defensiveness, burnout. Rest and recharge to protect yourself."
+  },
+  {
+    name: "Ten of Wands",
+    image: "https://photos.app.goo.gl/RW14Dd6yyfa92DVV6",
+    meaning_upright: "Burden, responsibility, hard work. Know when to ask for help and lighten your load.",
+    meaning_reversed: "Release, delegation, overwhelm. Share your load to regain balance."
+  },
+  {
+    name: "Page of Wands",
+    image: "https://photos.app.goo.gl/o5sZQLJKJ9fjTDbr8",
+    meaning_upright: "Enthusiasm, exploration, discovery. A fresh burst of creative energy inspires you.",
+    meaning_reversed: "Lack of direction, procrastination. Refocus and ignite your passions."
+  },
+  {
+    name: "Knight of Wands",
+    image: "https://photos.app.goo.gl/feSPsp7xfBewkp8i7",
+    meaning_upright: "Adventure, impulsiveness, confidence. Charge boldly toward your goals.",
+    meaning_reversed: "Recklessness, impatience, scattered energy. Slow down and think it through."
+  },
+  {
+    name: "Queen of Wands",
+    image: "https://photos.app.goo.gl/C3r6etttsAmr9sfy8",
+    meaning_upright: "Courage, passion, charisma. Lead with heart and inspire others.",
+    meaning_reversed: "Jealousy, insecurity, aggression. Balance your energy with kindness."
+  },
+  {
+    name: "King of Wands",
+    image: "https://photos.app.goo.gl/CbDeLEcsP37v21i18",
+    meaning_upright: "Visionary, leadership, honor. Command your path with integrity and passion.",
+    meaning_reversed: "Impulsiveness, arrogance, ruthless behavior. Lead with humility and care."
+  },
+
+  // Card Back
+
+  {
+    name: "Card Back",
+    image: "https://photos.app.goo.gl/RkrFSYUkqvFcAqwe8",
+    meaning_upright: "",
+    meaning_reversed: ""
+  }
+
+
+  function shuffleDeck() {
+    const today = new Date().toDateString();
+    const seed = today.split('').reduce((a, b) => a + b.charCodeAt(0), 0);
+    let deck = [...tarotDeck];
+    for (let i = deck.length - 1; i > 0; i--) {
+      const j = (seed + i * 997) % deck.length;
+      [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+    return deck;
+  }
+
+  function drawCards(num, isLove = false) {
+    const deck = shuffleDeck();
+    const container = document.getElementById('cardContainer');
+    const readingText = document.getElementById('readingText');
+    container.innerHTML = '';
+    readingText.innerHTML = '';
+    for (let i = 0; i < num; i++) {
+      const card = deck[i];
+      const isReversed = Math.random() < 0.5;
+      const cardDiv = document.createElement('div');
+      cardDiv.className = 'card flipped';
+      const inner = document.createElement('div');
+      inner.className = 'card-inner';
+
+      const back = document.createElement('div');
+      back.className = 'card-back';
+      back.innerHTML = `<img src="${cardBackURL}" alt="Card Back">`;
+
+      const front = document.createElement('div');
+      front.className = 'card-front';
+      front.innerHTML = `<img src="${card.image}" alt="${card.name}" style="${isReversed ? 'transform: rotate(180deg);' : ''}">`;
+
+      inner.appendChild(front);
+      inner.appendChild(back);
+      cardDiv.appendChild(inner);
+      container.appendChild(cardDiv);
+
+      const meaning = isReversed ? card.meaning_reversed : card.meaning_upright;
+      const reading = document.createElement('div');
+      reading.innerHTML = `<h3>${card.name} ${isReversed ? '(Reversed)' : ''}</h3><p>${meaning}</p>`;
+      readingText.appendChild(reading);
+    }
+  }
+</script>
+</body>
+</html>
