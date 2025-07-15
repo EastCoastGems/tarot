@@ -143,12 +143,10 @@
     🔮 Tarot readings are for entertainment and spiritual reflection purposes only. They are not a substitute for medical, legal, or professional advice. Please use your own judgment and intuition when interpreting the messages.
   </p>
 
-  <script>
-    const cardBackImage = "https://i.ibb.co/HpfSCHb2/image.png"; // replace with your own hosted image
-
-    // 🃏 Your full 78-card deck array goes here
-    const cards = [
-
+<script>
+  const cardBackImage = "https://i.ibb.co/HpfSCHb2/image.png"; // Replace with your own hosted card back image
+ 
+  const cards = [
     {
       name: "The Fool",
       image: "https://i.ibb.co/67C86gFm/image.png",
@@ -629,101 +627,94 @@
       meaning_upright: "Visionary, leadership, honor. Command your path with integrity and passion. Lead boldly and with heart.",
       meaning_reversed: "Impulsiveness or recklessness could cause trouble. Balance ambition with empathy. Pause and consider before acting."
     }
-    ];
-
-    // Generate a consistent seed per user/day
-    function getSeed(readingType) {
-      const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-      const user = window.location.hostname + navigator.userAgent;
-      return today + readingType + user;
-    }
-
-    function seededRandom(seed) {
-      let h = 0;
-      for (let i = 0; i < seed.length; i++) {
-        h = Math.imul(31, h) + seed.charCodeAt(i) | 0;
-      }
-      return () => {
-        h = Math.imul(31, h) + 1 | 0;
-        return ((h >>> 0) % 10000) / 10000;
-      };
-    }
-
-function drawCards(num, type) {
-  const seed = getSeed(type);
-  const rand = seededRandom(seed);
+  ];
  
-  // Shuffle the deck
-  const deck = [...cards];
-  for (let i = deck.length - 1; i > 0; i--) {
-    const j = Math.floor(rand() * (i + 1));
-    [deck[i], deck[j]] = [deck[j], deck[i]];
+  function getSeed(readingType) {
+    const today = new Date().toISOString().slice(0, 10);
+    const user = window.location.hostname + navigator.userAgent;
+    return today + readingType + user;
   }
  
-  // Slice the top cards
-  const drawn = deck.slice(0, num);
-  const container = document.getElementById("cardContainer");
-  const readingText = document.getElementById("readingText");
+  function seededRandom(seed) {
+    let h = 0;
+    for (let i = 0; i < seed.length; i++) {
+      h = Math.imul(31, h) + seed.charCodeAt(i) | 0;
+    }
+    return () => {
+      h = Math.imul(31, h) + 1 | 0;
+      return ((h >>> 0) % 10000) / 10000;
+    };
+  }
  
-  container.innerHTML = "";
-  readingText.innerHTML = "";
+  function drawCards(num, type) {
+    const seed = getSeed(type);
+    const rand = seededRandom(seed);
  
-  drawn.forEach(card => {
-    const isReversed = rand() > 0.5;
- 
-    const cardElement = document.createElement("div");
-    cardElement.className = "card";
- 
-    if (isReversed) {
-      cardElement.classList.add("reversed");
+    const deck = [...cards];
+    for (let i = deck.length - 1; i > 0; i--) {
+      const j = Math.floor(rand() * (i + 1));
+      [deck[i], deck[j]] = [deck[j], deck[i]];
     }
  
-    const cardInner = document.createElement("div");
-    cardInner.className = "card-inner";
+    const drawn = deck.slice(0, num);
+    const container = document.getElementById("cardContainer");
+    const readingText = document.getElementById("readingText");
+    container.innerHTML = "";
+    readingText.innerHTML = "";
  
-    const cardFront = document.createElement("div");
-    cardFront.className = "card-front";
-    const backImg = document.createElement("img");
-    backImg.src = cardBackImage;
-    cardFront.appendChild(backImg);
+    drawn.forEach(card => {
+      const isReversed = rand() > 0.5;
  
-    const cardBack = document.createElement("div");
-    cardBack.className = "card-back";
-    const cardImg = document.createElement("img");
-    cardImg.src = card.image;
-    cardImg.alt = card.name;
-    cardBack.appendChild(cardImg);
+      const cardElement = document.createElement("div");
+      cardElement.className = "card";
  
-    cardInner.appendChild(cardFront);
-    cardInner.appendChild(cardBack);
-    cardElement.appendChild(cardInner);
-    container.appendChild(cardElement);
+      const cardInner = document.createElement("div");
+      cardInner.className = "card-inner";
  
-    const meaning = document.createElement("p");
-    meaning.innerHTML = `<strong>${card.name}</strong> (${isReversed ? "Reversed" : "Upright"}): ${isReversed ? card.meaning_reversed : card.meaning_upright}`;
-    readingText.appendChild(meaning);
-  });
+      const cardFront = document.createElement("div");
+      cardFront.className = "card-front";
+      if (isReversed) cardFront.classList.add("reversed");
+      const backImg = document.createElement("img");
+      backImg.src = cardBackImage;
+      backImg.alt = "Card Back";
+      cardFront.appendChild(backImg);
  
-  // Show type-specific intro message
-  let typeMessage = "";
-  switch (type) {
-    case "daily":
-      typeMessage = "🌞 Daily Card: Insight for the day ahead.";
-      break;
-    case "three":
-      typeMessage = "🔮 Three-Card Spread: Past, present, and future influences.";
-      break;
-    case "love":
-      typeMessage = "❤️ Love Reading: Explore your heart’s path.";
-      break;
+      const cardBack = document.createElement("div");
+      cardBack.className = "card-back";
+      const cardImg = document.createElement("img");
+      cardImg.src = card.image;
+      cardImg.alt = card.name;
+      cardBack.appendChild(cardImg);
+ 
+      cardInner.appendChild(cardFront);
+      cardInner.appendChild(cardBack);
+      cardElement.appendChild(cardInner);
+      container.appendChild(cardElement);
+ 
+      const meaning = document.createElement("p");
+      meaning.innerHTML = `<strong>${card.name}</strong> (${isReversed ? "Reversed" : "Upright"}): ${isReversed ? card.meaning_reversed : card.meaning_upright}`;
+      readingText.appendChild(meaning);
+    });
+ 
+    let typeMessage = "";
+    switch (type) {
+      case "daily":
+        typeMessage = "🌞 Daily Card: Insight for the day ahead.";
+        break;
+      case "three":
+        typeMessage = "🔮 Three-Card Spread: Past, present, and future influences.";
+        break;
+      case "love":
+        typeMessage = "❤️ Love Reading: Explore your heart’s path.";
+        break;
+    }
+ 
+    if (typeMessage) {
+      const intro = document.createElement("p");
+      intro.innerHTML = `<em>${typeMessage}</em>`;
+      readingText.prepend(intro);
+    }
   }
- 
-  if (typeMessage) {
-    const intro = document.createElement("p");
-    intro.innerHTML = `<em>${typeMessage}</em>`;
-    readingText.prepend(intro);
-  }
-}
-  </script>
+</script>
 </body>
 </html>
