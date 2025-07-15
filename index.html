@@ -92,20 +92,6 @@
       object-fit: contain;
     }
 
-    .card-back {
-  transform: rotateY(180deg); /* default back face */
-}
-
-/* Flip to face-up */
-.card:hover .card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Add this new class to invert reversed cards */
-.reversed.card-inner {
-  transform: rotateY(180deg) rotateX(180deg);
-}
-
     .reading-text {
       margin-top: 20px;
       padding: 0 20px;
@@ -673,12 +659,6 @@
 
       drawn.forEach(card => {
         const isReversed = rand() > 0.5;
-
-        const cardInner = document.createElement("div");
-cardInner.className = "card-inner";
-if (isReversed) {
-  cardInner.classList.add("reversed");
-}
 
         const cardElement = document.createElement("div");
         cardElement.className = "card";
