@@ -48,6 +48,14 @@
       background-color: #932bc3;
     }
 
+    .card-instruction {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
     .card-container {
       display: flex;
       justify-content: center;
@@ -135,11 +143,14 @@
     <button onclick="drawCards(5, 'love')">Love Reading</button>
   </div>
 
+<p class="card-instruction">Tap a card to reveal its secrets ✨</p>
+<div id="daily-card" class="card-container"></div>
+
   <div class="card-container" id="cardContainer"></div>
   <div class="reading-text" id="readingText"></div>
 
       <p class="disclaimer">
-    <small></small>🔮 <i>Tarot readings are for entertainment and spiritual reflection purposes only. They are not a substitute for medical, legal, or professional advice. Please use your own judgment and intuition when interpreting the messages.</i></small>
+    <small>🔮 <i>Tarot readings are for entertainment and spiritual reflection purposes only. They are not a substitute for medical, legal, or professional advice. Please use your own judgment and intuition when interpreting the messages.</i></small>
   </p>
 
 <script>
