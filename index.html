@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tarot Card Reading</title>
   <style>
-.card.reversed .card-front {
-  transform: rotate(180deg);
-}
     body {
       font-family: "Verdana", "Geneva", sans-serif;
       text-align: center;
@@ -109,6 +106,9 @@
       margin-left: auto;
       margin-right: auto;
     }
+.card.reversed .card-front {
+  transform: rotateY(180deg) rotate(180deg);
+}
   </style>
 </head>
 <body>
