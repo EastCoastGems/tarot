@@ -2,111 +2,150 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Tarot Reader</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tarot Card Reading</title>
   <style>
     body {
-      background-color: #fdfdfd;
-      font-family: 'Georgia', serif;
-      color: #333;
-      padding: 40px;
+      font-family: "Verdana", "Geneva", sans-serif;
       text-align: center;
+      background-color: #f8f1ff;
+      color: #333;
+      padding: 20px;
     }
 
-    h2 {
-      color: #b23cf0;
+    h1 {
+      font-size: 2.5rem;
       margin-bottom: 10px;
     }
 
-    button {
-      margin: 10px;
-      padding: 10px 20px;
+    p.intro {
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+      gap: 10px;
+    }
+
+    .button-group button {
+      flex: 1 1 200px;
+      padding: 15px;
+      font-size: 1rem;
       background-color: #b23cf0;
+      color: #fff;
       border: none;
-      color: white;
-      font-size: 16px;
+      border-radius: 8px;
       cursor: pointer;
-      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    .button-group button:hover {
+      background-color: #932bc3;
     }
 
     .card-container {
       display: flex;
       justify-content: center;
-      gap: 20px;
       flex-wrap: wrap;
-      margin-top: 30px;
+      gap: 20px;
+      margin-bottom: 20px;
     }
 
     .card {
-      width: 150px;
-      height: 250px;
+      width: 200px;
+      height: 300px;
       perspective: 1000px;
-      cursor: pointer;
     }
 
     .card-inner {
       width: 100%;
       height: 100%;
-      transition: transform 0.6s;
-      transform-style: preserve-3d;
       position: relative;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
     }
 
-    .card.flipped .card-inner {
-      transform: rotateY(180deg);
-    }
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px; /* optional rounded corners */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* subtle shadow */
+}
 
-    .card-front,
-    .card-back {
-      position: absolute;
+.card-back {
+  transform: rotateY(180deg);
+}
+
+      .card img {
       width: 100%;
       height: 100%;
-      backface-visibility: hidden;
-      border-radius: 10px;
-      overflow: hidden;
+      object-fit: contain;
     }
 
-    .card-front img,
-    .card-back img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+/* Flip the card on hover */
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* If the card is reversed, rotate front and back images 180° */
+.card-inner.reversed .card-front img,
+.card-inner.reversed .card-back img {
+  transform: rotate(180deg);
+}
+
+/* Optional: Ensure reversed card doesn't flip double */
+.card.reversed .card-inner {
+  transform: none;
+}
+
+    .disclaimer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #666;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .card-back {
-      transform: rotateY(180deg);
-    }
-
-    hr {
-      margin: 60px auto;
-      width: 60%;
-      border: none;
-      border-top: 1px solid #ccc;
-    }
   </style>
 </head>
 <body>
+    <h1>Pick Your Tarot Reading</h1>
+ 
+  <div class="reading-types">
+    <p><strong>🃏 Daily Card:</strong> One card pulled to reflect the energy of your day, what to embrace, or a message from spirit.</p>
+    <p><strong>🔮 Three-Card Spread:</strong> A general Past – Present – Future reading to offer insight on your current path.</p>
+    <p><strong>💖 Love Reading:</strong> A relationship-focused three-card pull to explore love, emotional connection, or divine timing in your love life.</p>
+  </div>
+  <p class="intro">
+    Select a reading below. Cards will flip on hover. Meanings appear beneath each card.<br>
+    Enjoy your journey.
+  </p>
 
-  <div class="tarot-reader">
-    <h2>Daily Tarot Reading</h2>
-    <button onclick="getDailyCard()">Reveal Today's Card</button>
-    <div id="daily-card" class="card-container"></div>
-
-    <hr />
-
-    <h2>Three-Card Spread</h2>
-    <button onclick="drawThreeCardSpread()">Draw Spread</button>
-    <div id="three-card-spread" class="card-container"></div>
-
-    <hr />
-
-    <h2>Love Three-Card Spread</h2>
-    <button onclick="drawLoveSpread()">Draw Love Spread</button>
-    <div id="love-card-spread" class="card-container"></div>
+  <div class="button-group">
+    <button onclick="drawCards(1, 'daily')">Daily Card</button>
+    <button onclick="drawCards(3, 'three')">Three-Card Spread</button>
+    <button onclick="drawCards(5, 'love')">Love Reading</button>
   </div>
 
-  <script>
-    // Add your full 78 card list here with correct image paths
-    const cards = [
+  <div class="card-container" id="cardContainer"></div>
+  <div class="reading-text" id="readingText"></div>
+
+      <p class="disclaimer">
+    🔮 Tarot readings are for entertainment and spiritual reflection purposes only. They are not a substitute for medical, legal, or professional advice. Please use your own judgment and intuition when interpreting the messages.
+  </p>
+
+<script>
+const cardBackImage = "https://i.ibb.co/HpfSCHb2/image.png"; // Your card back image URL
+
+// Your full 78-card deck array goes here
+const cards = [
     {
       name: "The Fool",
       image: "https://i.ibb.co/67C86gFm/image.png",
@@ -587,88 +626,114 @@
       meaning_upright: "Visionary, leadership, honor. Command your path with integrity and passion. Lead boldly and with heart.",
       meaning_reversed: "Impulsiveness or recklessness could cause trouble. Balance ambition with empathy. Pause and consider before acting."
     }
-    ];
+];
 
-    const backImage = "https://i.ibb.co/HpfSCHb2/image.png"; // Replace with your actual card back image
+// Generate a consistent seed per user/day/reading type
+function getSeed(readingType) {
+  const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  const user = window.location.hostname + navigator.userAgent;
+  return today + readingType + user;
+}
 
-    // --- Helper function to pick a random card with reversed flag ---
-    function getRandomCard() {
-      const card = cards[Math.floor(Math.random() * cards.length)];
-      const reversed = Math.random() < 0.5;
-      return { ...card, reversed };
+// Simple seeded random generator (returns a function)
+function seededRandom(seed) {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) {
+    h = Math.imul(31, h) + seed.charCodeAt(i) | 0;
+  }
+  return () => {
+    h = Math.imul(31, h) + 1 | 0;
+    return ((h >>> 0) % 10000) / 10000;
+  };
+}
+
+// Main function to draw cards based on number and reading type
+function drawCards(num, type) {
+  const seed = getSeed(type);
+  const rand = seededRandom(seed);
+
+  // Clone and shuffle the deck with seeded randomness
+  const deck = [...cards];
+  for (let i = deck.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [deck[i], deck[j]] = [deck[j], deck[i]];
+  }
+
+  // Pick the top 'num' cards from shuffled deck
+  const drawn = deck.slice(0, num);
+
+  // Clear previous cards and reading text
+  const container = document.getElementById("cardContainer");
+  const readingText = document.getElementById("readingText");
+  container.innerHTML = "";
+  readingText.innerHTML = "";
+
+  // For each card, create DOM elements with front and back, handle reversed
+  drawn.forEach(card => {
+    const isReversed = rand() > 0.5; // Determine if card is reversed
+
+    // Create main card element
+    const cardElement = document.createElement("div");
+    cardElement.className = "card";
+
+    // Create inner container for flipping
+    const cardInner = document.createElement("div");
+    cardInner.className = "card-inner";
+
+    // Add 'reversed' class if card is reversed (flips front and back images)
+    if (isReversed) {
+      cardInner.classList.add("reversed");
     }
 
-    // --- Display card on container ---
-    function displayCard(cardData, containerId, clearPrevious = true) {
-      const container = document.getElementById(containerId);
-      if (clearPrevious) container.innerHTML = "";
+    // Front side (shows card back image)
+    const cardFront = document.createElement("div");
+    cardFront.className = "card-front";
+    const backImg = document.createElement("img");
+    backImg.src = cardBackImage;
+    backImg.alt = "Card back";
+    cardFront.appendChild(backImg);
 
-      const reversed = cardData.reversed;
-      const cardEl = document.createElement("div");
-      cardEl.className = "card";
-      if (reversed) cardEl.classList.add("flipped");
+    // Back side (shows tarot card image)
+    const cardBack = document.createElement("div");
+    cardBack.className = "card-back";
+    const cardImg = document.createElement("img");
+    cardImg.src = card.image;
+    cardImg.alt = card.name;
+    cardBack.appendChild(cardImg);
 
-      cardEl.innerHTML = `
-        <div class="card-inner">
-          <div class="card-front">
-            <img src="${backImage}" alt="Card Back" />
-          </div>
-          <div class="card-back">
-            <img src="${cardData.img}" alt="${cardData.name}" style="${
-        reversed ? "transform: rotate(180deg);" : ""
-      }" />
-          </div>
-        </div>
-      `;
+    // Assemble the card
+    cardInner.appendChild(cardFront);
+    cardInner.appendChild(cardBack);
+    cardElement.appendChild(cardInner);
 
-      cardEl.addEventListener("click", () => {
-        cardEl.classList.toggle("flipped");
-      });
+    // Add card to container
+    container.appendChild(cardElement);
 
-      container.appendChild(cardEl);
-    }
+    // Add meaning below cards
+    const meaning = document.createElement("p");
+    meaning.innerHTML = `<strong>${card.name}</strong> (${isReversed ? "Reversed" : "Upright"}): ${isReversed ? card.meaning_reversed : card.meaning_upright}`;
+    readingText.appendChild(meaning);
+  });
 
-    // --- DAILY CARD ---
-    function getDailyCard() {
-      const today = new Date().toISOString().split("T")[0];
-      const saved = localStorage.getItem("dailyCard");
-      const savedDate = localStorage.getItem("dailyCardDate");
-
-      if (saved && savedDate === today) {
-        displayCard(JSON.parse(saved), "daily-card");
-      } else {
-        const card = getRandomCard();
-        localStorage.setItem("dailyCard", JSON.stringify(card));
-        localStorage.setItem("dailyCardDate", today);
-        displayCard(card, "daily-card");
-      }
-    }
-
-    // --- GENERAL THREE-CARD SPREAD ---
-    function drawThreeCardSpread() {
-      const shuffled = [...cards].sort(() => 0.5 - Math.random());
-      const selected = shuffled.slice(0, 3).map(card => {
-        return { ...card, reversed: Math.random() < 0.5 };
-      });
-
-      const container = document.getElementById("three-card-spread");
-      container.innerHTML = "";
-      selected.forEach(card => displayCard(card, "three-card-spread", false));
-    }
-
-    // --- LOVE THREE-CARD SPREAD ---
-    function drawLoveSpread() {
-      // For love spread, you can optionally filter cards or use all cards
-      // This example uses all cards randomly
-      const shuffled = [...cards].sort(() => 0.5 - Math.random());
-      const selected = shuffled.slice(0, 3).map(card => {
-        return { ...card, reversed: Math.random() < 0.5 };
-      });
-
-      const container = document.getElementById("love-card-spread");
-      container.innerHTML = "";
-      selected.forEach(card => displayCard(card, "love-card-spread", false));
-    }
-  </script>
+  // Show reading type description on top of meanings
+  let typeMessage = "";
+  switch (type) {
+    case "daily":
+      typeMessage = "🌞 Daily Card: Insight for the day ahead.";
+      break;
+    case "three":
+      typeMessage = "🔮 Three-Card Spread: Past, present, and future influences.";
+      break;
+    case "love":
+      typeMessage = "❤️ Love Reading: Explore your heart’s path.";
+      break;
+  }
+  if (typeMessage) {
+    const intro = document.createElement("p");
+    intro.innerHTML = `<em>${typeMessage}</em>`;
+    readingText.prepend(intro);
+  }
+}
+</script>
 </body>
 </html>
