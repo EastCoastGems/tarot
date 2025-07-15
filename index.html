@@ -13,7 +13,7 @@
     justify-content: center;
     align-items: center;
     padding: 30px 0 10px;
-    background-color: #fff;
+    background-color: #f8f1ff;
   }
 
   .site-logo {
@@ -75,6 +75,17 @@
       background-color: #932bc3;
     }
 
+:root {
+  --card-bg: #fff;
+  --card-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  --card-border-radius: 8px;
+}
+.card {
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--card-border-radius);
+}   
+
     .card-instruction {
   font-size: 1rem;
   color: #555;
@@ -92,8 +103,8 @@
     }
 
     .card {
-      width: 200px;
       height: 300px;
+      width: 200px;
       perspective: 1000px;
     }
 
