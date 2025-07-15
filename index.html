@@ -89,7 +89,7 @@
     .card img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
 
     .reading-text {
@@ -109,10 +109,20 @@
   </style>
 </head>
 <body>
-  <h1>Tarot Card Reading</h1>
+    <h1>Pick Your Tarot Reading</h1>
+ 
+  <div class="reading-types">
+    <p><strong>🃏 Daily Card:</strong> One card pulled to reflect the energy of your day, what to embrace, or a message from spirit.</p>
+    <p><strong>🔮 Three-Card Spread:</strong> A general Past – Present – Future reading to offer insight on your current path.</p>
+    <p><strong>💖 Love Reading:</strong> A relationship-focused three-card pull to explore love, emotional connection, or divine timing in your love life.</p>
+  </div>
   <p class="intro">
     Select a reading below. Cards will flip on hover. Meanings appear beneath each card.<br>
     Enjoy your journey.
+  </p>
+
+    <p class="disclaimer">
+    🔮 Tarot readings are for entertainment and spiritual reflection purposes only. They are not a substitute for medical, legal, or professional advice. Please use your own judgment and intuition when interpreting the messages.
   </p>
 
   <div class="button-group">
@@ -124,12 +134,8 @@
   <div class="card-container" id="cardContainer"></div>
   <div class="reading-text" id="readingText"></div>
 
-  <p class="disclaimer">
-    🔮 Tarot readings are for entertainment and spiritual reflection purposes only. They are not a substitute for medical, legal, or professional advice. Please use your own judgment and intuition when interpreting the messages.
-  </p>
-
   <script>
-    const cardBackImage = "https://i.ibb.co/YW4t9CR/card-back.jpg"; // replace with your own hosted image
+    const cardBackImage = "https://i.ibb.co/HpfSCHb2/image.png"; // replace with your own hosted image
 
     // 🃏 Your full 78-card deck array goes here
     const cards = [
