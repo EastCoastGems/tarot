@@ -646,6 +646,7 @@
     function drawCards(num, type) {
       const seed = getSeed(type);
       const rand = seededRandom(seed);
+      const isReversed = Math.random() < 0.5;
       const cardDiv = document.createElement("div");
       cardDiv.classname = "card";
       if (isReversed) {
