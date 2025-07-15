@@ -52,7 +52,7 @@
     .button-row button:hover {
       background-color: #871dcc;
     }
- 
+
 .card {
   width: 200px;
   height: 300px;
@@ -60,7 +60,7 @@
   display: inline-block;
   margin: 20px;
 }
- 
+
 .card-inner {
   width: 100%;
   height: 100%;
@@ -68,11 +68,11 @@
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
- 
+
 .card:hover .card-inner {
   transform: rotateY(180deg);
 }
- 
+
 .card-front, .card-back {
   position: absolute;
   width: 100%;
@@ -82,7 +82,7 @@
   border-radius: 8px;
   overflow: hidden;
 }
- 
+
 .card-back {
   transform: rotateY(180deg);
 }
@@ -120,7 +120,7 @@
   </p>
  
   <script>
- 
+
     const cardBackImage = "https://i.ibb.co/HpfSCHb2/image.png";
     const deck = [
     {
@@ -626,20 +626,20 @@ const area = document.getElementById('reading');
 const container = document.getElementById('cardContainer');
 const readingText = document.getElementById('readingText');
  
- 
+
 const cardElement = document.createElement("div");
 cardElement.className = "card";
- 
+
 const cardInner = document.createElement("div");
 cardInner.className = "card-inner";
- 
+
 // Front of the card (the back image)
 const cardFront = document.createElement("div");
 cardFront.className = "card-front";
 const backImg = document.createElement("img");
 backImg.src = cardBackImage; // This must be declared globally
 cardFront.appendChild(backImg);
- 
+
 // Back of the card (actual reading)
 const cardBack = document.createElement("div");
 cardBack.className = "card-back";
@@ -647,12 +647,12 @@ const cardImg = document.createElement("img");
 cardImg.src = card.image;
 cardImg.alt = card.name;
 cardBack.appendChild(cardImg);
- 
+
 cardInner.appendChild(cardFront);
 cardInner.appendChild(cardBack);
 cardElement.appendChild(cardInner);
 cardContainer.appendChild(cardElement);
- 
+
 // Clear old content
 area.innerHTML = '';
 container.innerHTML = '';
