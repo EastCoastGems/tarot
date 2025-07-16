@@ -1,195 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<!-- Logo Header -->
-<header class="site-header">
-  <img src="https://i.ibb.co/ZRrgQ9db/IMG-2055.png" alt="Site Logo" class="site-logo">
-</header>
-
-<style>
-  .site-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 0 10px;
-    background-color: #f8f1ff;
-  }
-
-  .site-logo {
-    max-width: 180px;
-    height: auto;
-    display: block;
-  }
-
-  /* Optional: add spacing below the logo before main content starts */
-  .site-header + * {
-    margin-top: 20px;
-  }
-</style>
-  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tarot Card Reading</title>
+  <title>Mystical Tarot Reading</title>
   <style>
     body {
-      font-family: "Verdana", "Geneva", sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      margin: 0;
+      padding: 2rem;
       text-align: center;
-      background-color: #f8f1ff;
+      min-height: 100vh;
       color: #333;
-      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Logo Header */
+    .site-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 0 20px;
+      margin-bottom: 2rem;
+    }
+
+    .site-logo {
+      max-width: 180px;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .site-logo:hover {
+      transform: scale(1.05);
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+      color: #ffffff;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      font-size: 3rem;
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+      background: linear-gradient(135deg, #ffffff 0%, #f8f1ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .reading-types {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      padding: 1.8rem;
+      border-radius: 16px;
+      max-width: 600px;
+      margin: 1.5rem auto;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      text-align: left;
+    }
+
+    .reading-types p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #444;
+      padding: 0.8rem 1rem;
+      background: rgba(178, 60, 240, 0.08);
+      border-radius: 10px;
+      border-left: 4px solid #b23cf0;
+      transition: all 0.3s ease;
+    }
+
+    .reading-types p:last-child {
+      margin-bottom: 0;
+    }
+
+    .reading-types p:hover {
+      background: rgba(178, 60, 240, 0.12);
+      transform: translateX(5px);
+    }
+
+    .reading-types p strong {
+      color: #b23cf0;
+      font-size: 1.1rem;
     }
 
     p.intro {
-      margin-bottom: 30px;
-      font-size: 1.1rem;
+      color: #ffffff;
+      font-size: 1.2rem;
+      margin: 2rem auto;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
 
     .button-group {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 30px;
-      gap: 10px;
+      margin: 3rem auto;
+      gap: 20px;
+      max-width: 600px;
     }
 
     .button-group button {
-      background-color: #b23cf0;
+      background: linear-gradient(135deg, #b23cf0 0%, #962dcc 100%);
       border: none;
       color: white;
-      font-size: 1.1rem;
-      padding: 12px 28px;
-      margin: 15px 10px;
-      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 15px 30px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 4px 10px rgba(178, 60, 240, 0.3);
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(178, 60, 240, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .button-group button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .button-group button:hover::before {
+      left: 100%;
     }
 
     .button-group button:hover {
-      background-color: #932bc3;
+      background: linear-gradient(135deg, #932bc3 0%, #7a1fa3 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(178, 60, 240, 0.4);
     }
 
-:root {
-  --card-bg: #b23cf0;
-  --card-shadow: 0 6px 15px rgba(0,0,0,0.3);
-  --card-border-radius: 8px;
-}
-.card {
-  background: var(--card-bg);
-  box-shadow: var(--card-shadow);
-  border-radius: var(--card-border-radius);
-}   
+    .button-group button:active {
+      transform: translateY(-1px);
+    }
 
     .card-instruction {
-  font-size: 1rem;
-  color: #555;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  font-style: italic;
-}
+      font-size: 1.1rem;
+      color: #ffffff;
+      margin: 2rem auto;
+      font-style: italic;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      max-width: 400px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
 
     .card-container {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 20px;
-      margin-bottom: 20px;
+      gap: 30px;
+      margin: 3rem auto;
+      max-width: 1000px;
     }
 
     .card {
-      height: 300px;
-      width: 200px;
+      height: 320px;
+      width: 210px;
       perspective: 1000px;
+      cursor: pointer;
     }
 
     .card-inner {
       width: 100%;
       height: 100%;
       position: relative;
-      transition: transform 0.8s;
+      transition: transform 0.8s ease;
       transform-style: preserve-3d;
     }
 
-.card-front, .card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 8px; /* optional rounded corners */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* subtle shadow */
-}
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
 
-.card-back {
-  transform: rotateY(180deg);
-}
+    .card-back {
+      transform: rotateY(180deg);
+    }
 
-      .card img {
+    .card img {
       width: 100%;
       height: 100%;
       object-fit: contain;
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+      background: rgba(255, 255, 255, 0.1);
     }
 
-/* Flip the card on hover */
-.card:hover .card-inner {
-  transform: rotateY(180deg);
-}
+    /* Flip the card on hover */
+    .card:hover .card-inner {
+      transform: rotateY(180deg);
+    }
 
-/* If the card is reversed, rotate front and back images 180° */
-.card-inner.reversed .card-front img,
-.card-inner.reversed .card-back img {
-  transform: rotate(180deg);
-}
+    .card:hover {
+      transform: scale(1.05);
+    }
 
-/* Optional: Ensure reversed card doesn't flip double */
-.card.reversed .card-inner {
-  transform: none;
-}
+    /* If the card is reversed, rotate front and back images 180° */
+    .card-inner.reversed .card-front img,
+    .card-inner.reversed .card-back img {
+      transform: rotate(180deg);
+    }
+
+    /* Optional: Ensure reversed card doesn't flip double */
+    .card.reversed .card-inner {
+      transform: none;
+    }
+
+    .reading-text {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    .reading-text p {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      padding: 2rem;
+      border-radius: 15px;
+      margin: 1.5rem 0;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      text-align: left;
+      line-height: 1.7;
+      font-size: 1.1rem;
+      color: #444;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reading-text p::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #b23cf0, #764ba2, #667eea);
+    }
+
+    .reading-text p strong {
+      color: #b23cf0;
+      font-size: 1.3rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .reading-text p em {
+      color: #666;
+      font-size: 1.2rem;
+      font-weight: 600;
+      background: rgba(178, 60, 240, 0.1);
+      padding: 1rem;
+      border-radius: 10px;
+      display: block;
+      margin-bottom: 1rem;
+      border-left: 4px solid #b23cf0;
+    }
 
     .disclaimer {
-      margin-top: 40px;
-      font-size: 0.9rem;
-      color: #666;
-      max-width: 600px;
+      margin-top: 4rem;
+      font-size: 0.95rem;
+      color: #ffffff;
+      max-width: 700px;
       margin-left: auto;
       margin-right: auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      line-height: 1.6;
     }
 
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .reading-types {
+        margin: 1rem auto;
+        padding: 1.5rem;
+      }
+      
+      .button-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+      
+      .button-group button {
+        width: 80%;
+        max-width: 300px;
+      }
+      
+      .card-container {
+        gap: 20px;
+      }
+      
+      .card {
+        width: 180px;
+        height: 280px;
+      }
+      
+      .reading-text p {
+        padding: 1.5rem;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        width: 160px;
+        height: 250px;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .reading-types p {
+        font-size: 1rem;
+      }
+    }
+
+    /* Animation for card reveals */
+    .card {
+      animation: cardAppear 0.6s ease-out forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(5) { animation-delay: 0.5s; }
+
+    @keyframes cardAppear {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mystical glow effects */
+    .card:hover {
+      box-shadow: 0 0 30px rgba(178, 60, 240, 0.5);
+    }
+
+    /* Loading state */
+    .loading {
+      color: #ffffff;
+      font-size: 1.2rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+    }
   </style>
 </head>
 <body>
-    <h1>Pick Your Tarot Reading</h1>
- 
-  <div class="reading-types">
-    <p><strong>🃏 Daily Card:</strong> One card pulled to reflect the energy of your day, what to embrace, or a message from spirit.</p>
-    <p><strong>🔮 Three-Card Spread:</strong> A general Past – Present – Future reading to offer insight on your current path.</p>
-    <p><strong>💖 Love Reading:</strong> A relationship-focused three-card pull to explore love, emotional connection, or divine timing in your love life.</p>
+  <div class="container">
+    <!-- Logo Header -->
+    <header class="site-header">
+      <img src="https://i.ibb.co/ZRrgQ9db/IMG-2055.png" alt="Site Logo" class="site-logo">
+    </header>
+
+    <h1>✨ Mystical Tarot Reading ✨</h1>
+
+    <div class="reading-types">
+      <p><strong>✨ Daily Oracle:</strong> Unveil the cosmic whispers meant just for you today—a single card to illuminate your path forward.</p>
+      <p><strong>🌙 Mystical Trinity:</strong> Journey through the sacred realms of Past, Present, and Future with three powerful cards revealing your soul's story.</p>
+      <p><strong>❤️ Heart's Compass:</strong> Let the cards unlock the mysteries of love and connection, guiding your heart to its destined truth.</p>
+    </div>
+
+    <p class="intro">
+      Select a reading below. Cards will flip on hover. Meanings appear beneath each card.<br>
+      ✨ Enjoy your mystical journey ✨
+    </p>
+
+    <div class="button-group">
+      <button onclick="drawCards(1, 'daily')">✨ Daily Oracle</button>
+      <button onclick="drawCards(3, 'three')">🌙 Mystical Trinity</button>
+      <button onclick="drawCards(5, 'love')">  Heart's Compass</button>
+    </div>
+
+    <p class="card-instruction">Hover over a card to reveal its secrets ✨</p>
+    
+    <div class="card-container" id="cardContainer"></div>
+    <div class="reading-text" id="readingText"></div>
+
+    <p class="disclaimer">
+      <small>🔮 <i>Tarot readings are for entertainment and spiritual reflection purposes only. They are not a substitute for medical, legal, or professional advice. Please use your own judgment and intuition when interpreting the messages.</i></small>
+    </p>
   </div>
-  <p class="intro">
-    Select a reading below. Cards will flip on hover. Meanings appear beneath each card.<br>
-    Enjoy your journey.
-  </p>
-
-  <div class="button-group">
-    <button onclick="drawCards(1, 'daily')">Daily Card</button>
-    <button onclick="drawCards(3, 'three')">Three-Card Spread</button>
-    <button onclick="drawCards(5, 'love')">Love Reading</button>
-  </div>
-
-<p class="card-instruction">Tap a card to reveal its secrets ✨</p>
-<div id="daily-card" class="card-container"></div>
-
-  <div class="card-container" id="cardContainer"></div>
-  <div class="reading-text" id="readingText"></div>
-
-      <p class="disclaimer">
-    <small>🔮 <i>Tarot readings are for entertainment and spiritual reflection purposes only. They are not a substitute for medical, legal, or professional advice. Please use your own judgment and intuition when interpreting the messages.</i></small>
-  </p>
 
 <script>
 const cardBackImage = "https://i.ibb.co/HpfSCHb2/image.png"; // Your card back image URL
@@ -199,44 +438,44 @@ const cards = [
     {
       name: "The Fool",
       image: "https://i.ibb.co/67C86gFm/image.png",
-      meaning_upright: "You’re standing at the edge of something new. A leap that feels risky, but thrilling. Trust that the universe will catch you. This is your reminder that even if the path is unknown, your spirit is ready.",
-      meaning_reversed: "You’re hesitating. Stuck between wanting more and fearing what might go wrong. Fear is natural, but don’t let it keep you from your next chapter. You were made for more."
+      meaning_upright: "You're standing at the edge of something new. A leap that feels risky, but thrilling. Trust that the universe will catch you. This is your reminder that even if the path is unknown, your spirit is ready.",
+      meaning_reversed: "You're hesitating. Stuck between wanting more and fearing what might go wrong. Fear is natural, but don't let it keep you from your next chapter. You were made for more."
     },
     {
       name: "The Magician",
       image: "https://i.ibb.co/hQWb5wn/image.png",
       meaning_upright: "You already have everything you need. This is your green light. Manifest, create, take action. Your potential is unmatched when you believe in your own magic.",
-      meaning_reversed: "You might be doubting yourself or misusing your energy. Are you aligned with your truth? It’s time to reconnect with your inner power and use it with intention."
+      meaning_reversed: "You might be doubting yourself or misusing your energy. Are you aligned with your truth? It's time to reconnect with your inner power and use it with intention."
     },
     {
       name: "The High Priestess",
       image: "https://i.ibb.co/YTd7wZqM/image.png",
-      meaning_upright: "There’s wisdom within you that can’t be found in books or advice. Trust your intuition, it’s quietly showing you what logic can’t. Let stillness reveal the truth.",
-      meaning_reversed: "You may be ignoring your inner voice or letting others’ opinions drown it out. Recenter. The answers you’re seeking are already inside you."
+      meaning_upright: "There's wisdom within you that can't be found in books or advice. Trust your intuition, it's quietly showing you what logic can't. Let stillness reveal the truth.",
+      meaning_reversed: "You may be ignoring your inner voice or letting others' opinions drown it out. Recenter. The answers you're seeking are already inside you."
     },
     {
       name: "The Empress",
       image: "https://i.ibb.co/nv8RHrN/image.png",
-      meaning_upright: "This is your season to nurture and create. Whether it’s ideas, relationships, or self-love, your care brings magic to life. Let your heart be the fertile soil.",
-      meaning_reversed: "You’re giving too much without refilling your own well. Slow down and tend to yourself with the same love you share with others."
+      meaning_upright: "This is your season to nurture and create. Whether it's ideas, relationships, or self-love, your care brings magic to life. Let your heart be the fertile soil.",
+      meaning_reversed: "You're giving too much without refilling your own well. Slow down and tend to yourself with the same love you share with others."
     },
     {
       name: "The Emperor",
       image: "https://i.ibb.co/8g7ZwLB5/image.png",
       meaning_upright: "Strength, structure, and protection, these energies surround you now. Step into your power and create a safe space for your dreams to grow.",
-      meaning_reversed: "Control or rigidity might be holding you back. Flexibility is not weakness; it’s a new kind of strength.."
+      meaning_reversed: "Control or rigidity might be holding you back. Flexibility is not weakness; it's a new kind of strength.."
     },
     {
       name: "The Hierophant",
       image: "https://i.ibb.co/GvdKW1c6/image.png",
       meaning_upright: "Guidance is here. Whether through tradition, teachers, or your own inner wisdom. Listen for the lessons that align with your soul.",
-      meaning_reversed: "You’re breaking free from old rules that no longer serve you. Honor your own path, even if it looks different from others."
+      meaning_reversed: "You're breaking free from old rules that no longer serve you. Honor your own path, even if it looks different from others."
     },
     {
       name: "The Lovers",
       image: "https://i.ibb.co/3Pn6vJn/image.png",
       meaning_upright: "Love, alignment, and soulful connection surround you. This is about harmony, with yourself and others. Listen deeply to what your heart truly wants.",
-      meaning_reversed: "Disharmony or tough choices might cloud your heart. It’s okay to step back and realign before moving forward."
+      meaning_reversed: "Disharmony or tough choices might cloud your heart. It's okay to step back and realign before moving forward."
     },
     {
       name: "The Chariot",
@@ -254,19 +493,19 @@ const cards = [
       name: "The Hermit",
       image: "https://i.ibb.co/7dtckmDm/image.png",
       meaning_upright: "Solitude, soul-searching, guidance. A quiet moment of reflection is calling. Retreat to your inner sanctuary to find clarity and peace. The answers you seek are within.",
-      meaning_reversed: "Isolation, avoidance, withdrawal. Are you hiding, or truly healing? Isolation may feel heavy. Reach out when you’re ready, connection will bring healing light."
+      meaning_reversed: "Isolation, avoidance, withdrawal. Are you hiding, or truly healing? Isolation may feel heavy. Reach out when you're ready, connection will bring healing light."
     },
     {
       name: "Wheel of Fortune",
       image: "https://i.ibb.co/vCd6FLN3/image.png",
-      meaning_upright: "Cycles shift, and change is here. Trust the ebb and flow, what’s meant for you will find its way. Embrace the rhythm of life.",
+      meaning_upright: "Cycles shift, and change is here. Trust the ebb and flow, what's meant for you will find its way. Embrace the rhythm of life.",
       meaning_reversed: "Resistance to change could be causing tension. Let go and allow the wheel to turn freely."
     },
     {
       name: "Justice",
       image: "https://i.ibb.co/j0Kbmk6/image.png",
       meaning_upright: "Truth and fairness are in focus. Make decisions with clarity and integrity, balance will be restored.",
-      meaning_reversed: "Avoidance or dishonesty may cloud your judgement. Face the truth, even when it’s hard."
+      meaning_reversed: "Avoidance or dishonesty may cloud your judgement. Face the truth, even when it's hard."
     },
     {
       name: "The Hanged Man",
@@ -277,7 +516,7 @@ const cards = [
     {
       name: "Death",
       image: "https://i.ibb.co/HsRWdM1/image.png",
-      meaning_upright: "Transformation, endings, new beginnings. Endings pave the way for rebirth. Embrace the transformation, what’s fading makes space for what’s coming.",
+      meaning_upright: "Transformation, endings, new beginnings. Endings pave the way for rebirth. Embrace the transformation, what's fading makes space for what's coming.",
       meaning_reversed: "Fear of change keeps you holding on too tightly. Trust that letting go leads to freedom. You're resisting the natural flow and growth."
     },
     {
@@ -290,7 +529,7 @@ const cards = [
       name: "The Devil",
       image: "https://i.ibb.co/GvZsjYdv/image.png",
       meaning_upright: "Facing your shadows leads to liberation. Awareness is the first step to breaking free from limiting patterns.",
-      meaning_reversed: "You’re starting to release chains that once bound you. Keep moving toward light and freedom. Liberation from unhealthy bonds is underway.",
+      meaning_reversed: "You're starting to release chains that once bound you. Keep moving toward light and freedom. Liberation from unhealthy bonds is underway.",
     },
     {
       name: "The Tower",
@@ -301,8 +540,8 @@ const cards = [
     {
       name: "The Star",
       image: "https://i.ibb.co/tPJwPXDn/image.png",
-      meaning_upright: "Hope, inspiration, and renewal fill your spirit. You’re guided by a light that never dims, keep reaching for your dreams. The universe shines light on your path.",
-      meaning_reversed: "Doubt or discouragement may cloud your vision. Reconnect with your inner light, it’s still shining. Renew your spirit and be open to possibility."
+      meaning_upright: "Hope, inspiration, and renewal fill your spirit. You're guided by a light that never dims, keep reaching for your dreams. The universe shines light on your path.",
+      meaning_reversed: "Doubt or discouragement may cloud your vision. Reconnect with your inner light, it's still shining. Renew your spirit and be open to possibility."
     },
     {
       name: "The Moon",
@@ -325,12 +564,12 @@ const cards = [
     {
       name: "The World",
       image: "https://i.ibb.co/hF4GNpRD/image.png",
-      meaning_upright: "Completion, fulfillment, and wholeness. You’ve come full circle, honor your journey and prepare for new beginnings. It's time to celebrate.",
+      meaning_upright: "Completion, fulfillment, and wholeness. You've come full circle, honor your journey and prepare for new beginnings. It's time to celebrate.",
       meaning_reversed: "Incomplete goals, delays, lack of closure may be weighing on you. Take time to reflect and tie up those loose ends."
     },
- 
+
   // Minor Arcana - Cups (starting)
- 
+
     {
       name: "Ace of Cups",
       image: "https://i.ibb.co/sdTSZ73n/image.png",
@@ -352,14 +591,14 @@ const cards = [
     {
       name: "Four of Cups",
       image: "https://i.ibb.co/JFwKDvvn/image.png",
-      meaning_upright: "You might be feeling restless or disconnected. A gentle invitation: open your eyes. New opportunities and emotional growth await when you’re ready to see them.",
+      meaning_upright: "You might be feeling restless or disconnected. A gentle invitation: open your eyes. New opportunities and emotional growth await when you're ready to see them.",
       meaning_reversed: "Renewed interest and acceptance bring fresh emotional energy. Let gratitude guide your heart."
     },
     {
       name: "Five of Cups",
       image: "https://i.ibb.co/5h7KLV3H/image.png",
-      meaning_upright: "Grief or disappointment has touched you deeply. It’s okay to mourn, but remember: not all is lost. Healing starts when you shift focus to what remains.",
-      meaning_reversed: "The past no longer holds you back. You’re beginning to forgive and release. Hope and healing are making space in your heart."
+      meaning_upright: "Grief or disappointment has touched you deeply. It's okay to mourn, but remember: not all is lost. Healing starts when you shift focus to what remains.",
+      meaning_reversed: "The past no longer holds you back. You're beginning to forgive and release. Hope and healing are making space in your heart."
     },
     {
       name: "Six of Cups",
@@ -371,25 +610,25 @@ const cards = [
       name: "Seven of Cups",
       image: "https://i.ibb.co/Y7WzgNTt/image.png",
       meaning_upright: "Choices and dreams swirl around you like mist. Take time to discern which visions are truly yours and which are illusions.",
-      meaning_reversed: "Confusion, lack of focus, temptation. Clarity is dawning, you’re narrowing in on what really matters. Trust your instincts."
+      meaning_reversed: "Confusion, lack of focus, temptation. Clarity is dawning, you're narrowing in on what really matters. Trust your instincts."
     },
     {
       name: "Eight of Cups",
       image: "https://i.ibb.co/qKZWHzr/image.png",
-      meaning_upright: "You’re stepping away from what no longer fulfills you. Though it’s hard, this brave journey leads toward greater emotional truth and freedom.",
+      meaning_upright: "You're stepping away from what no longer fulfills you. Though it's hard, this brave journey leads toward greater emotional truth and freedom.",
       meaning_reversed: "Fear of change or doubt may hold you back. Trust that your path forward is safe and necessary. Courage calls you to move forward."
     },
     {
       name: "Nine of Cups",
       image: "https://i.ibb.co/xtrmzFZL/image.png",
       meaning_upright: "Wish fulfillment and contentment are yours to savor. Your heart feels full, and gratitude flows naturally.",
-      meaning_reversed: "Greed, dissatisfaction, overindulgence. Don’t let complacency or superficial happiness mask deeper needs. Reflect on what truly nourishes your soul."
+      meaning_reversed: "Greed, dissatisfaction, overindulgence. Don't let complacency or superficial happiness mask deeper needs. Reflect on what truly nourishes your soul."
     },
     {
       name: "Ten of Cups",
       image: "https://i.ibb.co/GQP8fK3p/image.png",
-      meaning_upright: "Emotional bliss and family harmony shine bright. You’re creating a space where love and belonging thrive.",
-      meaning_reversed: "Tensions or unmet expectations may cloud the picture. Open dialogue and patience will heal what’s strained. Heal and rebuild with love."
+      meaning_upright: "Emotional bliss and family harmony shine bright. You're creating a space where love and belonging thrive.",
+      meaning_reversed: "Tensions or unmet expectations may cloud the picture. Open dialogue and patience will heal what's strained. Heal and rebuild with love."
     },
     {
       name: "Page of Cups",
@@ -400,7 +639,7 @@ const cards = [
     {
       name: "Knight of Cups",
       image: "https://i.ibb.co/KjChc8dN/image.png",
-      meaning_upright: "Romantic energy and inspired action flows. Follow your heart’s call and be open to deep emotional experiences.",
+      meaning_upright: "Romantic energy and inspired action flows. Follow your heart's call and be open to deep emotional experiences.",
       meaning_reversed: "Beware of unrealistic expectations or being swept away too quickly. Ground your feelings with honest reflection."
     },
     {
@@ -412,12 +651,12 @@ const cards = [
     {
       name: "King of Cups",
       image: "https://i.ibb.co/G3RF4Pqv/image.png",
-      meaning_upright: "Balanced emotional strength and kindness define your energy. Lead with compassion and calm through life’s ups and downs.",
+      meaning_upright: "Balanced emotional strength and kindness define your energy. Lead with compassion and calm through life's ups and downs.",
       meaning_reversed: "Suppressing emotions or emotional manipulation may arise. Stay authentic and open-hearted."
     },
-   
+
   // Pentacles start
- 
+
     {
       name: "Ace of Pentacles",
       image: "https://i.ibb.co/Cs9FVwtS/IMG-0500.png",
@@ -427,7 +666,7 @@ const cards = [
     {
       name: "Two of Pentacles",
       image: "https://i.ibb.co/B59wK82D/image.png",
-      meaning_upright: "You’re juggling many things, finding your rhythm in the dance of life’s demands. Flexibility and balance will guide you through the chaos.",
+      meaning_upright: "You're juggling many things, finding your rhythm in the dance of life's demands. Flexibility and balance will guide you through the chaos.",
       meaning_reversed: "Overwhelm or poor planning might trip you up. Slow down, prioritize, and seek harmony."
     },
     {
@@ -439,7 +678,7 @@ const cards = [
     {
       name: "Four of Pentacles",
       image: "https://i.ibb.co/GQnmXF2R/image.png",
-      meaning_upright: "You’re holding tight to what you value; financial stability or emotional security. Remember, true security comes from openness and trust, not fear.",
+      meaning_upright: "You're holding tight to what you value; financial stability or emotional security. Remember, true security comes from openness and trust, not fear.",
       meaning_reversed: "Clinging too tightly may block growth. Practice generosity and allow energy to flow freely."
     },
     {
@@ -457,7 +696,7 @@ const cards = [
     {
       name: "Seven of Pentacles",
       image: "https://i.ibb.co/Rk8fKzwc/image.png",
-      meaning_upright: "Patience and reflection are your allies. You’re tending to your investments, whether in work, relationships, or personal growth, waiting for the fruits to ripen.",
+      meaning_upright: "Patience and reflection are your allies. You're tending to your investments, whether in work, relationships, or personal growth, waiting for the fruits to ripen.",
       meaning_reversed: "Frustration or impatience may tempt you to quit. Reassess your goals and effort. Trust the process and nurture what matters."
     },
     {
@@ -475,13 +714,13 @@ const cards = [
     {
       name: "Ten of Pentacles",
       image: "https://i.ibb.co/3Y72pZMk/image.png",
-      meaning_upright: "Legacy, family, and lasting abundance shine bright. You’re building a foundation that supports generations to come.",
+      meaning_upright: "Legacy, family, and lasting abundance shine bright. You're building a foundation that supports generations to come.",
       meaning_reversed: "Family tensions or financial instability may challenge you. Focus on healing and rebuilding."
     },
     {
       name: "Page of Pentacles",
       image: "https://i.ibb.co/Rkm9Rf6r/IMG-0520.png",
-      meaning_upright: "A new opportunity or learning phase unfolds. Stay curious and practical as you explore what’s possible.",
+      meaning_upright: "A new opportunity or learning phase unfolds. Stay curious and practical as you explore what's possible.",
       meaning_reversed: "Lack of direction or procrastination might stall growth. Ground yourself with clear goals, focus on those goals to advance."
     },
     {
@@ -502,9 +741,9 @@ const cards = [
       meaning_upright: "Mastery of the material world brings you security and influence. Lead with wisdom, generosity, and grounded strength.",
       meaning_reversed: "Greed or rigidity might block your flow. Open your heart and mind to flexibility. Adapt your approach and keep moving."
     },
- 
+
   // Swords start
- 
+
     {
       name: "Ace of Swords",
       image: "https://i.ibb.co/nMJLdR34/image.png",
@@ -514,7 +753,7 @@ const cards = [
     {
       name: "Two of Swords",
       image: "https://i.ibb.co/Xr3LnmQW/image.png",
-      meaning_upright: "You’re at a crossroads, caught between head and heart. Trust your intuition to guide you through this delicate balance.",
+      meaning_upright: "You're at a crossroads, caught between head and heart. Trust your intuition to guide you through this delicate balance.",
       meaning_reversed: "Avoiding a decision may cause tension. Face your fears gently and move forward."
     },
     {
@@ -527,7 +766,7 @@ const cards = [
       name: "Four of Swords",
       image: "https://i.ibb.co/mCDtfD52/image.png",
       meaning_upright: "Rest and retreat are essential now. Give yourself permission to pause, recharge, and gather strength",
-      meaning_reversed: "Restlessness or burnout signals it’s time to slow down and care for yourself. Prioritize self-care to restore balance."
+      meaning_reversed: "Restlessness or burnout signals it's time to slow down and care for yourself. Prioritize self-care to restore balance."
     },
     {
       name: "Five of Swords",
@@ -538,7 +777,7 @@ const cards = [
     {
       name: "Six of Swords",
       image: "https://i.ibb.co/dCLTsSG/image.png",
-      meaning_upright: "You’re moving toward calmer waters, leaving behind struggle and finding hope ahead. Trust the journey.",
+      meaning_upright: "You're moving toward calmer waters, leaving behind struggle and finding hope ahead. Trust the journey.",
       meaning_reversed: "Resistance to change or fear of the unknown may hold you back. Embrace transition with courage."
     },
     {
@@ -589,19 +828,19 @@ const cards = [
       meaning_upright: "Authority and intellect combine in you. Lead with fairness and strategic vision.",
       meaning_reversed: "Check your intentions and listen deeply. Abuse of power or manipulation could arise. Stay grounded in integrity."
     },
- 
+
   // Wands start
- 
+
     {
       name: "Ace of Wands",
       image: "https://i.ibb.co/TDrs1NRR/image.png",
       meaning_upright: "A spark of inspiration ignites your soul. Your creative energy is ready to burst forth. Take that bold first step and watch your passion grow.",
-      meaning_reversed: "Rekindle your fire and believe in yourself. Delays or doubts may smother your flame. Reconnect with what excites you and don’t give up."
+      meaning_reversed: "Rekindle your fire and believe in yourself. Delays or doubts may smother your flame. Reconnect with what excites you and don't give up."
     },
     {
       name: "Two of Wands",
       image: "https://i.ibb.co/rfXNPjWj/image.png",
-      meaning_upright: "You’re standing on the threshold of adventure, weighing your options with excitement and a touch of nervousness. Trust your vision and take the leap.",
+      meaning_upright: "You're standing on the threshold of adventure, weighing your options with excitement and a touch of nervousness. Trust your vision and take the leap.",
       meaning_reversed: "Fear or indecision might hold you back. Remember, growth often requires stepping outside your comfort zone. Push past doubt and expand your view."
     },
     {
@@ -625,13 +864,13 @@ const cards = [
     {
       name: "Six of Wands",
       image: "https://i.ibb.co/wZWth8r9/image.png",
-      meaning_upright: "Victory and recognition are yours. Celebrate your achievements, you’ve earned this moment in the spotlight.",
+      meaning_upright: "Victory and recognition are yours. Celebrate your achievements, you've earned this moment in the spotlight.",
       meaning_reversed: "Self-doubt or envy might cloud your joy. Stay humble and focus on growth. Own your success and shine brightly."
     },
     {
       name: "Seven of Wands",
       image: "https://i.ibb.co/bR6xYHWS/image.png",
-      meaning_upright: "Stand your ground with courage. Defend your beliefs and don’t be afraid to show your strength.",
+      meaning_upright: "Stand your ground with courage. Defend your beliefs and don't be afraid to show your strength.",
       meaning_reversed: "Feeling overwhelmed or giving up too soon may cost you. Remember why you started and push through."
     },
     {
@@ -643,7 +882,7 @@ const cards = [
     {
       name: "Nine of Wands",
       image: "https://i.ibb.co/3YmfNqRf/image.png",
-      meaning_upright: "You’re battle-weary but resilient. Keep protecting your boundaries and believe in your inner strength. You’ve weathered plenty of storms, keep going.",
+      meaning_upright: "You're battle-weary but resilient. Keep protecting your boundaries and believe in your inner strength. You've weathered plenty of storms, keep going.",
       meaning_reversed: "Exhaustion or defensiveness could cloud your vision. Rest and recharge before continuing."
     },
     {
@@ -661,7 +900,7 @@ const cards = [
     {
       name: "Knight of Wands",
       image: "https://i.ibb.co/kgQ7qVBN/image.png",
-      meaning_upright: "Bold and energetic, you’re charging forward with confidence. Use your enthusiasm to inspire and lead.",
+      meaning_upright: "Bold and energetic, you're charging forward with confidence. Use your enthusiasm to inspire and lead.",
       meaning_reversed: "Recklessness, impatience, scattered energy. Slow down and think it through."
     },
     {
@@ -718,72 +957,80 @@ function drawCards(num, type) {
   container.innerHTML = "";
   readingText.innerHTML = "";
 
-  // For each card, create DOM elements with front and back, handle reversed
-  drawn.forEach(card => {
-    const isReversed = rand() > 0.5; // Determine if card is reversed
+  // Show loading state briefly
+  container.innerHTML = '<div class="loading">✨ Drawing your cards... ✨</div>';
+  
+  setTimeout(() => {
+    container.innerHTML = "";
 
-    // Create main card element
-    const cardElement = document.createElement("div");
-    cardElement.className = "card";
+    // For each card, create DOM elements with front and back, handle reversed
+    drawn.forEach((card, index) => {
+      const isReversed = rand() > 0.5; // Determine if card is reversed
 
-    // Create inner container for flipping
-    const cardInner = document.createElement("div");
-    cardInner.className = "card-inner";
+      // Create main card element
+      const cardElement = document.createElement("div");
+      cardElement.className = "card";
 
-    // Add 'reversed' class if card is reversed (flips front and back images)
-    if (isReversed) {
-      cardInner.classList.add("reversed");
+      // Create inner container for flipping
+      const cardInner = document.createElement("div");
+      cardInner.className = "card-inner";
+
+      // Add 'reversed' class if card is reversed (flips front and back images)
+      if (isReversed) {
+        cardInner.classList.add("reversed");
+      }
+
+      // Front side (shows card back image)
+      const cardFront = document.createElement("div");
+      cardFront.className = "card-front";
+      const backImg = document.createElement("img");
+      backImg.src = cardBackImage;
+      backImg.alt = "Card back";
+      cardFront.appendChild(backImg);
+
+      // Back side (shows tarot card image)
+      const cardBack = document.createElement("div");
+      cardBack.className = "card-back";
+      const cardImg = document.createElement("img");
+      cardImg.src = card.image;
+      cardImg.alt = card.name;
+      cardBack.appendChild(cardImg);
+
+      // Assemble the card
+      cardInner.appendChild(cardFront);
+      cardInner.appendChild(cardBack);
+      cardElement.appendChild(cardInner);
+
+      // Add card to container
+      container.appendChild(cardElement);
+
+      // Add meaning below cards
+      const meaning = document.createElement("p");
+      meaning.innerHTML = `<strong>${card.name}</strong> (${isReversed ? "Reversed" : "Upright"}): ${isReversed ? card.meaning_reversed : card.meaning_upright}`;
+      readingText.appendChild(meaning);
+    });
+
+    // Show reading type description on top of meanings
+    let typeMessage = "";
+    switch (type) {
+      case "daily":
+        typeMessage = "✨ Daily Oracle: The universe speaks through this sacred card.";
+        break;
+      case "three":
+        typeMessage = "🌙 Mystical Trinity: Past, present, and future dance together to reveal your path.";
+        break;
+      case "love":
+        typeMessage = "❤️ Heart's Compass: The cosmos illuminates the mysteries of your heart.";
+        break;
     }
-
-    // Front side (shows card back image)
-    const cardFront = document.createElement("div");
-    cardFront.className = "card-front";
-    const backImg = document.createElement("img");
-    backImg.src = cardBackImage;
-    backImg.alt = "Card back";
-    cardFront.appendChild(backImg);
-
-    // Back side (shows tarot card image)
-    const cardBack = document.createElement("div");
-    cardBack.className = "card-back";
-    const cardImg = document.createElement("img");
-    cardImg.src = card.image;
-    cardImg.alt = card.name;
-    cardBack.appendChild(cardImg);
-
-    // Assemble the card
-    cardInner.appendChild(cardFront);
-    cardInner.appendChild(cardBack);
-    cardElement.appendChild(cardInner);
-
-    // Add card to container
-    container.appendChild(cardElement);
-
-    // Add meaning below cards
-    const meaning = document.createElement("p");
-    meaning.innerHTML = `<strong>${card.name}</strong> (${isReversed ? "Reversed" : "Upright"}): ${isReversed ? card.meaning_reversed : card.meaning_upright}`;
-    readingText.appendChild(meaning);
-  });
-
-  // Show reading type description on top of meanings
-  let typeMessage = "";
-  switch (type) {
-    case "daily":
-      typeMessage = "🌞 Daily Card: Insight for the day ahead.";
-      break;
-    case "three":
-      typeMessage = "🔮 Three-Card Spread: Past, present, and future influences.";
-      break;
-    case "love":
-      typeMessage = "❤️ Love Reading: Explore your heart’s path.";
-      break;
-  }
-  if (typeMessage) {
-    const intro = document.createElement("p");
-    intro.innerHTML = `<em>${typeMessage}</em>`;
-    readingText.prepend(intro);
-  }
+    if (typeMessage) {
+      const intro = document.createElement("p");
+      intro.innerHTML = `<em>${typeMessage}</em>`;
+      readingText.prepend(intro);
+    }
+  }, 800);
 }
 </script>
+
 </body>
 </html>
