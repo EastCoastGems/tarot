@@ -311,7 +311,73 @@
       border-left: 4px solid #b23cf0;
     }
 
-    /* Shopping section styles */
+    /* Enhanced reading summary styles */
+    .reading-summary {
+      margin-top: 2rem !important;
+      padding: 2rem !important;
+      background: rgba(255, 255, 255, 0.95) !important;
+      border-radius: 20px !important;
+      border: 2px solid rgba(178, 60, 240, 0.3) !important;
+      backdrop-filter: blur(15px) !important;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .reading-summary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #b23cf0, #764ba2, #667eea);
+    }
+
+    .reading-summary h3 {
+      color: #b23cf0;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: bold;
+      text-shadow: none;
+    }
+
+    .reading-summary p {
+      background: none !important;
+      border: none !important;
+      padding: 0 !important;
+      margin: 1rem 0 !important;
+      font-size: 1.1rem !important;
+      line-height: 1.7 !important;
+      color: #444 !important;
+    }
+
+    .reading-summary .reflection-section,
+    .reading-summary .guidance-section {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: rgba(178, 60, 240, 0.08);
+      border-radius: 15px;
+      border-left: 4px solid #b23cf0;
+      border: 1px solid rgba(178, 60, 240, 0.2);
+    }
+
+    .reading-summary .reflection-section h4,
+    .reading-summary .guidance-section h4 {
+      color: #b23cf0;
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      font-weight: bold;
+      text-shadow: none;
+    }
+
+    .reading-summary .reflection-section p,
+    .reading-summary .guidance-section p {
+      color: #555 !important;
+      font-size: 1.05rem !important;
+      margin: 0 !important;
+    }
     .shopping-section {
       margin-top: 3rem;
       padding: 2rem;
@@ -565,16 +631,16 @@
 
     <h1>✨ Mystical Tarot Reading ✨</h1>
 
+    <p class="intro">
+      Click on a reading type below to begin your mystical journey. Cards will flip on hover/click to reveal their secrets.<br>
+      ✨ Let the universe guide you ✨
+    </p>
+
     <div class="reading-types">
       <p onclick="drawCards(1, 'daily')"><strong>✨ Daily Oracle:</strong> Unveil the cosmic whispers meant just for you today—a single card to illuminate your path forward.</p>
       <p onclick="drawCards(3, 'three')"><strong>🌙 Mystical Trinity:</strong> Journey through the sacred realms of Past, Present, and Future with three powerful cards revealing your soul's story.</p>
       <p onclick="drawCards(5, 'love')"><strong>💝 Heart's Compass:</strong> Let the cards unlock the mysteries of love and connection, guiding your heart to its destined truth.</p>
     </div>
-
-    <p class="intro">
-      Click on a reading type above to begin your mystical journey. Cards will flip on hover to reveal their secrets.<br>
-      ✨ Let the universe guide you ✨
-    </p>
 
     <p class="card-instruction">Hover over a card to reveal its secrets ✨</p>
     
@@ -727,17 +793,489 @@ const cards = [
     {
       name: "The Fool",
       image: "https://i.ibb.co/67C86gFm/image.png",
-      meaning_upright: "You've been feeling that restless energy lately, haven't you? That sense that you're meant for something more than your current situation. This card says it's time to trust that feeling. Yes, it's scary to leave what's familiar, but staying where you are just because it's safe is actually riskier than taking the leap. You have everything you need already—your experiences, your talents, even your mistakes have prepared you for this moment. That opportunity you've been considering? That conversation you've been avoiding? That dream you keep pushing aside? Now is the time. Stop waiting for perfect conditions or more confidence. Your courage will grow as you move forward, not before.",
-      meaning_reversed: "You know there's something you need to do, but you keep finding reasons to put it off. Maybe you're telling yourself you need more experience, more money, or more time. But if you're honest, it's really about fear—fear of failure, fear of judgment, fear of the unknown. Here's the thing: that fear is actually a compass pointing toward what matters most to you. Instead of fighting it, acknowledge it and move forward anyway. What's the worst that could realistically happen? And what's the cost of staying exactly where you are for another year? You're stronger than you think, and you deserve to find out what you're truly capable of."
+      meaning_upright: "You're standing at the edge of something new. A leap that feels risky, but thrilling. Trust that the universe will catch you. This is your reminder that even if the path is unknown, your spirit is ready.",
+      meaning_reversed: "You're hesitating. Stuck between wanting more and fearing what might go wrong. Fear is natural, but don't let it keep you from your next chapter. You were made for more."
     },
     {
       name: "The Magician",
       image: "https://i.ibb.co/hQWb5wn/image.png",
-      meaning_upright: "Everything is aligning for you right now. That project you've been working on? The skills you've been developing? The network you've been building? It's all coming together. You have the resources, the knowledge, and the support you need to make this happen. Stop second-guessing yourself or waiting for someone else to give you permission. You are the permission. Your ideas are valid, your vision is achievable, and your timing is better than you think. Take that meeting, send that email, make that investment. When you act with clear intention and focused energy, the universe responds. Trust your instincts—they're sharper than usual right now.",
-      meaning_reversed: "You have the skills and resources, but something's off with how you're using them. Maybe you're trying to control too much of the outcome, or maybe you're scattered across too many projects. Or perhaps you're using your talents to impress others rather than pursuing what genuinely matters to you. Take a step back and check your motivations. Are you trying to force something that isn't meant to be? Are you overthinking instead of trusting the process? Sometimes the most powerful thing you can do is simplify your approach and focus on one clear goal at a time."
+      meaning_upright: "You already have everything you need. This is your green light. Manifest, create, take action. Your potential is unmatched when you believe in your own magic.",
+      meaning_reversed: "You might be doubting yourself or misusing your energy. Are you aligned with your truth? It's time to reconnect with your inner power and use it with intention."
     },
-    // ... I'll include the complete deck in the file, but truncating here for readability
-    // The file will have all 78 cards with their full personalized meanings
+    {
+      name: "The High Priestess",
+      image: "https://i.ibb.co/YTd7wZqM/image.png",
+      meaning_upright: "You've been sensing things lately that you can't quite explain, haven't you? That feeling when someone texts you right as you're thinking about them, or when you walk into a room and just know something's off. This card is telling you to pay attention to those moments. Your intuition is speaking louder than it ever has, but you keep second-guessing it. Stop analyzing every gut feeling to death. That quiet voice inside you? It's been right more often than you want to admit. The answer you're looking for isn't going to come from Google or asking ten different people—it's already sitting in that space between your thoughts. Trust what you know without knowing how you know it.",
+      meaning_reversed: "You're drowning out your inner voice with everyone else's opinions, aren't you? Maybe you've been asking for advice when deep down you already know what you need to do. Or perhaps you're so caught up in being logical and practical that you've forgotten how to feel your way through decisions. Your intuition hasn't disappeared—you've just been too busy or too scared to listen. It's time to get quiet. Turn off the noise, step away from the advice-givers, and reconnect with that wise part of yourself that's been patiently waiting for you to remember it exists."
+    },
+    {
+      name: "The Empress",
+      image: "https://i.ibb.co/nv8RHrN/image.png",
+      meaning_upright: "You're in a beautiful creative phase right now, even if it doesn't feel that way. Maybe you're nurturing a new project, a relationship, or even a new version of yourself. This card reminds you that creation takes time and tenderness. Stop rushing the process or comparing your beginning to someone else's middle. Whether you're literally growing something, building something, or healing something, your loving attention is the secret ingredient. You have this incredible ability to help things flourish—but that includes yourself too. When was the last time you gave yourself the same patient, unconditional care you give to others?",
+      meaning_reversed: "You're running on empty, aren't you? Giving and giving until you have nothing left. Maybe you've been so focused on taking care of everyone else that you've forgotten to water your own garden. Or perhaps you're being too hard on yourself about your creative output, expecting perfection instead of enjoying the process. This is your reminder that you can't pour from an empty cup. It's not selfish to rest, to say no, or to put your own needs first sometimes. In fact, it's necessary. You'll be so much more effective at loving others when you remember how to love yourself first."
+    },
+    {
+      name: "The Emperor",
+      image: "https://i.ibb.co/8g7ZwLB5/image.png",
+      meaning_upright: "It's time to step into your authority and stop apologizing for taking up space. You have more power than you're using right now—maybe you're afraid of being seen as bossy or difficult, but there's a difference between being controlling and being in control. This card is asking you to set clear boundaries, make the tough decisions, and trust your ability to lead. That situation you've been hoping someone else will handle? It's yours to manage. That goal you've been tiptoeing around? It's time to make a real plan and execute it. You're stronger and more capable than you give yourself credit for.",
+      meaning_reversed: "You're either being too rigid or too passive right now, and both are blocking your progress. Maybe you're trying to control every detail and it's exhausting everyone around you, including yourself. Or maybe you're avoiding responsibility and waiting for someone else to take charge. Neither approach is working. Real strength comes from knowing when to hold firm and when to bend. Ask yourself: are you being inflexible because you're afraid of losing control, or are you avoiding leadership because you're afraid of making the wrong choice? Either way, it's time to find your middle ground."
+    },
+    {
+      name: "The Hierophant",
+      image: "https://i.ibb.co/GvdKW1c6/image.png",
+      meaning_upright: "You're being guided right now, even if it doesn't feel obvious. Maybe it's through a mentor who keeps showing up in your life, a book that fell into your lap at the perfect moment, or even your own growing understanding of what you believe in. This card suggests that the answers you need are available, but you might need to look in traditional places or seek wisdom from those who've walked this path before. Don't be too proud to learn from others, and don't dismiss advice just because it comes wrapped in conventional wisdom. Sometimes the old ways work because they've been tested by time.",
+      meaning_reversed: "You're outgrowing the rules and structures that once made sense for you, and that's exactly what's supposed to be happening. Maybe the advice that everyone keeps giving you feels wrong in your gut, or the path that worked for others doesn't fit your life. This isn't rebellion for rebellion's sake—it's evolution. Trust that your journey is allowed to look different. You're not being difficult or ungrateful when you choose your own way; you're being authentic. The people who truly care about you will support your growth, even when they don't understand it."
+    },
+    {
+      name: "The Lovers",
+      image: "https://i.ibb.co/3Pn6vJn/image.png",
+      meaning_upright: "This isn't just about romantic love—though it could be. This is about alignment, about finding harmony between different parts of yourself or your life. You're facing a choice that matters, and your heart knows the right answer even if your head is making it complicated. Maybe you're trying to decide between what looks good on paper and what feels right in your soul. Trust what brings you joy and makes you feel more like yourself. The right choice will feel like coming home to yourself, even if it's scary or unconventional.",
+      meaning_reversed: "You're out of sync with yourself right now, and it's showing up in your relationships or major decisions. Maybe you're trying to force something that isn't meant to be, or you're avoiding a choice because you're afraid of disappointing someone. This disconnection between what you want and what you think you should want is exhausting, isn't it? It's time to get honest about what you actually value, not what you think you should value. The people who belong in your life will love you for who you are, not who you pretend to be."
+    },
+    {
+      name: "The Chariot",
+      image: "https://i.ibb.co/whYR0Mxd/image.png",
+      meaning_upright: "You're in the driver's seat now, and it's time to act like it. That goal you've been working toward? You have everything you need to make it happen, but you need to focus your energy and actually move forward. Stop second-guessing yourself or waiting for perfect conditions. You've done the preparation, you've gathered the resources—now it's time to trust yourself and go. Your determination is your superpower right now, but remember that real strength comes from knowing where you're headed, not just how fast you can get there.",
+      meaning_reversed: "You're spinning your wheels, aren't you? Maybe you're trying to control too many things at once, or you've lost sight of what you actually want to achieve. It feels like you're working hard but not getting anywhere, and that's because you're scattered. Take a step back and ask yourself: what's really important here? Sometimes you need to slow down to speed up. Get clear on your priorities, make a plan, and then commit to it. You can't steer effectively if you don't know where you're going."
+    },
+    {
+      name: "Strength",
+      image: "https://i.ibb.co/bgKMCrVW/image.png",
+      meaning_upright: "The strength you need isn't the kind that comes from gritting your teeth and pushing through. It's the quiet kind that comes from self-compassion and patience. You're dealing with something challenging right now, and your instinct might be to fight it or force a solution. But what if you approached it with gentleness instead? You're stronger than you know, but real strength often looks like kindness—especially kindness toward yourself. That inner critic that's been so loud lately? It's time to have a gentle but firm conversation with it.",
+      meaning_reversed: "You're being too hard on yourself, and it's actually making you weaker, not stronger. Maybe you're pushing yourself past your limits or beating yourself up for not being perfect. That harsh inner voice isn't motivating you—it's depleting you. True strength requires you to be on your own team. What would change if you talked to yourself the way you talk to someone you love? It's time to find the balance between discipline and self-compassion. You don't have to earn your worth through suffering."
+    },
+    {
+      name: "The Hermit",
+      image: "https://i.ibb.co/7dtckmDm/image.png",
+      meaning_upright: "You need some space to think, and that's not a luxury—it's a necessity. All the noise and opinions and expectations swirling around you are making it impossible to hear your own thoughts. This card is giving you permission to step back, turn down the volume on everyone else's voice, and reconnect with what you actually think and feel. The answer you're looking for isn't going to come from another person or another article—it's going to come from getting quiet enough to hear your own wisdom. Don't feel guilty about needing solitude; it's how you recharge your spiritual batteries.",
+      meaning_reversed: "You've been hiding, haven't you? Maybe you're calling it self-care or introspection, but if you're honest, you're avoiding something that needs your attention. There's a difference between healthy solitude and isolating yourself out of fear. You can't heal or grow in a vacuum forever—at some point, you need to bring what you've learned back into the world. It's time to slowly, gently reconnect. Start small, but start. The people who care about you are wondering where you went."
+    },
+    {
+      name: "Wheel of Fortune",
+      image: "https://i.ibb.co/vCd6FLN3/image.png",
+      meaning_upright: "Things are shifting for you right now, and you can feel it even if you can't see it yet. That sense of anticipation, like something big is around the corner? Trust it. Life is cyclical, and if you've been in a tough period, relief is coming. If things have been going well, don't worry about when the other shoe will drop—just enjoy this moment. You have more influence over your destiny than you think, but you also need to accept that some things are simply beyond your control. Work with the energy that's available to you instead of fighting against the natural flow of events.",
+      meaning_reversed: "You're fighting the current instead of learning to swim with it, and it's exhausting you. Maybe you're trying to force something that isn't ready to happen, or you're resisting a change that's actually in your best interest. Life is trying to move you in a new direction, but you're digging in your heels. What are you so afraid of losing? Sometimes what feels like bad luck is actually the universe redirecting you toward something better. Stop trying to control every variable and start trusting that this shift is happening for a reason."
+    },
+    {
+      name: "Justice",
+      image: "https://i.ibb.co/j0Kbmk6/image.png",
+      meaning_upright: "The truth has a way of surfacing, doesn't it? You're in a phase where honesty and fairness are non-negotiable. Maybe you need to have a difficult conversation, make amends for something you did, or stand up for what's right even when it's uncomfortable. This card reminds you that integrity isn't just about big moral moments—it's about the small daily choices to be honest with yourself and others. What decision would you make if you knew everyone would eventually find out about it? Make that decision.",
+      meaning_reversed: "You're avoiding something that needs to be addressed, and the longer you wait, the more complicated it gets. Maybe you're being dishonest with yourself about your motivations, or you're afraid to face the consequences of something you've done. This card is asking you to get real about where you've been unfair—to others or to yourself. Justice delayed isn't justice denied; it's justice that becomes harder to achieve. What conversation have you been putting off? What wrong needs to be righted? Start there."
+    },
+    {
+      name: "The Hanged Man",
+      image: "https://i.ibb.co/8LZF5FFM/image.png",
+      meaning_upright: "You're in a waiting period, and it's driving you crazy because you're used to making things happen. But sometimes the most powerful thing you can do is nothing. This isn't about being passive—it's about recognizing when it's time to pause, reflect, and let new perspectives emerge. You might be seeing your situation from a completely different angle soon, and that shift in perspective is exactly what you need. Instead of trying to force progress, ask yourself: what is this pause trying to teach me?",
+      meaning_reversed: "You're stuck, and you know it, but you're not sure how to get unstuck. Maybe you're waiting for someone else to make a decision that affects you, or you're avoiding a sacrifice that you know you need to make. This resistance to letting go is keeping you suspended in limbo. What are you holding onto that's actually holding you back? Sometimes you have to release your grip on how you think things should go in order to discover how they actually need to go. The breakthrough you're waiting for requires you to surrender something."
+    },
+    {
+      name: "Death",
+      image: "https://i.ibb.co/HsRWdM1/image.png",
+      meaning_upright: "Something in your life is ending, and it needs to end. Maybe it's a relationship, a job, a way of thinking, or a version of yourself that you've outgrown. This isn't a punishment—it's evolution. You can't become who you're meant to be while clinging to who you used to be. Yes, endings are uncomfortable and sometimes heartbreaking, but they're also how you make room for what's trying to be born in your life. What would you do if you weren't afraid of letting go? The death of one thing is always the birth of another.",
+      meaning_reversed: "You're resisting a necessary ending, and it's like trying to hold back the tide. Maybe you're staying in a situation because it's familiar, even though you know it's not right for you anymore. Or perhaps you're afraid that if you let go of this, nothing better will come along. Your fear of change is actually preventing the very growth you say you want. What's really scary isn't the ending itself—it's trusting that something better is possible. But staying in what's not working is a slow death of your spirit."
+    },
+    {
+      name: "Temperance",
+      image: "https://i.ibb.co/dsbDky2h/image.png",
+      meaning_upright: "You're learning the art of balance, and it's harder than it looks, isn't it? This card appears when you're trying to integrate different aspects of your life or different parts of yourself. Maybe you're learning to balance ambition with peace, or independence with connection. The key isn't finding perfect equilibrium—it's learning to adjust and readjust as life changes. You're being asked to practice patience with yourself and the process. Healing and growth happen gradually, not all at once. Trust that you're exactly where you need to be in your journey.",
+      meaning_reversed: "You're going to extremes right now, swinging from one side to the other instead of finding your center. Maybe you're working too much and then crashing completely, or you're being overly generous and then resentful. This all-or-nothing approach is wearing you out. What would moderation look like in your situation? It's not about being boring or playing it safe—it's about finding a sustainable way to live that doesn't require you to constantly burn yourself out and then recover. Balance is a practice, not a destination."
+    },
+    {
+      name: "The Devil",
+      image: "https://i.ibb.co/GvZsjYdv/image.png",
+      meaning_upright: "You're more free than you think you are. Those chains you feel binding you? Look closer—they're probably looser than they appear. Maybe you're trapped by your own limiting beliefs, unhealthy patterns, or fears that feel bigger than they actually are. This card isn't about judgment; it's about awareness. What story are you telling yourself about why you can't change your situation? What would happen if that story wasn't true? Sometimes we stay stuck not because we have to, but because the familiar discomfort feels safer than unknown freedom.",
+      meaning_reversed: "You're starting to see your patterns clearly, and that awareness is the first step toward real freedom. Maybe you're recognizing how you've been giving your power away, or you're finally ready to break a habit that's been controlling you. This is the card of liberation through honest self-examination. Yes, it's uncomfortable to look at your shadows, but you can't heal what you won't acknowledge. The good news? Once you see your chains clearly, you can start to unlock them. What would your life look like if you weren't afraid?"
+    },
+    {
+      name: "The Tower",
+      image: "https://i.ibb.co/kg03Nxh9/image.png",
+      meaning_upright: "Something in your life is falling apart, and it feels catastrophic. But what if it's actually clearing the way for something better? The structures you built your life on weren't as solid as you thought, were they? This sudden change is shocking and maybe painful, but it's also honest. You can't build something real on a shaky foundation. Instead of trying to put everything back the way it was, ask yourself: what needs to stay broken? What was never really working anyway? Sometimes destruction is just renovation in disguise.",
+      meaning_reversed: "You can see the cracks in your life, but you're desperately trying to hold everything together with sheer willpower. Maybe you're avoiding necessary changes because you're afraid of what people will think, or you're postponing an inevitable ending because you can't imagine what comes next. But you can't prevent every storm, and trying to do so is exhausting you. What would happen if you stopped trying to control the uncontrollable and started preparing for a new beginning instead? Sometimes the bravest thing you can do is let something fall apart."
+    },
+    {
+      name: "The Star",
+      image: "https://i.ibb.co/tPJwPXDn/image.png",
+      meaning_upright: "After everything you've been through, you're finally feeling hopeful again. This card appears when you're rediscovering your faith in the future and in yourself. Maybe you're healing from a difficult period, or you're finally seeing the light at the end of a long tunnel. This renewed sense of possibility isn't naive optimism—it's hard-won wisdom. You've learned that you can survive more than you thought possible, and now you're ready to dream again. Trust those big, beautiful visions that are starting to take shape in your mind. They're not too good to be true.",
+      meaning_reversed: "You've lost sight of your North Star, haven't you? Maybe you're feeling disconnected from your dreams, or you can't remember what you were working toward before life got so complicated. This card suggests that your sense of purpose is still there, but it's buried under discouragement or disappointment. You don't need to have it all figured out right now—you just need to take one small step toward what lights you up. What used to excite you? What would you do if you knew you couldn't fail? Start there, even if it's just a tiny beginning."
+    },
+    {
+      name: "The Moon",
+      image: "https://i.ibb.co/VcbB1SB4/image.png",
+      meaning_upright: "Things aren't quite what they seem right now, are they? You're in a phase where your intuition is picking up on undercurrents that your logical mind can't quite grasp. Maybe you're sensing deception, or maybe you're just seeing beyond surface appearances to deeper truths. This card reminds you to trust your gut even when you can't explain why something feels off. Pay attention to your dreams, your mood shifts, and those weird coincidences that keep happening. Your subconscious is trying to tell you something important. Don't dismiss what you can't prove—sometimes the most important truths live in the spaces between facts.",
+      meaning_reversed: "You're letting fear and imagination run wild, creating problems that don't exist or making situations scarier than they actually are. Maybe you're seeing threats where there are none, or you're so caught up in worst-case scenarios that you're missing what's really happening. This card suggests that some of your anxiety comes from not having all the information, but that doesn't mean you should assume the worst. Instead of letting your mind spiral, focus on what you can verify and control. What's actually happening versus what you're afraid might happen? Ground yourself in reality."
+    },
+    {
+      name: "The Sun",
+      image: "https://i.ibb.co/rf4XsMMN/image.png",
+      meaning_upright: "Life is good right now, isn't it? Or at least, you're remembering that it can be. This card brings a burst of optimism and clarity after a period of confusion or struggle. You're feeling more like yourself again—confident, joyful, and ready to share your light with the world. Don't dim yourself because you're worried about making others feel bad or because you think good times don't last. They don't last forever, but neither do the difficult times. Right now, you're meant to shine. Celebrate your successes, enjoy your happiness, and let yourself be the bright spot in someone else's day.",
+      meaning_reversed: "You're having trouble accessing your natural joy and confidence. Maybe you're going through a rough patch and you've forgotten that better days are possible, or maybe you're so focused on what's wrong that you're missing what's right. This card reminds you that happiness isn't something you have to earn—it's your natural state when you're not weighed down by worry and self-doubt. What small thing could you do today that would bring you a moment of genuine pleasure? Start there. Sometimes you have to fake it until you make it, but that's different from pretending everything is fine when it's not."
+    },
+    {
+      name: "Judgement",
+      image: "https://i.ibb.co/wZVPL8g8/image.png",
+      meaning_upright: "You're hearing a call to level up, and you can't unhear it now. Maybe it's time to finally pursue that dream you've been putting off, or maybe you need to make amends for something you've done. This card appears when you're ready to step into a new version of yourself, but that means leaving some old patterns and mistakes behind. Forgiveness—of yourself and others—is key here. You can't move forward while carrying the weight of past regrets. What would you do if you knew you were completely forgiven for your past mistakes? That's not a hypothetical question.",
+      meaning_reversed: "You're ignoring a wake-up call, and the snooze button isn't working anymore. Maybe you know you need to make changes but you're afraid of the work involved, or you're hanging onto grudges that are poisoning your peace. This card suggests that you're being called to grow, but you're resisting because growth is uncomfortable. What truth about yourself or your life are you avoiding? What evolution are you postponing? The call to become who you're meant to be doesn't get quieter over time—it gets louder."
+    },
+    {
+      name: "The World",
+      image: "https://i.ibb.co/hF4GNpRD/image.png",
+      meaning_upright: "You've come so far, and you should be proud of yourself. This card appears when you're reaching a major milestone or completing an important chapter of your life. All that work you've been doing—on yourself, your relationships, your goals—it's paying off. You have a sense of wholeness and accomplishment that comes from staying committed to your growth even when it was hard. This isn't the end of your journey, but it's a beautiful completion that deserves to be celebrated. You've learned what you came here to learn, at least for now. What's next is going to be amazing.",
+      meaning_reversed: "You're so close to a breakthrough, but something is holding you back from claiming your success. Maybe you don't feel worthy of what you've achieved, or you're afraid that reaching your goal means you'll lose your motivation. Perhaps you're perfectionist tendencies are making you feel like your work isn't quite finished yet. This card reminds you that 'good enough' is often good enough. You don't have to be perfect to deserve celebration and success. What final step are you avoiding? What would completion look like, and why does that scare you?"
+    },
+
+  // Minor Arcana - Cups
+
+    {
+      name: "Ace of Cups",
+      image: "https://i.ibb.co/sdTSZ73n/image.png",
+      meaning_upright: "Your heart is opening in a way it hasn't in a long time. Maybe you're falling in love, starting a creative project that excites you, or simply feeling more connected to your own emotions. This card brings a fresh wave of emotional energy—the kind that makes you remember why feelings are beautiful, even when they're complicated. Don't hold back or try to protect yourself from this fullness. Yes, open hearts can get hurt, but closed hearts can't receive the magic that's trying to reach you. What would you do if you trusted that your heart could handle whatever comes?",
+      meaning_reversed: "You're guarding your heart so tightly that nothing can get in—not pain, but not joy either. Maybe you've been hurt recently and you're not ready to be vulnerable again, or maybe you're so focused on being practical that you've forgotten how to feel deeply. This isn't about forcing yourself to be open before you're ready; it's about recognizing when your protective walls have become a prison. What small step could you take toward emotional openness? What would it look like to crack the door just a little?"
+    },
+    {
+      name: "Two of Cups",
+      image: "https://i.ibb.co/Fqhv1q9P/image.png",
+      meaning_upright: "There's a beautiful connection forming in your life—maybe romantic, maybe friendship, maybe a creative partnership. This is the kind of bond where you feel seen and appreciated for who you really are. You're not trying to impress or perform; you're just being yourself and finding that it's enough. This card reminds you that the best relationships aren't about completing each other, but about complementing each other. You're both whole people choosing to share your wholeness. Don't overthink it or try to define it too quickly. Just enjoy the feeling of genuine connection.",
+      meaning_reversed: "Something is off balance in an important relationship. Maybe one person is giving much more than the other, or maybe you're trying to force a connection that isn't naturally happening. This card suggests that you need to have an honest conversation about what you both need and want. Imbalance in relationships doesn't usually fix itself—it requires intentional attention. What conversation have you been avoiding? What do you need to ask for, or what do you need to give more freely?"
+    },
+    {
+      name: "Three of Cups",
+      image: "https://i.ibb.co/xSxrWSMC/image.png",
+      meaning_upright: "It's time to celebrate, and you deserve to let yourself enjoy this moment fully. Maybe you've achieved something you've been working toward, or maybe you're just surrounded by people who love and support you. This card appears when your friendships and community are a source of real joy. Don't minimize your happiness or worry about when it will end. Good times are meant to be savored, not endured with anxiety about their temporary nature. Who in your life makes you feel most like yourself? Make time for those people.",
+      meaning_reversed: "You're feeling disconnected from your social circle, or maybe there's drama in your friend group that's draining your energy. Perhaps you're comparing your behind-the-scenes to everyone else's highlight reel and feeling like you don't measure up. This card suggests that you might need to step back from certain relationships that aren't serving you, or that you need to stop trying so hard to fit in where you don't naturally belong. Your real people will accept you as you are."
+    },
+    {
+      name: "Four of Cups",
+      image: "https://i.ibb.co/JFwKDvvn/image.png",
+      meaning_upright: "You're feeling bored or dissatisfied, but you can't quite put your finger on why. Life isn't bad, exactly, but it's not exciting you the way it used to. This restlessness is actually your soul telling you that you're ready for something more. The opportunity you're looking for might already be right in front of you, but it's not packaged the way you expected. What have you been dismissing because it doesn't look like your idea of what you want? Sometimes the next step forward is hidden in plain sight.",
+      meaning_reversed: "You're starting to appreciate what you have instead of focusing on what you lack. Maybe you've been through a difficult period and you're grateful to be back on solid ground, or maybe you're finally seeing the value in people and situations you were taking for granted. This renewed appreciation is shifting your perspective and opening you up to new possibilities. What in your life deserves more gratitude than you've been giving it?"
+    },
+    {
+      name: "Five of Cups",
+      image: "https://i.ibb.co/5h7KLV3H/image.png",
+      meaning_upright: "You're grieving something real, and that grief deserves to be honored. Maybe it's the end of a relationship, the loss of a dream, or just the recognition that something you hoped for isn't going to happen the way you wanted. It's natural to focus on what went wrong, but this card gently reminds you that not everything is lost. While you're processing this disappointment, don't forget to look around and see what's still standing, what's still possible. Healing doesn't mean pretending everything is fine—it means gradually expanding your view to include both the loss and what remains.",
+      meaning_reversed: "You're finally ready to move forward after a period of sadness or disappointment. The fog is lifting, and you can see possibilities again. Maybe you're forgiving someone who hurt you, or maybe you're just tired of carrying around old pain that's not serving you anymore. This isn't about forgetting what happened or pretending it didn't matter—it's about choosing not to let it define your future. What would change if you stopped identifying so strongly with your past hurts? Who might you become if you weren't constantly protecting old wounds?"
+    },
+    {
+      name: "Six of Cups",
+      image: "https://i.ibb.co/2018ttb5/image.png",
+      meaning_upright: "You're being reminded of a simpler time, when things felt more innocent and possibilities seemed endless. Maybe someone from your past has reached out, or maybe you're just feeling nostalgic for a period when life felt less complicated. This card invites you to reconnect with that sense of wonder and playfulness you had when you were younger. What brought you joy before you learned to worry about what other people thought? What dreams did you have before you decided they were 'unrealistic'? That younger version of you had some wisdom that your adult self could use.",
+      meaning_reversed: "You're getting stuck in the past instead of learning from it. Maybe you're idealizing a relationship that actually wasn't that great, or you're wishing you could go back to a time that only looks good in retrospect. This card suggests that nostalgia is becoming a way to avoid dealing with present challenges. The past has gifts to offer, but you can't live there. What are you avoiding in your current life by focusing so much on what used to be? How can you bring the best parts of your past into your present without trying to recreate something that's already over?"
+    },
+    {
+      name: "Seven of Cups",
+      image: "https://i.ibb.co/Y7WzgNTt/image.png",
+      meaning_upright: "You have so many options right now that it's almost overwhelming, isn't it? Maybe you're looking at different career paths, relationship possibilities, or life directions, and you can't decide which way to go. This card reminds you that having choices is a luxury, even when it feels stressful. The key is to distinguish between real opportunities and appealing fantasies. What excites you when you imagine it? What would you choose if you had to decide today? Sometimes the best way forward is to pick something and adjust course as you go, rather than staying stuck in analysis paralysis.",
+      meaning_reversed: "You're gaining clarity about what you actually want versus what you think you should want. Maybe you've been overwhelmed by options and you're finally able to see which paths are real and which are just distractions. This is the card of cutting through illusion and fantasy to focus on what's genuinely possible and desirable. What dreams are you ready to let go of because they were never really yours? What choice becomes obvious when you stop overthinking it?"
+    },
+    {
+      name: "Eight of Cups",
+      image: "https://i.ibb.co/qKZWHzr/image.png",
+      meaning_upright: "You know you need to walk away from something, even though it's not easy. Maybe it's a relationship that's run its course, a job that's draining your soul, or a situation that looked good on paper but doesn't feed your spirit. This card takes courage because you're leaving something that others might see as 'good enough' in search of something that's right for you. Trust that inner voice telling you there's something better waiting, even if you can't see it yet. What would you do if you knew that staying where you are would keep you from discovering who you're meant to become?",
+      meaning_reversed: "You're afraid to leave a situation that you know isn't working because you're worried about what comes next. Maybe you're staying in your comfort zone because the unknown feels scarier than the familiar disappointment. This card suggests that your fear of change is keeping you trapped in something that's slowly diminishing you. What's the worst that could happen if you made that change you've been considering? And what's the cost of staying exactly where you are? Sometimes the biggest risk is not taking any risk at all."
+    },
+    {
+      name: "Nine of Cups",
+      image: "https://i.ibb.co/xtrmzFZL/image.png",
+      meaning_upright: "Life feels pretty good right now, doesn't it? You've worked hard for what you have, and you're finally in a position to enjoy the fruits of your labor. This card appears when you're experiencing genuine contentment—not the fleeting happiness that comes from external achievements, but the deep satisfaction that comes from living in alignment with your values. Don't feel guilty about enjoying your success or worry that being happy now means something bad is coming. You deserve this period of fulfillment. Savor it, share it, and use it as fuel for whatever you want to create next.",
+      meaning_reversed: "You have everything you thought you wanted, but it's not bringing you the satisfaction you expected. Maybe you're realizing that external achievements can't fill an internal void, or maybe you're so focused on what you don't have that you can't appreciate what you do have. This card suggests that true contentment comes from within, not from accumulating things or achievements. What would make you feel genuinely fulfilled? What does your soul actually hunger for, beyond what society tells you should make you happy?"
+    },
+    {
+      name: "Ten of Cups",
+      image: "https://i.ibb.co/GQP8fK3p/image.png",
+      meaning_upright: "You're experiencing the kind of happiness that comes from authentic connection and belonging. Maybe it's with your family, your chosen family, or a community that truly gets you. This card represents emotional fulfillment that's sustainable because it's based on love, mutual support, and shared values rather than temporary pleasures. You've created or found your tribe, and it feels like home. Don't take this for granted—this kind of deep belonging is rarer than you might think. How can you nurture and protect these relationships that mean so much to you?",
+      meaning_reversed: "There's tension in your family or close relationships that's affecting your sense of peace and belonging. Maybe expectations aren't being met, or maybe people are trying to love you in ways that don't feel right to you. This card suggests that harmony requires honest communication and sometimes difficult conversations. What's being left unsaid that needs to be addressed? How can you express your needs without attacking the people you love? Sometimes you have to risk temporary discomfort to create lasting closeness."
+    },
+    {
+      name: "Page of Cups",
+      image: "https://i.ibb.co/Z1mtPy6p/image.png",
+      meaning_upright: "You're feeling inspired and emotionally open, like anything is possible. Maybe a creative project is calling to you, or maybe you're just feeling more sensitive and intuitive than usual. This card brings a childlike wonder and receptivity to beauty and possibility. Don't let anyone tell you that your dreams are unrealistic or that you're being too emotional. Your sensitivity is a superpower, not a weakness. What creative impulse have you been dismissing as silly or impractical? What would you create if you knew you couldn't fail?",
+      meaning_reversed: "You're feeling emotionally immature or overwhelmed by feelings you don't know how to handle. Maybe you're being too dependent on others for validation, or maybe you're letting your emotions make decisions that your wiser self knows aren't good for you. This card suggests that you need to develop better emotional boundaries and self-soothing skills. What triggers you most easily, and how can you prepare for those situations? How can you honor your feelings without being controlled by them?"
+    },
+    {
+      name: "Knight of Cups",
+      image: "https://i.ibb.co/KjChc8dN/image.png",
+      meaning_upright: "You're following your heart, and it's leading you toward something beautiful. Maybe you're pursuing a romantic interest, a creative passion, or just a lifestyle that feels more authentic to who you really are. This card encourages you to trust your emotional instincts even when they don't make logical sense to others. Your romantic, idealistic nature isn't naive—it's necessary. The world needs people who believe in beauty and love and magic. Don't let cynics talk you out of pursuing what makes your heart sing.",
+      meaning_reversed: "You're letting your emotions run the show, and it's creating problems for you and others. Maybe you're being impulsive in love, making promises you can't keep, or getting swept away by fantasies that aren't grounded in reality. This card suggests that you need to balance your emotional truth with practical wisdom. What would change if you paused to think before you acted on your feelings? How can you honor your emotions without being controlled by them?"
+    },
+    {
+      name: "Queen of Cups",
+      image: "https://i.ibb.co/LDNCt44N/image.png",
+      meaning_upright: "You're the person others come to when they need emotional support, and that's because you have a gift for holding space without judgment. You can feel what others are feeling, and you know how to offer comfort without trying to fix everything. This emotional intelligence is one of your greatest strengths, but remember that you can't save everyone. Your empathy is meant to heal and support, not to drain and exhaust you. How can you use your emotional gifts in ways that energize rather than deplete you?",
+      meaning_reversed: "You're either giving too much emotionally or not enough. Maybe you're so busy taking care of everyone else that you're neglecting your own emotional needs, or maybe you're so overwhelmed by others' emotions that you've shut down completely. This card suggests that you need to recalibrate your emotional boundaries. What would it look like to be compassionate without being codependent? How can you care for others without losing yourself in the process?"
+    },
+    {
+      name: "King of Cups",
+      image: "https://i.ibb.co/G3RF4Pqv/image.png",
+      meaning_upright: "You've learned to navigate your emotional world with wisdom and maturity. You feel deeply, but you're not controlled by your feelings. This emotional mastery allows you to be a stabilizing presence for others while maintaining your own center. You understand that emotions are information, not directives, and you've learned to respond rather than react. This is the card of emotional leadership—the ability to stay calm in a crisis and help others do the same. How can you use this emotional wisdom to support the people and causes you care about?",
+      meaning_reversed: "You're either suppressing your emotions or letting them overwhelm you, and neither approach is working. Maybe you've decided that feelings are weakness and you're trying to logic your way through everything, or maybe you're so emotional that you can't think clearly. This card suggests that true strength comes from integrating your emotional and rational sides. What would it look like to feel your feelings without being controlled by them? How can you honor both your heart and your head?"
+    },
+
+  // Pentacles
+
+    {
+      name: "Ace of Pentacles",
+      image: "https://i.ibb.co/Cs9FVwtS/IMG-0500.png",
+      meaning_upright: "A new opportunity is presenting itself, and this one has real potential to improve your material circumstances. Maybe it's a job offer, a business idea, an investment opportunity, or just a chance to learn a skill that could open doors for you. This card appears when the universe is offering you a seed that could grow into something substantial—but only if you're willing to plant it and tend to it patiently. Don't dismiss opportunities because they seem small or because you can't see the entire path from here. Sometimes the biggest successes start with the humblest beginnings. What would you do if you knew this opportunity could change your life?",
+      meaning_reversed: "You're either missing opportunities that are right in front of you, or you're being unrealistic about what it takes to build something lasting. Maybe you want the security and success but you're not willing to do the consistent, unglamorous work that creates it. Or perhaps you're so focused on instant gratification that you can't see the value in long-term investments. This card reminds you that real wealth—financial or otherwise—is built slowly and deliberately. What dream are you not pursuing because you want it to be easier than it is?"
+    },
+    {
+      name: "Five of Pentacles",
+      image: "https://i.ibb.co/mVp8JR6V/image.png",
+      meaning_upright: "You're going through a tough time financially or emotionally, and it feels like you're on the outside looking in while everyone else has what they need. This card acknowledges that hardship is real and that feeling left out or left behind is genuinely painful. But it also gently suggests that help might be closer than you think. Maybe you're too proud to ask for support, or maybe you're so focused on what you lack that you're not seeing what's available to you. What would change if you let people know what you're struggling with? Who in your life would want to help if they knew you needed it?",
+      meaning_reversed: "Things are starting to improve after a difficult period. Maybe you're getting back on your feet financially, or maybe you're just feeling more hopeful about your prospects. This card represents the light at the end of the tunnel—not full recovery yet, but movement in the right direction. Don't minimize this progress or expect too much too fast. Healing and rebuilding take time, and every small step forward matters. What small improvements can you acknowledge and celebrate? How can you build on the momentum you're creating?"
+    },
+    {
+      name: "Two of Pentacles",
+      image: "https://i.ibb.co/B59wK82D/image.png",
+      meaning_upright: "You're juggling a lot right now, aren't you? Maybe it's work and personal life, or multiple projects, or just the general chaos of being an adult human. This card appears when you're in the thick of managing competing demands, and while it might feel overwhelming, you're actually handling it better than you think. The key is staying flexible and finding your rhythm in the dance of priorities. Don't aim for perfect balance—that's impossible. Aim for responsive balance, where you can shift your weight as needed. What would help you feel more graceful in this juggling act?",
+      meaning_reversed: "You're dropping balls left and right, and it's stressing you out. Maybe you've taken on too much, or maybe you're not being strategic about how you manage your time and energy. This card suggests that you need to step back and reassess your priorities. Not everything on your plate is equally important, and trying to give everything the same level of attention is why you're struggling. What can you delegate, postpone, or let go of entirely? Sometimes the most productive thing you can do is decide what not to do."
+    },
+    {
+      name: "Three of Pentacles",
+      image: "https://i.ibb.co/x8sKY3hn/IMG-0503.png",
+      meaning_upright: "You're part of something bigger than yourself, and your unique skills are valued and needed. Maybe you're working on a team project, collaborating with friends, or just realizing that your individual talents shine brightest when they're combined with others'. This card celebrates the magic that happens when people with different strengths come together for a common purpose. Don't underestimate your contribution or try to do everything yourself. What you bring to the table matters, and so does what others bring. How can you lean into collaboration instead of competition?",
+      meaning_reversed: "Something's not working in your collaboration, and it's probably because of communication issues or mismatched expectations. Maybe people aren't pulling their weight, or maybe you're trying to control everything instead of trusting the process. This card suggests that you need to have honest conversations about roles, responsibilities, and goals. Good teamwork doesn't happen automatically—it requires intentional effort and clear agreements. What conversation have you been avoiding that could clear the air and get everyone back on track?"
+    },
+    {
+      name: "Four of Pentacles",
+      image: "https://i.ibb.co/GQnmXF2R/image.png",
+      meaning_upright: "You're holding tight to what you have—maybe money, maybe security, maybe control—and while stability is important, you might be gripping so tightly that you're cutting off circulation. This card appears when your desire for security is starting to limit your growth or joy. Yes, it's wise to be careful with your resources, but it's also important to invest in experiences and relationships and opportunities that can enrich your life. What are you so afraid of losing that you're not allowing yourself to truly live?",
+      meaning_reversed: "You're starting to loosen your grip and trust that there's enough to go around. Maybe you're becoming more generous, more willing to take calculated risks, or just more confident that you can handle whatever comes. This shift from scarcity to abundance thinking is liberating, even if it feels scary at first. What would you do with your time, money, or energy if you weren't constantly worried about running out? How can you practice abundance in small ways to build your confidence for bigger leaps?"
+    },
+    {
+      name: "Five of Pentacles",
+      image: "https://i.ibb.co/mVp8JR6V/image.png",
+      meaning_upright: "You're going through a tough time financially or emotionally, and it feels like you're on the outside looking in while everyone else has what they need. This card acknowledges that hardship is real and that feeling left out or left behind is genuinely painful. But it also gently suggests that help might be closer than you think. Maybe you're too proud to ask for support, or maybe you're so focused on what you lack that you're not seeing what's available to you. What would change if you let people know what you're struggling with? Who in your life would want to help if they knew you needed it?",
+      meaning_reversed: "Things are starting to improve after a difficult period. Maybe you're getting back on your feet financially, or maybe you're just feeling more hopeful about your prospects. This card represents the light at the end of the tunnel—not full recovery yet, but movement in the right direction. Don't minimize this progress or expect too much too fast. Healing and rebuilding take time, and every small step forward matters. What small improvements can you acknowledge and celebrate? How can you build on the momentum you're creating?"
+    },
+    {
+      name: "Six of Pentacles",
+      image: "https://i.ibb.co/7tf2Czqb/image.png",
+      meaning_upright: "You're in a position to help others, and it feels good to share your resources, knowledge, or support. Maybe you're mentoring someone, making a donation, or just being there for a friend who needs you. This card celebrates the flow of abundance when it moves freely between people. Your generosity creates ripples that extend far beyond what you can see. At the same time, be mindful that your giving comes from genuine abundance, not from obligation or guilt. How can you give in ways that energize rather than drain you?",
+      meaning_reversed: "There's an imbalance in your giving and receiving, and it's creating resentment or dependency. Maybe you're giving so much that you're depleting yourself, or maybe you're in a position where you need help but you're too proud to accept it. This card suggests that healthy relationships require reciprocity, even if it doesn't always happen at the same time or in the same way. What would change if you allowed yourself to receive as graciously as you give? How can you create more balance in your exchange of energy with others?"
+    },
+    {
+      name: "Seven of Pentacles",
+      image: "https://i.ibb.co/Rk8fKzwc/image.png",
+      meaning_upright: "You've been working toward something for a while now, and you're in that frustrating middle phase where you can see progress but you're not at the finish line yet. This card appears when you're questioning whether your efforts are worth it, whether you should keep going or try something else. The answer is usually to keep going, but maybe with some adjustments. What you've planted is growing, but growth takes time and patience. What evidence of progress can you see, even if it's not as dramatic as you hoped for?",
+      meaning_reversed: "You're getting impatient with the pace of progress, and you're tempted to give up on something you've been working toward. Maybe the results aren't coming as quickly as you expected, or maybe you're starting to doubt whether your efforts will ever pay off. This card suggests that you need to reassess your approach, not necessarily your goals. What adjustments could you make to your strategy? What would you regret not giving a little more time and effort? Sometimes the breakthrough comes right after the moment when you want to quit."
+    },
+    {
+      name: "Eight of Pentacles",
+      image: "https://i.ibb.co/F4hJDMTp/image.png",
+      meaning_upright: "You're in your zone, developing your skills and refining your craft. Maybe you're learning something new, perfecting a technique, or just getting really good at something you care about. This card celebrates the satisfaction that comes from dedicated practice and continuous improvement. You're not doing this for external validation—you're doing it because you love the process of getting better. What skill or craft brings you this kind of focused joy? How can you create more time and space for this kind of meaningful work?",
+      meaning_reversed: "You're either burning yourself out with perfectionism or you're being lazy and unfocused in your efforts. Maybe you're so concerned with getting everything right that you're not making progress, or maybe you're going through the motions without really caring about the quality of your work. This card suggests that you need to find the middle ground between excellence and efficiency. What would 'good enough' look like in your situation? How can you maintain high standards without becoming paralyzed by perfectionism?"
+    },
+    {
+      name: "Nine of Pentacles",
+      image: "https://i.ibb.co/Qv5gdWkQ/image.png",
+      meaning_upright: "You've reached a level of independence and self-sufficiency that allows you to enjoy the finer things in life on your own terms. This isn't just about money—it's about the confidence and freedom that come from knowing you can take care of yourself. You've worked hard to get here, and you deserve to enjoy the fruits of your labor without guilt or apology. Don't let anyone make you feel bad for having nice things or for enjoying your success. What aspect of your independence do you value most? How can you celebrate your achievements without worrying about other people's opinions?",
+      meaning_reversed: "You're either dependent on others in ways that make you uncomfortable, or you're so focused on independence that you won't accept help when you need it. Maybe financial insecurity is affecting your confidence, or maybe you're isolating yourself because you think needing people makes you weak. This card suggests that true strength includes knowing when to rely on others and when to stand on your own. What support could you accept that would actually make you stronger? How can you build interdependence rather than just independence?"
+    },
+    {
+      name: "Ten of Pentacles",
+      image: "https://i.ibb.co/3Y72pZMk/image.png",
+      meaning_upright: "You're thinking beyond your own lifetime, building something that will benefit future generations. Maybe it's literal wealth or property, or maybe it's knowledge, values, or traditions that you want to pass down. This card represents the deep satisfaction that comes from creating lasting security and leaving a positive legacy. You understand that true abundance isn't just about having enough for yourself—it's about contributing to something bigger than yourself. What do you want to be remembered for? What are you building that will outlast you?",
+      meaning_reversed: "There's tension in your family or community around resources, inheritance, or values. Maybe traditional expectations don't fit your modern life, or maybe there's conflict about money or property. This card suggests that you need to have honest conversations about what legacy actually means to you and what you want to preserve versus what you're ready to change. What family or cultural patterns serve you, and what patterns are you ready to break? How can you honor your roots while still growing in your own direction?"
+    },
+    {
+      name: "Page of Pentacles",
+      image: "https://i.ibb.co/Rkm9Rf6r/IMG-0520.png",
+      meaning_upright: "You're excited about a new opportunity to learn, earn, or build something substantial. Maybe you're starting a new job, taking a class, beginning a savings plan, or just getting serious about a practical goal. This card brings the enthusiasm of a beginner combined with the wisdom to know that real success takes time and effort. Don't let anyone discourage you by pointing out how much you don't know yet—everyone starts somewhere. What new skill or opportunity has captured your interest? How can you approach it with both excitement and realistic expectations?",
+      meaning_reversed: "You're procrastinating on something important, or you're being unrealistic about what it takes to achieve your goals. Maybe you want the results without putting in the work, or maybe you're so intimidated by the learning curve that you're not even starting. This card suggests that you need to break your big goals down into smaller, manageable steps. What's one small action you could take today toward something you want to build? How can you make progress without overwhelming yourself?"
+    },
+    {
+      name: "Knight of Pentacles",
+      image: "https://i.ibb.co/6cG0ndsp/image.png",
+      meaning_upright: "You're the reliable one, the person others count on to follow through and get things done. Your steady, methodical approach might not be flashy, but it's incredibly effective. You understand that most worthwhile achievements require consistency over time rather than dramatic bursts of effort. This card celebrates your ability to keep going even when the work is boring or challenging. Don't let faster-moving people make you feel like you're behind—you're building something solid that will last. What project or commitment are you most proud of sticking with?",
+      meaning_reversed: "You're either being too rigid and missing opportunities for innovation, or you're being lazy and unreliable when people are counting on you. Maybe your methodical approach has turned into stubborn resistance to change, or maybe you're so comfortable with routine that you've stopped growing. This card suggests that you need to find ways to maintain your reliability while also staying flexible and open to new approaches. What would change if you allowed yourself to experiment a little? How can you be dependable without being stuck?"
+    },
+    {
+      name: "Queen of Pentacles",
+      image: "https://i.ibb.co/3yjnNh5f/image.png",
+      meaning_upright: "You're creating abundance and comfort not just for yourself, but for everyone in your sphere. Maybe you're the one who makes sure everyone is fed, comfortable, and taken care of, or maybe you're building a business or home that feels welcoming and secure. You have a gift for nurturing growth—whether it's plants, people, projects, or investments. Your practical wisdom and generous spirit make you a magnet for prosperity. Just remember to include yourself in all that care and attention you're giving to others. How can you nurture yourself as generously as you nurture others?",
+      meaning_reversed: "You're so busy taking care of everyone else that you're neglecting your own needs, or you're becoming controlling about how things should be done. Maybe you've fallen into the trap of thinking that if you don't do everything yourself, it won't be done right. This card suggests that you need to delegate more and trust others to handle things their own way. What would happen if you loosened your grip on control? How can you care for others without exhausting yourself in the process?"
+    },
+    {
+      name: "King of Pentacles",
+      image: "https://i.ibb.co/SyRXs8Tx/image.png",
+      meaning_upright: "You've mastered the art of creating sustainable abundance through wise leadership and practical vision. People look to you for guidance because you've proven that you can turn ideas into reality and build something lasting. You understand that true wealth isn't just about accumulation—it's about creating value for others while building security for yourself and your loved ones. Your success isn't just lucky; it's the result of discipline, strategy, and the ability to see long-term potential. How can you use your influence and resources to create opportunities for others while continuing to grow what you've built?",
+      meaning_reversed: "You're either being greedy and controlling with your resources, or you're being financially irresponsible and squandering what you've worked to build. Maybe success has gone to your head and you've forgotten the values that got you here, or maybe you're so focused on making money that you've lost sight of what really matters. This card suggests that you need to reassess your relationship with wealth and power. What would responsible leadership look like in your situation? How can you be successful without compromising your integrity or neglecting the people who depend on you?"
+    },
+
+  // Swords
+
+    {
+      name: "Ace of Swords",
+      image: "https://i.ibb.co/nMJLdR34/image.png",
+      meaning_upright: "Your mind is razor-sharp right now, and you're cutting through confusion like it's tissue paper. Maybe you've been wrestling with a problem for weeks, and suddenly the solution is crystal clear. Or perhaps you're finally ready to have that difficult conversation you've been avoiding. This card brings mental clarity and the courage to speak your truth, even when it's uncomfortable. Your thoughts are your superpower right now—trust them. What truth have you been afraid to acknowledge? What needs to be said, even if your voice shakes when you say it?",
+      meaning_reversed: "Your thoughts are all over the place, aren't they? Maybe you're overthinking everything, or maybe you're so emotionally charged that you can't think clearly. This card suggests that you need to step back and get some perspective before you make any major decisions or have important conversations. When you're this scattered, you're more likely to say something you'll regret or miss important details. What would change if you took a day to think about it before responding? Sometimes the most powerful thing you can do is pause."
+    },
+    {
+      name: "Two of Swords",
+      image: "https://i.ibb.co/Xr3LnmQW/image.png",
+      meaning_upright: "You're stuck between your head and your heart, and it's creating a mental stalemate. Maybe you know what the logical choice is, but it doesn't feel right emotionally. Or perhaps your heart is pulling you one way while your practical side is screaming warnings. This card appears when you're trying to make a decision without all the information you need. Instead of forcing a choice, what if you gathered more data or waited for clearer signs? Sometimes the best decision is to not decide until you have to.",
+      meaning_reversed: "You've been avoiding making a decision, and now it's affecting other areas of your life. Maybe you're paralyzed by the fear of making the wrong choice, or maybe you're hoping the decision will make itself. But avoidance is still a choice—it's just not a conscious one. This card suggests that you need to stop waiting for perfect clarity and make the best decision you can with the information you have. What's the worst that could happen if you choose wrong? And what's the cost of continuing to avoid the choice altogether?"
+    },
+    {
+      name: "Three of Swords",
+      image: "https://i.ibb.co/yByv3656/image.png",
+      meaning_upright: "Your heart is broken, and you feel it in your entire body. Maybe someone betrayed you, a relationship ended, or a dream shattered in a way you didn't see coming. This pain is real and valid, and it deserves to be felt fully. Don't try to rush through grief or pretend you're fine when you're not. But also remember that heartbreak, as terrible as it feels, is proof that you loved deeply. Your capacity to feel this much pain is the same capacity that allows you to feel tremendous joy. This is not the end of your story—it's just a very difficult chapter.",
+      meaning_reversed: "You're beginning to heal from a deep hurt, and it feels like emerging from a long, dark tunnel. Maybe you're finally able to think about what happened without feeling like you're drowning, or maybe you're ready to forgive—not because what happened was okay, but because carrying the anger is hurting you more than them. This healing isn't linear, and you might have setbacks, but the worst is behind you. What would it feel like to let yourself be happy again? You're not betraying your pain by choosing to move forward."
+    },
+    {
+      name: "Four of Swords",
+      image: "https://i.ibb.co/mCDtfD52/image.png",
+      meaning_upright: "You're mentally exhausted, and your brain is begging for a break. Maybe you've been overthinking everything, dealing with conflict, or just processing too much information at once. This card is giving you permission to step back and rest your mind. You don't have to solve every problem today or have an opinion about everything. Sometimes the most productive thing you can do is absolutely nothing. What would it feel like to give yourself permission to just be for a while, without trying to fix or figure out anything?",
+      meaning_reversed: "You've been avoiding reality by staying in your head, but hiding in mental fog isn't serving you anymore. Maybe you're so busy meditating, analyzing, or planning that you're not actually living your life. Or perhaps you're using 'rest' as an excuse to avoid dealing with problems that need your attention. This card suggests that you're ready to re-engage with the world, even if it feels overwhelming. What have you been avoiding that you know you need to address? Sometimes you have to feel uncomfortable to grow."
+    },
+    {
+      name: "Five of Swords",
+      image: "https://i.ibb.co/DHhSS7X6/image.png",
+      meaning_upright: "You're in the middle of conflict, and it's ugly. Maybe it's a fight with someone you care about, workplace drama, or just competing interests that can't be easily resolved. This card acknowledges that sometimes relationships get messy and people say things they don't mean. The question isn't whether you can avoid all conflict—it's whether you can fight fair and know when to walk away. What's more important: being right or preserving the relationship? Sometimes winning the argument means losing something more valuable.",
+      meaning_reversed: "You're tired of fighting, and you're ready to find a way forward that doesn't require anyone to lose. Maybe you're finally seeing the other person's perspective, or maybe you're just exhausted by the drama and ready to let it go. This card suggests that resolution is possible, but it requires someone to take the first step toward peace. Are you willing to be that person? Sometimes the strongest thing you can do is be the first one to apologize or extend an olive branch."
+    },
+    {
+      name: "Six of Swords",
+      image: "https://i.ibb.co/dCLTsSG/image.png",
+      meaning_upright: "You're in transition, moving away from troubled waters toward something calmer and more peaceful. Maybe you're leaving a toxic situation, recovering from a difficult period, or just gradually feeling better after a hard time. This movement might be slow and not always comfortable, but you're definitely heading in the right direction. Trust the process, even when you can't see your destination clearly. You're not the same person who entered this difficult phase—you're stronger, wiser, and more compassionate because of what you've been through.",
+      meaning_reversed: "You're resisting a necessary transition because change feels scary, even when what you're leaving behind isn't good for you. Maybe you're staying in a bad situation because it's familiar, or maybe you're so afraid of the unknown that you'd rather deal with the devil you know. This card suggests that your fear of change is keeping you stuck in something that's not serving you. What would you do if you trusted that the journey toward something better is worth the temporary discomfort of leaving what you know?"
+    },
+    {
+      name: "Seven of Swords",
+      image: "https://i.ibb.co/RpgWBtcC/IMG-0553.png",
+      meaning_upright: "You're being strategic about something, maybe even a little sneaky. Perhaps you're working behind the scenes to make something happen, or you're trying to solve a problem in an unconventional way. This card isn't necessarily about being deceptive—it's about being smart and resourceful. But ask yourself: are you being clever or are you being dishonest? There's a fine line between strategy and manipulation. What are your real motivations here? Make sure you can live with the methods you're using to get what you want.",
+      meaning_reversed: "You're coming clean about something, or someone else's deception is being revealed. Maybe you've been caught in a lie, or maybe you're finally ready to tell the truth about something you've been hiding. This card suggests that honesty, even when it's uncomfortable, is the only way forward. What secret have you been carrying that's weighing you down? What would change if you stopped trying to manage everyone's perception of you and just told the truth? Sometimes the thing you're most afraid to reveal is exactly what needs to see the light."
+    },
+    {
+      name: "Eight of Swords",
+      image: "https://i.ibb.co/Kxt1j9Kw/IMG-0552.png",
+      meaning_upright: "You feel trapped, but look closer—the prison might be of your own making. Maybe you're telling yourself you have no choices when you actually have several, or maybe you're so focused on the obstacles that you can't see the opportunities. This card often appears when your thoughts are more limiting than your actual circumstances. What story are you telling yourself about why you can't change your situation? What would be possible if that story wasn't true? Sometimes the chains that bind us are made of our own fears and limiting beliefs.",
+      meaning_reversed: "You're starting to see a way out of a situation that felt hopeless. Maybe you're recognizing that you have more power than you thought, or maybe someone is offering you help that you're finally ready to accept. This breakthrough in thinking is just the beginning—now you need to take action on what you're seeing. What small step could you take today toward freedom? You don't have to solve everything at once, but you do need to start moving in the direction of liberation."
+    },
+    {
+      name: "Nine of Swords",
+      image: "https://i.ibb.co/CpQqQCt2/image.png",
+      meaning_upright: "Your mind is racing at 3 AM, running through worst-case scenarios and replaying conversations from five years ago. The anxiety feels endless, and it's exhausting. This card acknowledges that mental anguish is real and that sometimes our thoughts can be our own worst enemy. But remember: thoughts aren't facts, and anxiety often lies to us about how dangerous things really are. What would it feel like to question those anxious thoughts instead of believing them automatically? You're stronger than your fears, even when they feel overwhelming.",
+      meaning_reversed: "The mental fog is lifting, and you're starting to see light at the end of the tunnel. Maybe you're getting help for your anxiety, or maybe you're just learning to recognize anxious thoughts for what they are—just thoughts, not reality. This isn't about positive thinking or pretending everything is fine; it's about developing a healthier relationship with your own mind. What coping strategies have been helping you? How can you be gentle with yourself as you heal? Recovery isn't linear, but every small step toward peace matters."
+    },
+    {
+      name: "Ten of Swords",
+      image: "https://i.ibb.co/VcfnzMdw/image.png",
+      meaning_upright: "You've hit rock bottom, and it feels like everything that could go wrong has gone wrong. This ending is painful and maybe even feels unfair, but it's also final. There's something oddly liberating about reaching the absolute worst-case scenario because now you know you can survive it. From here, the only direction is up. What feels like a devastating ending is actually a clean slate. You get to rebuild from scratch, and this time you get to do it with all the wisdom you've gained from this experience. What will you do differently next time?",
+      meaning_reversed: "You're in recovery mode after a significant setback or ending. The worst is behind you, and you're slowly picking up the pieces and figuring out how to move forward. This isn't about bouncing back to exactly where you were—it's about integrating what you've learned and building something new. Be patient with yourself as you heal. What's different about you now compared to before this experience? How can you use that growth as you rebuild? You're not the same person who went through that difficult time, and that's actually a good thing."
+    },
+    {
+      name: "Page of Swords",
+      image: "https://i.ibb.co/C5hQFfv9/image.png",
+      meaning_upright: "You're curious about something, and your mind is buzzing with questions and ideas. Maybe you're learning a new skill, researching a topic that fascinates you, or just feeling intellectually stimulated in a way you haven't in a while. This card encourages your quest for knowledge, but it also warns against being too impulsive with your words or ideas. What are you most excited to learn about right now? How can you channel that mental energy into something productive? Sometimes the best discoveries come from following your genuine curiosity, even when others don't understand why it interests you.",
+      meaning_reversed: "You're talking more than you're listening, or maybe you're spreading information without checking if it's accurate. This card suggests that your enthusiasm for sharing ideas might be getting ahead of your wisdom. Are you gossiping instead of communicating? Are you arguing just to argue, or are you actually trying to understand different perspectives? What would change if you spent as much energy listening as you do talking? Sometimes the most powerful thing you can do is ask better questions instead of rushing to provide answers."
+    },
+    {
+      name: "Knight of Swords",
+      image: "https://i.ibb.co/fGXrhszL/image.png",
+      meaning_upright: "You're moving fast and thinking even faster. Maybe you've got a deadline to meet, a goal to pursue, or just a burning desire to make something happen. Your mental energy is sharp and focused, and you're not afraid to charge ahead even when others are hesitating. This drive is one of your superpowers, but make sure you're not moving so fast that you miss important details or run over people in the process. What's the rush? Is this urgency serving you, or is it creating unnecessary stress for you and others?",
+      meaning_reversed: "You're all speed and no direction, charging ahead without a clear plan or consideration for consequences. Maybe you're being reckless with your words, making decisions too quickly, or just creating chaos wherever you go. This card suggests that you need to slow down and think things through before you act. What would change if you paused for five minutes before responding to that email or having that conversation? Sometimes the bravest thing you can do is wait until you can act from wisdom instead of reactivity."
+    },
+    {
+      name: "Queen of Swords",
+      image: "https://i.ibb.co/Z1bPbS18/image.png",
+      meaning_upright: "You've learned to think clearly and speak honestly, even when it's uncomfortable. You're not cruel, but you're not afraid to tell the truth when it needs to be told. This emotional maturity allows you to have difficult conversations with grace and to make decisions based on wisdom rather than wishful thinking. People come to you for advice because they know you'll give it to them straight. How can you use this gift of clear thinking to help others without becoming cold or detached? Your honesty is a form of love, even when it doesn't feel like it.",
+      meaning_reversed: "You're either being too harsh with your words or you're holding back truth that needs to be spoken. Maybe you're letting bitterness make you cruel, or maybe you're so afraid of hurting someone's feelings that you're not being honest about important things. This card suggests that you need to find the balance between honesty and kindness. What difficult conversation have you been avoiding? How can you speak your truth with compassion instead of anger? Sometimes the most loving thing you can do is tell someone something they don't want to hear."
+    },
+    {
+      name: "King of Swords",
+      image: "https://i.ibb.co/0jtqWJS9/image.png",
+      meaning_upright: "You've mastered the art of fair and logical thinking. You can see multiple perspectives, weigh complex information, and make decisions that serve the greater good rather than just your personal interests. This intellectual maturity makes you a natural leader and advisor. People trust your judgment because they know you're not driven by emotion or personal agenda. How can you use this gift of clear thinking to create positive change? Your ability to cut through confusion and see what's really important is exactly what the world needs right now.",
+      meaning_reversed: "You're either being too cold and logical, ignoring the human element in your decisions, or you're abusing your intellectual authority to manipulate others. Maybe you're so focused on being right that you've forgotten to be kind, or maybe you're using your intelligence to intimidate rather than illuminate. This card asks you to examine your motivations. Are you using your mental gifts to help or to dominate? What would change if you led with both your head and your heart? True wisdom includes emotional intelligence, not just intellectual prowess."
+    },
+
+  // Wands
+
+    {
+      name: "Ace of Wands",
+      image: "https://i.ibb.co/TDrs1NRR/image.png",
+      meaning_upright: "You're buzzing with creative energy and new ideas, aren't you? That project you've been thinking about, the hobby you want to try, or the bold move you've been considering—this is your green light. This card brings the spark of inspiration, but remember that sparks need to be nurtured into flames. The universe is handing you a gift of creative potential, but it's up to you to do something with it. What idea keeps coming back to you, no matter how much you try to dismiss it? That's probably the one you should pursue. Stop waiting for more confidence or perfect conditions—start now, even if it's just a tiny first step.",
+      meaning_reversed: "You're feeling creatively blocked or uninspired, and it's frustrating because you know you have potential that you're not accessing. Maybe you've been talking yourself out of ideas before you even try them, or maybe you're waiting for the 'perfect' moment that never comes. This card suggests that you need to reconnect with what genuinely excites you, not what you think should excite you. What brought you joy when you were younger, before you learned to worry about being practical? Sometimes you have to create momentum before inspiration strikes, not the other way around."
+    },
+    {
+      name: "Two of Wands",
+      image: "https://i.ibb.co/rfXNPjWj/image.png",
+      meaning_upright: "You're standing at a crossroads, looking out at possibilities that both excite and intimidate you. You've got a vision of what you want to create or where you want to go, but now you have to decide: play it safe or take the leap? This card appears when you're ready for expansion but you're not sure which direction to go. The good news is that you have options. The challenging news is that you have to choose. What would you do if you knew you couldn't fail? What would you regret not trying? Sometimes the biggest risk is not taking any risk at all.",
+      meaning_reversed: "You're stuck in planning mode, endlessly researching and preparing but never actually starting. Maybe you're paralyzed by all the options, or maybe you're using planning as a way to avoid the scary reality of taking action. This card suggests that you're ready—more ready than you think—but you're letting perfectionism or fear keep you in the preparation phase forever. What would 'good enough' look like? What could you start today with what you already have? Sometimes you have to begin before you feel ready."
+    },
+    {
+      name: "Three of Wands",
+      image: "https://i.ibb.co/Wh2pQ4S/image.png",
+      meaning_upright: "Your hard work is starting to pay off, and you can see the fruits of your labor beginning to take shape. Maybe it's a project that's gaining momentum, a skill you're developing, or just a growing sense that you're on the right path. This card appears when you're in the expansion phase—things are moving in the right direction, but you're not at the finish line yet. Stay patient and trust the process. What you've set in motion is working, even if progress feels slower than you'd like. How can you maintain your momentum without burning yourself out?",
+      meaning_reversed: "You're experiencing delays or setbacks that are testing your patience and commitment. Maybe things aren't happening as quickly as you hoped, or maybe you're realizing that your original plan needs some adjustments. This card suggests that you need to reassess your approach without abandoning your goals entirely. What's working? What needs to change? Sometimes obstacles are just the universe's way of helping you refine your vision and strengthen your commitment. Are you willing to adapt your method while staying true to your purpose?"
+    },
+    {
+      name: "Four of Wands",
+      image: "https://i.ibb.co/fVySP7bC/image.png",
+      meaning_upright: "It's time to celebrate! You've reached a milestone worth acknowledging, whether it's a personal achievement, a relationship milestone, or just the simple joy of feeling stable and supported. This card brings a sense of harmony and community—you're surrounded by people who care about you and cheer for your success. Don't minimize this moment or rush past it to the next goal. Celebration isn't just fun; it's necessary fuel for continued growth. Who are the people in your life who make you feel most supported? How can you appreciate them more fully?",
+      meaning_reversed: "Something is disrupting your sense of stability or celebration. Maybe there's tension in your family or friend group, or maybe you're so focused on what's wrong that you can't enjoy what's right. This card suggests that harmony requires intentional effort and sometimes difficult conversations. What relationship needs your attention? What conflict are you avoiding that's affecting your peace? Sometimes you have to address the uncomfortable stuff before you can get back to genuine celebration."
+    },
+    {
+      name: "Five of Wands",
+      image: "https://i.ibb.co/MkQ5DWQz/image.png",
+      meaning_upright: "You're in the middle of some kind of competition or conflict, and it's bringing out both your best and worst qualities. Maybe it's workplace politics, creative differences, or just the general chaos that comes when passionate people have different ideas about how things should be done. This isn't necessarily bad—conflict can be productive if it's handled well. The question is: are you fighting to win or fighting to find the best solution? What would change if you approached this competition as collaboration instead of combat?",
+      meaning_reversed: "You're tired of the drama and ready to find a more peaceful way forward. Maybe you're realizing that not every disagreement needs to become a battle, or maybe you're just exhausted by all the fighting and ready to focus on what actually matters. This card suggests that you have the power to step out of unnecessary conflict and redirect your energy toward more productive pursuits. What would you do if you stopped trying to prove you're right and started trying to understand what everyone actually needs?"
+    },
+    {
+      name: "Six of Wands",
+      image: "https://i.ibb.co/wZWth8r9/image.png",
+      meaning_upright: "You're having a moment of recognition and success, and you deserve to enjoy it fully. Maybe you've achieved a goal you've been working toward, received acknowledgment for your efforts, or just realized how far you've come. This card appears when your hard work is being recognized by others, and it feels good to be seen and appreciated. Don't downplay your achievements or deflect compliments—you've earned this recognition. How can you use this momentum to inspire your next steps? Success builds on success when you allow yourself to truly receive it.",
+      meaning_reversed: "You're struggling with self-doubt despite external evidence of your success. Maybe you're experiencing imposter syndrome, or maybe you're so focused on your next goal that you can't appreciate what you've already accomplished. This card suggests that you need to work on your relationship with recognition and praise. What would it feel like to truly believe that you deserve the good things happening in your life? How can you celebrate your wins without immediately minimizing them or moving on to the next challenge?"
+    },
+    {
+      name: "Seven of Wands",
+      image: "https://i.ibb.co/bR6xYHWS/image.png",
+      meaning_upright: "You're standing your ground against opposition, and it's requiring every ounce of strength and determination you have. Maybe you're defending your beliefs, protecting something you've worked hard to build, or simply refusing to back down from what you know is right. This card appears when you're being tested, and while it's exhausting, it's also proving that you're stronger than you thought. The challenge isn't just external—it's also about maintaining your integrity while under pressure. What principles are worth fighting for? How can you stand firm without becoming rigid?",
+      meaning_reversed: "You're feeling overwhelmed by opposition or criticism, and you might be considering giving up on something important to you. Maybe you're tired of defending yourself, or maybe you're starting to doubt whether your position is worth holding. This card suggests that you need to reassess what's truly worth fighting for and what might be better left behind. Are you defending something valuable or just being stubborn? Sometimes strategic retreat isn't defeat—it's wisdom."
+    },
+    {
+      name: "Eight of Wands",
+      image: "https://i.ibb.co/HD6M5Z88/image.png",
+      meaning_upright: "Things are moving fast—maybe faster than you're comfortable with—and you need to keep up without losing your balance. Messages, opportunities, or changes are coming at you rapidly, and while this energy is exciting, it can also feel overwhelming. This card appears when the universe is clearing obstacles from your path, so don't overthink or hesitate when doors start opening. What have you been waiting for that's suddenly becoming possible? How can you maintain your clarity and direction when everything is moving quickly?",
+      meaning_reversed: "You're experiencing delays, miscommunications, or a frustrating sense that everything is taking longer than it should. Maybe messages aren't getting through, plans keep changing, or you're feeling stuck in slow motion while everyone else seems to be moving forward. This card suggests that this pause might be exactly what you need, even if it doesn't feel that way. What are you rushing toward that might benefit from a slower, more thoughtful approach? Sometimes delays save us from mistakes we can't see yet."
+    },
+    {
+      name: "Nine of Wands",
+      image: "https://i.ibb.co/3YmfNqRf/image.png",
+      meaning_upright: "You're exhausted, maybe a little beaten up by recent challenges, but you're still standing. This card appears when you're in the final stretch of a difficult journey, and while you can see the finish line, you're running on fumes. The good news is that you're tougher than you realized, and you've learned valuable lessons from every setback. The challenging news is that you need to find the energy for one more push. What would help you refuel without completely stopping? Who in your life believes in your ability to finish what you started?",
+      meaning_reversed: "You're ready to give up when you're actually closer to success than you realize. Maybe you're letting past wounds or failures convince you that this time will be the same, or maybe you're so focused on potential problems that you can't see how far you've already come. This card suggests that your pessimism or defensiveness might be your biggest obstacle right now. What would change if you trusted that this time can be different? How can you heal old wounds without letting them define your future?"
+    },
+    {
+      name: "Ten of Wands",
+      image: "https://i.ibb.co/BVtC63Sd/image.png",
+      meaning_upright: "You're carrying too much, and while your dedication is admirable, it's also unsustainable. Maybe you've taken on extra responsibilities, said yes to too many requests, or you're simply the person everyone relies on when things need to get done. This card appears when your sense of duty is actually working against you, and you need to make some hard decisions about what to keep carrying and what to put down. What would happen if you delegated more? What are you afraid will happen if you're not the one handling everything?",
+      meaning_reversed: "You're learning to let go of burdens that were never really yours to carry. Maybe you're finally delegating, setting boundaries, or just realizing that some responsibilities don't actually belong to you. This card suggests that you're discovering the freedom that comes from not trying to control everything or be everything to everyone. What does it feel like to trust others to handle their own problems? How can you maintain your helpful nature without sacrificing your own well-being?"
+    },
+    {
+      name: "Page of Wands",
+      image: "https://i.ibb.co/67FvZsYB/image.png",
+      meaning_upright: "You're full of enthusiastic energy and new ideas, but you're still learning how to channel that energy effectively. Maybe you're starting a creative project, exploring a new interest, or just feeling excited about possibilities you haven't fully explored yet. This card appears when you have passion but not yet mastery, and that's perfectly okay. The key is to stay curious and open to learning rather than trying to rush to expertise. What new adventure is calling to you? How can you honor your enthusiasm while also building real skills?",
+      meaning_reversed: "Your enthusiasm is getting ahead of your preparation, or maybe you're having trouble turning your ideas into action. Perhaps you're jumping from interest to interest without giving anything enough time to develop, or maybe you're feeling frustrated that your skill level doesn't match your vision yet. This card suggests that you need to balance your natural excitement with more patience and practical planning. What one project deserves more of your sustained attention? How can you channel your energy more effectively?"
+    },
+    {
+      name: "Knight of Wands",
+      image: "https://i.ibb.co/kgQ7qVBN/image.png",
+      meaning_upright: "You're ready to charge ahead with passionate intensity, and while your enthusiasm is contagious, you might want to slow down just enough to look where you're going. This card appears when you're feeling bold and action-oriented, maybe even a little reckless, and while this energy can accomplish amazing things, it can also create unnecessary problems. Your impulse to act is usually right, but your timing and method might need some refinement. What goal is worth this level of passionate pursuit? How can you maintain your momentum without burning bridges along the way?",
+      meaning_reversed: "You're feeling impatient or frustrated with the pace of progress, and you might be tempted to force things that need more time to develop naturally. Maybe you're rushing into situations without thinking them through, or maybe you're so eager for results that you're making careless mistakes. This card suggests that you need to find a middle ground between paralysis and recklessness. What would patient persistence look like in your situation? How can you honor your urgency while also respecting the natural timing of things?"
+    },
+    {
+      name: "Queen of Wands",
+      image: "https://i.ibb.co/NdqLy1Jx/image.png",
+      meaning_upright: "You're stepping into your power as a confident, charismatic leader who inspires others through your authentic passion and warmth. This card appears when you're learning to balance strength with compassion, ambition with generosity, and confidence with humility. You have the ability to motivate others and create positive change, but you're doing it in a way that lifts everyone up rather than pushing others down. How can you use your natural magnetism to benefit not just yourself but your whole community? What would change if you fully owned your power and influence?",
+      meaning_reversed: "You're struggling with either too little confidence or too much ego, and both extremes are keeping you from your authentic power. Maybe you're doubting your abilities when you should be stepping up, or maybe you're being domineering when you should be collaborative. This card suggests that you need to find the sweet spot between self-deprecation and self-importance. What would balanced confidence look like for you? How can you lead and inspire without controlling or diminishing others?"
+    },
+    {
+      name: "King of Wands",
+      image: "https://i.ibb.co/NgYKtYGG/image.png",
+      meaning_upright: "You've mastered the art of turning vision into reality, and people look to you for leadership because you combine passion with practical wisdom. This card appears when you're ready to take on bigger responsibilities and make a lasting impact in your field or community. You understand that true leadership isn't about control—it's about inspiring others to become their best selves and creating something meaningful together. What legacy do you want to build? How can you use your experience and influence to open doors for others while still pursuing your own ambitious goals?",
+      meaning_reversed: "You're either avoiding leadership responsibilities you're ready for, or you're leading in a way that's too controlling or ego-driven. Maybe you're hiding your capabilities because you're afraid of the responsibility that comes with them, or maybe you're so focused on being in charge that you've forgotten how to truly serve others. This card suggests that you need to examine your relationship with power and authority. Are you using your influence to elevate others or just yourself? What would authentic, service-oriented leadership look like coming from you?"
+    }
 ];
 
 // Function to generate crystal recommendations based on reading
@@ -834,7 +1372,148 @@ function seededRandom(seed) {
   };
 }
 
-// Generate personalized summary based on all cards in reading
+// Enhanced card combination meanings for deeper insights
+const cardCombinations = {
+  // Major Arcana Combinations
+  'Death|The Star': 'transformation leading to renewed hope',
+  'The Tower|Temperance': 'rebuilding with wisdom and balance',
+  'The Devil|The Sun': 'breaking free from limitations into joy',
+  'The Hermit|The Magician': 'inner wisdom leading to powerful manifestation',
+  'The Fool|Death': 'brave new beginnings requiring letting go',
+  
+  // Emotional Journey Patterns
+  'Five of Cups|Three of Cups': 'moving from grief to celebration with friends',
+  'The Moon|The Sun': 'confusion clearing into brilliant clarity',
+  'Seven of Swords|Justice': 'deception being exposed and balanced',
+  
+  // Action and Growth Patterns
+  'Ten of Wands|Ace of Wands': 'releasing burdens to start fresh',
+  'The Hanged Man|The Chariot': 'patience transforming into decisive action'
+};
+
+// Detect emotional arc across the reading
+function analyzeEmotionalJourney(drawnCards) {
+  const emotionalWeights = {
+    // Challenging cards
+    'The Tower': -3, 'Death': -2, 'The Devil': -2, 'Five of Cups': -2, 'Ten of Swords': -3,
+    'Three of Swords': -2, 'Five of Pentacles': -2, 'Seven of Swords': -1,
+    
+    // Neutral/transitional cards  
+    'The Hermit': 0, 'The Hanged Man': 0, 'Temperance': 0, 'Justice': 0,
+    
+    // Positive cards
+    'The Sun': 3, 'The Star': 2, 'The World': 3, 'Ten of Cups': 2, 'Three of Cups': 2,
+    'Ace of Cups': 2, 'Six of Pentacles': 1, 'Nine of Pentacles': 2
+  };
+
+  let journey = [];
+  drawnCards.forEach(({ card, isReversed }) => {
+    let weight = emotionalWeights[card.name] || 0;
+    if (isReversed) weight *= -1; // Reverse the emotional weight
+    journey.push(weight);
+  });
+
+  return journey;
+}
+
+// Generate position-specific insights for multi-card readings
+function generatePositionalInsights(drawnCards, readingType) {
+  if (readingType === 'three' && drawnCards.length === 3) {
+    const [past, present, future] = drawnCards;
+    let insights = [];
+    
+    // Past-Present connection
+    if (past.card.name.includes('Cups') && present.card.name.includes('Swords')) {
+      insights.push("Your emotional past is now requiring mental clarity and decisive communication.");
+    } else if (past.card.name.includes('Pentacles') && present.card.name.includes('Wands')) {
+      insights.push("Past material struggles are now fueling your creative fire and ambition.");
+    }
+    
+    // Present-Future connection  
+    if (present.isReversed && !future.isReversed) {
+      insights.push("Current challenges are clearing the path for a much brighter future.");
+    } else if (!present.isReversed && future.isReversed) {
+      insights.push("While things are good now, the future may require you to look within and reassess your approach.");
+    }
+    
+    return insights;
+  } else if (readingType === 'love' && drawnCards.length === 5) {
+    // Love reading positions: Self, Partner, Relationship, Challenge, Outcome
+    let insights = [];
+    const [self, partner, relationship, challenge, outcome] = drawnCards;
+    
+    if (self.card.name.includes('Cups') && partner.card.name.includes('Cups')) {
+      insights.push("Both you and your partner are in a very emotional, heart-centered space right now.");
+    }
+    
+    if (challenge.card.name.includes('Swords') && outcome.card.name.includes('Cups')) {
+      insights.push("Communication challenges can be healed through emotional honesty and vulnerability.");
+    }
+    
+    return insights;
+  }
+  
+  return [];
+}
+
+// Generate personalized reflection questions based on the specific cards drawn
+function generateReflectionQuestions(drawnCards, readingType) {
+  let questions = [];
+  
+  drawnCards.forEach(({ card, isReversed }) => {
+    // Questions based on specific cards
+    if (card.name === 'The High Priestess') {
+      questions.push("What is your intuition trying to tell you that your logical mind keeps dismissing?");
+    } else if (card.name === 'The Empress') {
+      questions.push("What in your life needs more nurturing and patient attention right now?");
+    } else if (card.name === 'The Tower') {
+      questions.push("What structure in your life is ready to crumble so something better can be built?");
+    } else if (card.name.includes('Five of')) {
+      questions.push("What loss or challenge is actually creating space for something new to enter your life?");
+    } else if (card.name.includes('Ace of')) {
+      questions.push("What new beginning is calling to you, and what would it look like to say yes?");
+    }
+  });
+  
+  // Add reading-type specific questions
+  if (readingType === 'love') {
+    questions.push("How can you show up more authentically in your relationships?");
+  } else if (readingType === 'three') {
+    questions.push("How is your past preparing you for your future?");
+  }
+  
+  return questions.slice(0, 2); // Limit to 2 most relevant questions
+}
+
+// Generate actionable guidance based on card combinations
+function generateActionableGuidance(drawnCards, readingType) {
+  let guidance = [];
+  
+  // Look for specific patterns
+  const hasReversed = drawnCards.some(({ isReversed }) => isReversed);
+  const hasMajorArcana = drawnCards.some(({ card }) => 
+    !card.name.includes('of') && !['Page', 'Knight', 'Queen', 'King'].some(rank => card.name.includes(rank))
+  );
+  
+  if (hasReversed && hasMajorArcana) {
+    guidance.push("The universe is asking you to look within before taking external action. Inner work is needed first.");
+  }
+  
+  // Specific card-based guidance
+  drawnCards.forEach(({ card, isReversed }) => {
+    if (card.name === 'The Fool' && !isReversed) {
+      guidance.push("Take that leap you've been considering - trust that you'll land where you need to be.");
+    } else if (card.name === 'The Hermit') {
+      guidance.push("Schedule some quiet time for reflection - the answers you need will come through solitude.");
+    } else if (card.name.includes('Ten of')) {
+      guidance.push("You're at the end of a cycle. Prepare to release what's complete and welcome what's beginning.");
+    }
+  });
+  
+  return guidance.slice(0, 2); // Limit to most relevant guidance
+}
+
+// Enhanced personalized summary with narrative flow
 function generateSummary(drawnCards, readingType) {
   const themes = {
     emotions: ['cups', 'heart', 'love', 'feel', 'emotion', 'relationship', 'connection'],
@@ -845,7 +1524,7 @@ function generateSummary(drawnCards, readingType) {
     growth: ['strength', 'star', 'sun', 'temperance', 'growth', 'healing', 'balance']
   };
 
-  // Analyze the dominant themes
+  // Analyze the reading
   let themeScores = {};
   let hasReversed = false;
   let majorArcana = 0;
@@ -854,17 +1533,14 @@ function generateSummary(drawnCards, readingType) {
   drawnCards.forEach(({ card, isReversed }) => {
     if (isReversed) hasReversed = true;
     
-    // Count major arcana
     if (!card.name.includes('of') && !['Page', 'Knight', 'Queen', 'King'].some(rank => card.name.includes(rank))) {
       majorArcana++;
     }
     
-    // Count court cards
     if (['Page', 'Knight', 'Queen', 'King'].some(rank => card.name.includes(rank))) {
       courtCards++;
     }
 
-    // Score themes based on card meanings
     const fullText = (card.meaning_upright + ' ' + card.meaning_reversed).toLowerCase();
     
     Object.keys(themes).forEach(theme => {
@@ -877,71 +1553,116 @@ function generateSummary(drawnCards, readingType) {
     });
   });
 
-  // Generate personalized summary
+  // Get additional insights
+  const emotionalJourney = analyzeEmotionalJourney(drawnCards);
+  const positionalInsights = generatePositionalInsights(drawnCards, readingType);
+  const reflectionQuestions = generateReflectionQuestions(drawnCards, readingType);
+  const actionableGuidance = generateActionableGuidance(drawnCards, readingType);
+  
+  // Build the narrative
   let summary = "";
   const dominantTheme = Object.keys(themeScores).reduce((a, b) => themeScores[a] > themeScores[b] ? a : b);
   
-  // Opening based on reading type and dominant theme
+  // Opening with card-specific narrative
   switch (readingType) {
     case "daily":
-      summary += "🌟 **Your Daily Oracle Summary:** ";
+      summary += "🌟 **Your Daily Oracle Reveals:** ";
       break;
     case "three":
-      summary += "🌙 **Your Mystical Trinity Reveals:** ";
+      summary += "🌙 **Your Soul's Story Unfolds:** ";
       break;
     case "love":
-      summary += "💝 **Your Heart's Compass Shows:** ";
+      summary += "💝 **Your Heart's Truth:** ";
       break;
   }
 
-  // Theme-based insights
-  if (dominantTheme === 'emotions' || readingType === 'love') {
-    summary += "Your heart is the central focus right now. ";
-    if (hasReversed) {
-      summary += "There are some emotional blocks or healing that needs attention, but this is part of your growth process. ";
+  // Create narrative flow between cards
+  if (drawnCards.length > 1) {
+    const firstCard = drawnCards[0];
+    const lastCard = drawnCards[drawnCards.length - 1];
+    
+    summary += `Your journey moves from ${firstCard.card.name} to ${lastCard.card.name}, `;
+    
+    // Analyze the emotional arc
+    const journeyStart = emotionalJourney[0];
+    const journeyEnd = emotionalJourney[emotionalJourney.length - 1];
+    
+    if (journeyEnd > journeyStart) {
+      summary += "showing a path from challenge toward hope and resolution. ";
+    } else if (journeyEnd < journeyStart) {
+      summary += "indicating that deeper inner work and reflection may be needed. ";
     } else {
-      summary += "Your emotional world is flowing more freely, and there are opportunities for deeper connection and joy. ";
+      summary += "revealing a steady energy that supports your current path. ";
+    }
+  }
+
+  // Theme-based insights with more nuance
+  if (dominantTheme === 'emotions' || readingType === 'love') {
+    summary += "Your emotional landscape is the key to understanding this reading. ";
+    if (hasReversed) {
+      summary += "Some feelings may be blocked or need healing, but this emotional work is opening doors to deeper self-understanding. ";
+    } else {
+      summary += "Your heart is open and ready to receive the connections and joy that are flowing toward you. ";
     }
   } else if (dominantTheme === 'action') {
-    summary += "This is a time for bold moves and creative expression. ";
+    summary += "This is your moment to step into your creative power. ";
     if (hasReversed) {
-      summary += "You might be feeling stuck or uninspired, but this pause is helping you redirect your energy more effectively. ";
+      summary += "What feels like creative block is actually energy redirecting toward a more authentic expression of who you are. ";
     } else {
-      summary += "Your creative fire is burning bright, and it's time to channel that energy into meaningful action. ";
+      summary += "Your passion and energy are aligned with your purpose - trust yourself to take bold action. ";
     }
   } else if (dominantTheme === 'thoughts') {
-    summary += "Your mind is your superpower right now. ";
+    summary += "Mental clarity and communication are your superpowers right now. ";
     if (hasReversed) {
-      summary += "You're working through some mental challenges or communication issues, but clarity is coming. ";
+      summary += "Confusion or conflict in thinking is clearing, making way for wisdom and better decision-making. ";
     } else {
-      summary += "You're thinking clearly and can cut through confusion to find the truth you need. ";
+      summary += "Your ability to see truth and communicate clearly is opening new paths forward. ";
     }
   } else if (dominantTheme === 'material') {
-    summary += "Practical matters and your material world need attention. ";
+    summary += "Your practical world and material circumstances are the focus. ";
     if (hasReversed) {
-      summary += "There might be some financial or career adjustments needed, but you're building toward greater stability. ";
+      summary += "Current challenges with money or career are actually redirecting you toward more sustainable abundance. ";
     } else {
-      summary += "You're in a strong position to improve your material circumstances and build lasting security. ";
+      summary += "You're building something solid and lasting that will support your dreams and security. ";
     }
   } else if (dominantTheme === 'transformation') {
-    summary += "Major changes are happening in your life. ";
+    summary += "You're in a powerful transformation phase. ";
     if (hasReversed) {
-      summary += "You might be resisting necessary changes, but transformation is happening whether you fight it or flow with it. ";
+      summary += "Resistance to change is natural, but the universe is gently (or not so gently) moving you toward your next evolution. ";
     } else {
-      summary += "You're ready to embrace the changes coming your way and use them as stepping stones to your next level. ";
+      summary += "You're ready to shed old patterns and step into a new version of yourself with confidence. ";
     }
   }
 
-  // Closing encouragement based on reading type
+  // Add positional insights if available
+  if (positionalInsights.length > 0) {
+    summary += positionalInsights[0] + " ";
+  }
+
+  // Major Arcana significance
+  if (majorArcana > 0) {
+    summary += `With ${majorArcana} Major Arcana card${majorArcana > 1 ? 's' : ''} in your reading, this is about soul-level lessons and spiritual growth. `;
+  }
+
+  // Closing with reflection questions and guidance
+  if (reflectionQuestions.length > 0) {
+    summary += `\n\n💭 **Reflection:** ${reflectionQuestions[0]}`;
+  }
+  
+  if (actionableGuidance.length > 0) {
+    summary += `\n\n✨ **Guidance:** ${actionableGuidance[0]}`;
+  }
+
+  // Reading-type specific closing
   switch (readingType) {
     case "daily":
-      summary += "Trust yourself today—you have everything you need to handle whatever comes your way. 🌟";
+      summary += "\n\n🌟 Trust yourself today - you have everything you need to handle whatever comes your way.";
       break;
     case "three":
-      summary += "Your past has prepared you, your present is full of potential, and your future is bright with possibility. 🌙";
+      summary += "\n\n🌙 Your story is unfolding perfectly, even when it doesn't feel that way. Trust the journey.";
       break;
     case "love":
-      summary += "Love—whether for yourself, others, or life itself—is your guiding star right now. 💫";
+      summary += "\n\n💝 Love in all its forms - self-love, romantic love, and love of life - is your guiding light.";
       break;
   }
 
@@ -953,10 +1674,18 @@ function drawCards(num, type) {
   const seed = getSeed(type);
   const rand = seededRandom(seed);
 
-  // Clone and shuffle the deck
+  // Pre-generate all random numbers we'll need to ensure consistency
+  const randomNumbers = [];
+  for (let i = 0; i < 100; i++) { // Generate enough random numbers for shuffling and reversals
+    randomNumbers.push(rand());
+  }
+  
+  let randomIndex = 0;
+
+  // Clone and shuffle the deck using pre-generated numbers
   const deck = [...cards];
   for (let i = deck.length - 1; i > 0; i--) {
-    const j = Math.floor(rand() * (i + 1));
+    const j = Math.floor(randomNumbers[randomIndex++] * (i + 1));
     [deck[i], deck[j]] = [deck[j], deck[i]];
   }
 
@@ -980,7 +1709,7 @@ function drawCards(num, type) {
 
     // Create cards and collect data
     drawn.forEach((card, index) => {
-      const isReversed = rand() > 0.5;
+      const isReversed = randomNumbers[randomIndex++] > 0.5;
       drawnCards.push({ card, isReversed });
 
       // Create card element
@@ -1042,17 +1771,50 @@ function drawCards(num, type) {
     if (drawnCards.length > 1) {
       const summaryDiv = document.createElement("div");
       summaryDiv.className = "reading-summary";
-      summaryDiv.style.marginTop = "2rem";
-      summaryDiv.style.padding = "1.5rem";
-      summaryDiv.style.background = "rgba(178, 60, 240, 0.1)";
-      summaryDiv.style.borderRadius = "15px";
-      summaryDiv.style.border = "1px solid rgba(178, 60, 240, 0.3)";
-      summaryDiv.style.backdropFilter = "blur(10px)";
-      summaryDiv.style.fontWeight = "bold";
       
       const summaryText = generateSummary(drawnCards, type);
-      summaryDiv.innerHTML = summaryText;
       
+      // Parse the summary to separate main text from reflection and guidance
+      const parts = summaryText.split('\n\n');
+      let mainText = parts[0];
+      let reflection = '';
+      let guidance = '';
+      
+      parts.forEach(part => {
+        if (part.includes('💭 **Reflection:**')) {
+          reflection = part.replace('💭 **Reflection:**', '').trim();
+        } else if (part.includes('✨ **Guidance:**')) {
+          guidance = part.replace('✨ **Guidance:**', '').trim();
+        } else if (!part.includes('🌟') && !part.includes('🌙') && !part.includes('💝') && part !== mainText) {
+          mainText += ' ' + part;
+        }
+      });
+      
+      // Create the formatted summary
+      let formattedSummary = `<h3>✨ Your Personal Reading Summary ✨</h3>`;
+      formattedSummary += `<p>${mainText}</p>`;
+      
+      if (reflection) {
+        formattedSummary += `<div class="reflection-section">
+          <h4>💭 Reflection Question</h4>
+          <p>${reflection}</p>
+        </div>`;
+      }
+      
+      if (guidance) {
+        formattedSummary += `<div class="guidance-section">
+          <h4>✨ Personalized Guidance</h4>
+          <p>${guidance}</p>
+        </div>`;
+      }
+      
+      // Add the closing message
+      const closingMessage = parts[parts.length - 1];
+      if (closingMessage.includes('🌟') || closingMessage.includes('🌙') || closingMessage.includes('💝')) {
+        formattedSummary += `<p style="text-align: center; font-weight: bold; font-style: italic; margin-top: 1.5rem; color: #b23cf0;">${closingMessage}</p>`;
+      }
+      
+      summaryDiv.innerHTML = formattedSummary;
       readingText.appendChild(summaryDiv);
     }
 
