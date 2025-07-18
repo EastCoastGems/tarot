@@ -7,19 +7,17 @@
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
       margin: 0;
       padding: 2rem;
       text-align: center;
       min-height: 100vh;
       color: #333;
     }
-
     .container {
       max-width: 1200px;
       margin: 0 auto;
     }
-
     /* Logo Header */
     .site-header {
       display: flex;
@@ -28,7 +26,6 @@
       padding: 30px 0 20px;
       margin-bottom: 2rem;
     }
-
     .site-logo {
       max-width: 180px;
       height: auto;
@@ -36,55 +33,49 @@
       box-shadow: 0 8px 25px rgba(0,0,0,0.2);
       transition: transform 0.3s ease;
     }
-
     .site-logo:hover {
       transform: scale(1.05);
     }
-
     h1 {
-      color: #ffffff;
-      font-weight: bold;
-      margin-bottom: 2rem;
+      font-family: 'Cinzel', serif;
       font-size: 3rem;
-      text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
-      background: linear-gradient(135deg, #ffffff 0%, #f8f1ff 100%);
+      font-weight: 700;
+      color: transparent;
+      background: linear-gradient(90deg, #ffd700, #fffbe6, #fff);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       background-clip: text;
+      text-shadow: none;
+      margin-bottom: 2rem;
     }
-
     .reading-types {
-      background: rgba(255, 255, 255, 0.95);
+      background: transparent;
       backdrop-filter: blur(15px);
       padding: 1.8rem;
-      border-radius: 16px;
+      border-radius: 20px;
       max-width: 600px;
       margin: 1.5rem auto;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.15);
-      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 0 20px #ffd70044;
+      border: 2px solid #ffd700;
       text-align: left;
     }
-
     .reading-types p {
       margin-bottom: 1rem;
-      font-size: 1rem;
+      font-size: 1.1rem;
       line-height: 1.5;
-      color: #444;
+      color: #333;
       padding: 1.2rem 1.5rem;
-      background: rgba(178, 60, 240, 0.08);
-      border-radius: 12px;
-      border-left: 4px solid #b23cf0;
+      background: linear-gradient(90deg, #ffd700 0%, #fffbe6 100%);
+      border-radius: 15px;
+      border: 2px solid #ffd700;
+      box-shadow: 0 4px 16px #ffd70033;
       transition: all 0.3s ease;
       cursor: pointer;
-      border: 2px solid transparent;
       position: relative;
       overflow: hidden;
     }
-
     .reading-types p:last-child {
       margin-bottom: 0;
     }
-
     .reading-types p::before {
       content: '';
       position: absolute;
@@ -95,27 +86,22 @@
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
       transition: left 0.5s;
     }
-
     .reading-types p:hover::before {
       left: 100%;
     }
-
     .reading-types p:hover {
       background: rgba(178, 60, 240, 0.15);
       transform: translateX(8px) translateY(-2px);
       border-color: rgba(178, 60, 240, 0.4);
       box-shadow: 0 8px 25px rgba(178, 60, 240, 0.2);
     }
-
     .reading-types p:active {
       transform: translateX(5px) translateY(-1px);
     }
-
     .reading-types p strong {
       color: #b23cf0;
       font-size: 1.1rem;
     }
-
     p.intro {
       color: #ffffff;
       font-size: 1.2rem;
@@ -128,7 +114,6 @@
       border: 1px solid rgba(255,255,255,0.2);
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
-
     .button-group {
       display: flex;
       justify-content: center;
@@ -137,7 +122,6 @@
       gap: 20px;
       max-width: 600px;
     }
-
     .button-group button {
       background: linear-gradient(135deg, #b23cf0 0%, #962dcc 100%);
       border: none;
@@ -154,7 +138,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .button-group button::before {
       content: '';
       position: absolute;
@@ -165,21 +148,17 @@
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
       transition: left 0.5s;
     }
-
     .button-group button:hover::before {
       left: 100%;
     }
-
     .button-group button:hover {
       background: linear-gradient(135deg, #932bc3 0%, #7a1fa3 100%);
       transform: translateY(-3px);
       box-shadow: 0 12px 30px rgba(178, 60, 240, 0.4);
     }
-
     .button-group button:active {
       transform: translateY(-1px);
     }
-
     .card-instruction {
       font-size: 1.1rem;
       color: #ffffff;
@@ -192,7 +171,6 @@
       max-width: 400px;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
-
     .card-container {
       display: flex;
       justify-content: center;
@@ -201,14 +179,12 @@
       margin: 3rem auto;
       max-width: 1000px;
     }
-
     .card {
       height: 320px;
       width: 210px;
       perspective: 1000px;
       cursor: pointer;
     }
-
     .card-inner {
       width: 100%;
       height: 100%;
@@ -216,7 +192,6 @@
       transition: transform 0.8s ease;
       transform-style: preserve-3d;
     }
-
     .card-front, .card-back {
       position: absolute;
       width: 100%;
@@ -226,11 +201,9 @@
       box-shadow: 0 8px 25px rgba(0,0,0,0.2);
       overflow: hidden;
     }
-
     .card-back {
       transform: rotateY(180deg);
     }
-
     .card img {
       width: 100%;
       height: 100%;
@@ -239,33 +212,27 @@
       transition: transform 0.3s ease;
       background: rgba(255, 255, 255, 0.1);
     }
-
     /* Flip the card on hover */
     .card:hover .card-inner {
       transform: rotateY(180deg);
     }
-
     .card:hover {
       transform: scale(1.05);
     }
-
     /* If the card is reversed, rotate front and back images 180° */
     .card-inner.reversed .card-front img,
     .card-inner.reversed .card-back img {
       transform: rotate(180deg);
     }
-
     /* Optional: Ensure reversed card doesn't flip double */
     .card.reversed .card-inner {
       transform: none;
     }
-
     .reading-text {
       max-width: 900px;
       margin: 3rem auto;
       padding: 0 1rem;
     }
-
     .reading-text p {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(15px);
@@ -281,7 +248,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .reading-text p::before {
       content: '';
       position: absolute;
@@ -291,14 +257,12 @@
       height: 4px;
       background: linear-gradient(90deg, #b23cf0, #764ba2, #667eea);
     }
-
     .reading-text p strong {
       color: #b23cf0;
       font-size: 1.3rem;
       display: block;
       margin-bottom: 0.5rem;
     }
-
     .reading-text p em {
       color: #666;
       font-size: 1.2rem;
@@ -310,7 +274,6 @@
       margin-bottom: 1rem;
       border-left: 4px solid #b23cf0;
     }
-
     /* Enhanced reading summary styles */
     .reading-summary {
       margin-top: 2rem !important;
@@ -323,7 +286,6 @@
       overflow: hidden;
       box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     }
-
     .reading-summary::before {
       content: '';
       position: absolute;
@@ -333,7 +295,6 @@
       height: 4px;
       background: linear-gradient(90deg, #b23cf0, #764ba2, #667eea);
     }
-
     .reading-summary h3 {
       color: #b23cf0;
       font-size: 1.5rem;
@@ -342,7 +303,6 @@
       font-weight: bold;
       text-shadow: none;
     }
-
     .reading-summary p {
       background: none !important;
       border: none !important;
@@ -352,7 +312,6 @@
       line-height: 1.7 !important;
       color: #444 !important;
     }
-
     .reading-summary .reflection-section,
     .reading-summary .guidance-section {
       margin-top: 1.5rem;
@@ -362,7 +321,6 @@
       border-left: 4px solid #b23cf0;
       border: 1px solid rgba(178, 60, 240, 0.2);
     }
-
     .reading-summary .reflection-section h4,
     .reading-summary .guidance-section h4 {
       color: #b23cf0;
@@ -371,7 +329,6 @@
       font-weight: bold;
       text-shadow: none;
     }
-
     .reading-summary .reflection-section p,
     .reading-summary .guidance-section p {
       color: #555 !important;
@@ -387,7 +344,6 @@
       backdrop-filter: blur(15px);
       text-align: center;
     }
-
     .shop-header {
       font-size: 1.8rem;
       font-weight: bold;
@@ -395,21 +351,18 @@
       margin-bottom: 1rem;
       text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
-
     .shop-description {
       font-size: 1.1rem;
       margin-bottom: 2rem;
       color: #e0e0e0;
       line-height: 1.6;
     }
-
     .crystal-recommendations {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
       margin-bottom: 2rem;
     }
-
     .crystal-card {
       background: rgba(255, 255, 255, 0.1);
       border-radius: 15px;
@@ -419,14 +372,12 @@
       transition: all 0.3s ease;
       cursor: pointer;
     }
-
     .crystal-card:hover {
       transform: translateY(-5px);
       background: rgba(178, 60, 240, 0.15);
       border-color: rgba(178, 60, 240, 0.4);
       box-shadow: 0 10px 30px rgba(178, 60, 240, 0.3);
     }
-
     .crystal-name {
       font-size: 1.3rem;
       font-weight: bold;
@@ -434,7 +385,6 @@
       margin-bottom: 0.5rem;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     }
-
     .crystal-category {
       font-size: 0.9rem;
       font-weight: bold;
@@ -444,7 +394,6 @@
       letter-spacing: 0.5px;
       opacity: 0.9;
     }
-
     .crystal-properties {
       font-size: 0.95rem;
       color: #ffffff;
@@ -452,7 +401,6 @@
       margin-bottom: 1rem;
       opacity: 0.9;
     }
-
     .crystal-best-for {
       font-size: 0.9rem;
       color: #ffffff;
@@ -463,12 +411,10 @@
       border-radius: 8px;
       border-left: 3px solid #ffffff;
     }
-
     .crystal-best-for strong {
       color: #ffffff;
       font-weight: bold;
     }
-
     .crystal-price {
       font-size: 1.1rem;
       font-weight: bold;
@@ -478,7 +424,6 @@
       border-radius: 25px;
       display: inline-block;
     }
-
     .shop-cta {
       background: linear-gradient(135deg, #b23cf0, #8a2be2);
       color: white;
@@ -496,20 +441,21 @@
       box-shadow: 0 4px 15px rgba(178, 60, 240, 0.4);
       margin-top: 1rem;
     }
-
     .shop-cta:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(178, 60, 240, 0.6);
       filter: brightness(1.1);
     }
-
+    .shop-cta a {
+      color: white;
+      text-decoration: none;
+    }
     .why-crystals {
       margin-top: 1.5rem;
       font-size: 0.95rem;
       color: #c0c0c0;
       font-style: italic;
     }
-
     .disclaimer {
       margin-top: 4rem;
       font-size: 0.95rem;
@@ -525,92 +471,75 @@
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
       line-height: 1.6;
     }
-
     /* Responsive Design */
     @media (max-width: 768px) {
       body {
         padding: 1rem;
       }
-      
       h1 {
         font-size: 2.2rem;
       }
-      
       .reading-types {
         margin: 1rem auto;
         padding: 1.5rem;
       }
-      
       .button-group {
         flex-direction: column;
         align-items: center;
         gap: 15px;
       }
-      
       .button-group button {
         width: 80%;
         max-width: 300px;
       }
-      
       .card-container {
         gap: 20px;
       }
-      
       .card {
         width: 180px;
         height: 280px;
       }
-      
       .reading-text p {
         padding: 1.5rem;
         font-size: 1rem;
       }
-
       .crystal-recommendations {
         grid-template-columns: 1fr;
       }
     }
-
     @media (max-width: 480px) {
       .card {
         width: 160px;
         height: 250px;
       }
-      
       h1 {
         font-size: 1.8rem;
       }
-      
       .reading-types p {
         font-size: 1rem;
       }
     }
-
     /* Animation for card reveals */
     .card {
       animation: cardAppear 0.6s ease-out forwards;
       opacity: 0;
       transform: translateY(30px);
     }
-
     .card:nth-child(1) { animation-delay: 0.1s; }
     .card:nth-child(2) { animation-delay: 0.2s; }
     .card:nth-child(3) { animation-delay: 0.3s; }
     .card:nth-child(4) { animation-delay: 0.4s; }
     .card:nth-child(5) { animation-delay: 0.5s; }
-
     @keyframes cardAppear {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-
     /* Mystical glow effects */
     .card:hover {
       box-shadow: 0 0 30px rgba(178, 60, 240, 0.5);
     }
-
     /* Loading state */
     .loading {
       color: #ffffff;
@@ -621,6 +550,8 @@
       backdrop-filter: blur(10px);
     }
   </style>
+  
+  </style>
 </head>
 <body>
   <div class="container">
@@ -629,7 +560,7 @@
       <img src="https://i.ibb.co/ZRrgQ9db/IMG-2055.png" alt="Site Logo" class="site-logo">
     </header>
 
-    <h1>✨ Mystical Tarot Reading ✨</h1>
+    <h1>Mystical Tarot Reading</h1>
 
     <p class="intro">
       Click on a reading type below to begin your mystical journey. Cards will flip on hover/click to reveal their secrets.<br>
