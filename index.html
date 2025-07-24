@@ -5,32 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mystical Tarot Reading</title>
   <style>
+    /* Tarot page restyled to match birth chart look */
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #2a0845 0%, #b23cf0 100%);
       margin: 0;
-      padding: 2rem;
-      text-align: center;
       min-height: 100vh;
-      color: #333;
+      color: #e0e0e0;
+      text-align: center;
+      padding: 0;
     }
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
+      max-width: 700px;
+      margin: 3rem auto;
+      background: rgba(34,8,69,0.7);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(178,60,240,0.12);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
     }
-    /* Logo Header */
     .site-header {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      padding: 30px 0 20px;
+      justify-content: center;
+      padding: 0 0 20px 0;
       margin-bottom: 2rem;
     }
     .site-logo {
       max-width: 180px;
       height: auto;
       border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      box-shadow: none;
       transition: transform 0.3s ease;
     }
     .site-logo:hover {
@@ -38,36 +46,42 @@
     }
     h1 {
       font-family: 'Cinzel', serif;
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: 700;
-      color: transparent;
-      background: linear-gradient(90deg, #ffd700, #fffbe6, #fff);
-      -webkit-background-clip: text;
-      background-clip: text;
+      margin-bottom: 0.5rem;
+      color: #ffe66f;
       text-shadow: none;
-      margin-bottom: 2rem;
+    }
+    .why-crystals {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: #ffe66f;
+      font-style: italic;
     }
     .reading-types {
       background: transparent;
       backdrop-filter: blur(15px);
-      padding: 1.8rem;
-      border-radius: 20px;
-      max-width: 600px;
-      margin: 1.5rem auto;
-      box-shadow: 0 0 20px #ffd70044;
-      border: 2px solid #ffd700;
+      padding: 0.35rem 1.1rem 0.5rem 1.1rem;
+      border-radius: 15px;
+      max-width: 650px;
+      margin: 1.1rem auto 0.7rem auto;
+      box-shadow: none;
+      border: 2px solid #b23cf0;
       text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .reading-types p {
       margin-bottom: 1rem;
       font-size: 1.1rem;
       line-height: 1.5;
-      color: #333;
+      color: #e0e0e0;
       padding: 1.2rem 1.5rem;
-      background: linear-gradient(90deg, #ffd700 0%, #fffbe6 100%);
+      background: linear-gradient(90deg, #2a0845 0%, #b23cf0 100%);
       border-radius: 15px;
-      border: 2px solid #ffd700;
-      box-shadow: 0 4px 16px #ffd70033;
+      border: 2px solid #b23cf0;
+      box-shadow: none;
       transition: all 0.3s ease;
       cursor: pointer;
       position: relative;
@@ -93,72 +107,98 @@
       background: rgba(178, 60, 240, 0.15);
       transform: translateX(8px) translateY(-2px);
       border-color: rgba(178, 60, 240, 0.4);
-      box-shadow: 0 8px 25px rgba(178, 60, 240, 0.2);
     }
     .reading-types p:active {
       transform: translateX(5px) translateY(-1px);
     }
     .reading-types p strong {
-      color: #b23cf0;
+      color: #ffe66f;
       font-size: 1.1rem;
     }
     p.intro {
-      color: #ffffff;
+      color: #ffe66f;
       font-size: 1.2rem;
       margin: 2rem auto;
       max-width: 600px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(34,8,69,0.7);
       padding: 1.5rem;
       border-radius: 15px;
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      border: 1px solid #b23cf0;
+      text-shadow: none;
     }
     .button-group {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       margin: 3rem auto;
-      gap: 20px;
-      max-width: 600px;
-    }
-    .button-group button {
-      background: linear-gradient(135deg, #b23cf0 0%, #962dcc 100%);
-      border: none;
-      color: white;
-      font-size: 1.2rem;
-      font-weight: 600;
-      padding: 15px 30px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 20px rgba(178, 60, 240, 0.3);
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      gap: 18px;
+      max-width: 700px;
       position: relative;
-      overflow: hidden;
     }
-    .button-group button::before {
-      content: '';
+    .button-group .floating-stars {
       position: absolute;
-      top: 0;
-      left: -100%;
       width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
+      height: 0;
+      left: 0;
+      top: -30px;
+      pointer-events: none;
+      z-index: 2;
     }
-    .button-group button:hover::before {
-      left: 100%;
+    .button-group .star-emoji {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: floatStar 7s infinite ease-in-out;
+      opacity: 0.85;
+    }
+    .button-group .star-emoji.s1 { left: 18px; top: 0; }
+    .button-group .star-emoji.s2 { right: 22px; top: 8px; }
+    .button-group .star-emoji.s3 { left: 60px; bottom: -18px; }
+    .button-group .star-emoji.s4 { right: 70px; bottom: -10px; }
+    .button-group button {
+      background: linear-gradient(135deg, #2a0845 60%, #b23cf0 100%);
+      border: 2.5px solid #ffe66f;
+      color: #fffbe6;
+      box-shadow: 0 2px 16px #b23cf0a0;
+      outline: none;
+      border-radius: 18px;
+      font-size: 1.18rem;
+      padding: 1.3rem 2.2rem 1.3rem 2.2rem;
+      min-width: 260px;
+      min-height: 64px;
+      font-weight: 600;
+      transition: all 0.22s cubic-bezier(.4,1.3,.6,1);
+      position: relative;
+      margin: 0.5rem 0.5rem;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      text-align: left;
+      text-shadow: 0 2px 8px #b23cf0a0;
+      overflow: hidden;
+      border-bottom: 4px solid #b23cf0;
     }
     .button-group button:hover {
-      background: linear-gradient(135deg, #932bc3 0%, #7a1fa3 100%);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(178, 60, 240, 0.4);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 4px 24px #b23cf0a0;
+      filter: brightness(1.07);
+      background: linear-gradient(135deg, #b23cf0 60%, #2a0845 100%);
+      border-color: #ffe66f;
+      text-shadow: 0 2px 12px #b23cf0a0;
     }
     .button-group button:active {
-      transform: translateY(-1px);
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 1px 4px #b23cf0a0;
+      filter: brightness(0.97);
+      border-color: #ffe66f;
+      text-shadow: 0 1px 4px #b23cf0a0;
     }
+    .button-group button strong {
+      color: #ffe66f;
+      font-size: 1.08rem;
+      font-weight: 600;
+      text-shadow: 0 1px 4px #2a0845cc;
+    }
+    /* Removed duplicate hover/active rules for clarity */
     .card-instruction {
       font-size: 1.1rem;
       color: #ffffff;
@@ -169,21 +209,47 @@
       border-radius: 10px;
       backdrop-filter: blur(10px);
       max-width: 400px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      text-shadow: none;
     }
     .card-container {
       display: flex;
+      flex-direction: row;
       justify-content: center;
-      flex-wrap: wrap;
+      align-items: center;
       gap: 30px;
-      margin: 3rem auto;
-      max-width: 1000px;
+      max-width: 100%;
+      position: relative;
+      flex-wrap: nowrap;
     }
     .card {
       height: 320px;
       width: 210px;
       perspective: 1000px;
       cursor: pointer;
+      background: rgba(34,8,69,0.7);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(178,60,240,0.12);
+      border: 1px solid #b23cf0;
+      animation: cardAppear 0.6s ease-out forwards;
+      opacity: 0;
+      transform: translateY(30px);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(5) { animation-delay: 0.5s; }
+    @keyframes cardAppear {
+      to {
+        opacity: 1;
+        transform: none;
+      }
     }
     .card-inner {
       width: 100%;
@@ -197,9 +263,11 @@
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      border-radius: 18px;
+      box-shadow: none;
       overflow: hidden;
+      background: rgba(34,8,69,0.7);
+      border: 1px solid #b23cf0;
     }
     .card-back {
       transform: rotateY(180deg);
@@ -208,23 +276,20 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      border-radius: 15px;
+      border-radius: 18px;
       transition: transform 0.3s ease;
       background: rgba(255, 255, 255, 0.1);
     }
-    /* Flip the card on hover */
     .card:hover .card-inner {
       transform: rotateY(180deg);
     }
     .card:hover {
       transform: scale(1.05);
     }
-    /* If the card is reversed, rotate front and back images 180° */
     .card-inner.reversed .card-front img,
     .card-inner.reversed .card-back img {
       transform: rotate(180deg);
     }
-    /* Optional: Ensure reversed card doesn't flip double */
     .card.reversed .card-inner {
       transform: none;
     }
@@ -234,17 +299,17 @@
       padding: 0 1rem;
     }
     .reading-text p {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(34,8,69,0.7);
       backdrop-filter: blur(15px);
       padding: 2rem;
-      border-radius: 15px;
+      border-radius: 18px;
       margin: 1.5rem 0;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: none;
+      border: 1px solid #b23cf0;
       text-align: left;
       line-height: 1.7;
       font-size: 1.1rem;
-      color: #444;
+      color: #e0e0e0;
       position: relative;
       overflow: hidden;
     }
@@ -258,13 +323,13 @@
       background: linear-gradient(90deg, #b23cf0, #764ba2, #667eea);
     }
     .reading-text p strong {
-      color: #b23cf0;
+      color: #ffe66f !important;
       font-size: 1.3rem;
       display: block;
       margin-bottom: 0.5rem;
     }
     .reading-text p em {
-      color: #666;
+      color: #ffe66f !important;
       font-size: 1.2rem;
       font-weight: 600;
       background: rgba(178, 60, 240, 0.1);
@@ -272,19 +337,20 @@
       border-radius: 10px;
       display: block;
       margin-bottom: 1rem;
-      border-left: 4px solid #b23cf0;
+      border-left: 4px solid #ffe66f;
     }
-    /* Enhanced reading summary styles */
     .reading-summary {
       margin-top: 2rem !important;
       padding: 2rem !important;
-      background: rgba(255, 255, 255, 0.95) !important;
-      border-radius: 20px !important;
-      border: 2px solid rgba(178, 60, 240, 0.3) !important;
+      background: linear-gradient(135deg, #2a0845 0%, #b23cf0 100%) !important;
+      border-radius: 18px !important;
+      border: 2px solid #b23cf0 !important;
       backdrop-filter: blur(15px) !important;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      box-shadow: none;
+      color: #fffbe6 !important;
+      text-align: left;
     }
     .reading-summary::before {
       content: '';
@@ -296,7 +362,7 @@
       background: linear-gradient(90deg, #b23cf0, #764ba2, #667eea);
     }
     .reading-summary h3 {
-      color: #b23cf0;
+      color: #ffe66f;
       font-size: 1.5rem;
       margin-bottom: 1.5rem;
       text-align: center;
@@ -310,7 +376,7 @@
       margin: 1rem 0 !important;
       font-size: 1.1rem !important;
       line-height: 1.7 !important;
-      color: #444 !important;
+      color: #fffbe6 !important;
     }
     .reading-summary .reflection-section,
     .reading-summary .guidance-section {
@@ -323,7 +389,7 @@
     }
     .reading-summary .reflection-section h4,
     .reading-summary .guidance-section h4 {
-      color: #b23cf0;
+      color: #ffe66f;
       font-size: 1.2rem;
       margin-bottom: 0.8rem;
       font-weight: bold;
@@ -331,7 +397,7 @@
     }
     .reading-summary .reflection-section p,
     .reading-summary .guidance-section p {
-      color: #555 !important;
+      color: #fffbe6 !important;
       font-size: 1.05rem !important;
       margin: 0 !important;
     }
@@ -349,7 +415,7 @@
       font-weight: bold;
       color: #b23cf0;
       margin-bottom: 1rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      text-shadow: none;
     }
     .shop-description {
       font-size: 1.1rem;
@@ -358,10 +424,13 @@
       line-height: 1.6;
     }
     .crystal-recommendations {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: stretch;
       gap: 1.5rem;
       margin-bottom: 2rem;
+      flex-wrap: nowrap;
     }
     .crystal-card {
       background: rgba(255, 255, 255, 0.1);
@@ -371,19 +440,23 @@
       backdrop-filter: blur(10px);
       transition: all 0.3s ease;
       cursor: pointer;
+      box-shadow: none;
+    }
+    .crystal-card strong {
+      color: #ffe66f !important;
+      font-weight: bold;
     }
     .crystal-card:hover {
       transform: translateY(-5px);
       background: rgba(178, 60, 240, 0.15);
       border-color: rgba(178, 60, 240, 0.4);
-      box-shadow: 0 10px 30px rgba(178, 60, 240, 0.3);
     }
     .crystal-name {
       font-size: 1.3rem;
       font-weight: bold;
-      color: #ffffff;
+      color: #ffe66f;
       margin-bottom: 0.5rem;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      text-shadow: none;
     }
     .crystal-category {
       font-size: 0.9rem;
@@ -425,11 +498,11 @@
       display: inline-block;
     }
     .shop-cta {
-      background: linear-gradient(135deg, #b23cf0, #8a2be2);
-      color: white;
+      background: linear-gradient(90deg,#b23cf0 0%,#ffd700 100%);
+      color: #fff;
       padding: 1rem 2rem;
       border: none;
-      border-radius: 30px;
+      border-radius: 16px;
       font-size: 1.2rem;
       font-weight: bold;
       cursor: pointer;
@@ -438,37 +511,32 @@
       transition: all 0.3s ease;
       text-transform: uppercase;
       letter-spacing: 1px;
-      box-shadow: 0 4px 15px rgba(178, 60, 240, 0.4);
+      box-shadow: 0 6px 20px rgba(178, 60, 240, 0.18);
       margin-top: 1rem;
+      text-shadow: 0 0 8px #b23cf0;
     }
     .shop-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(178, 60, 240, 0.6);
+      box-shadow: 0 8px 28px rgba(178, 60, 240, 0.28);
       filter: brightness(1.1);
     }
     .shop-cta a {
       color: white;
       text-decoration: none;
     }
-    .why-crystals {
-      margin-top: 1.5rem;
-      font-size: 0.95rem;
-      color: #c0c0c0;
-      font-style: italic;
-    }
     .disclaimer {
       margin-top: 4rem;
       font-size: 0.95rem;
-      color: #ffffff;
+      color: #ffe66f;
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(34,8,69,0.7);
       padding: 2rem;
-      border-radius: 15px;
+      border-radius: 18px;
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      border: 1px solid #b23cf0;
+      text-shadow: 0 0 8px #b23cf0;
       line-height: 1.6;
     }
     /* Responsive Design */
@@ -494,6 +562,9 @@
       }
       .card-container {
         gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
       }
       .card {
         width: 180px;
@@ -519,27 +590,6 @@
         font-size: 1rem;
       }
     }
-    /* Animation for card reveals */
-    .card {
-      animation: cardAppear 0.6s ease-out forwards;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    .card:nth-child(1) { animation-delay: 0.1s; }
-    .card:nth-child(2) { animation-delay: 0.2s; }
-    .card:nth-child(3) { animation-delay: 0.3s; }
-    .card:nth-child(4) { animation-delay: 0.4s; }
-    .card:nth-child(5) { animation-delay: 0.5s; }
-    @keyframes cardAppear {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    /* Mystical glow effects */
-    .card:hover {
-      box-shadow: 0 0 30px rgba(178, 60, 240, 0.5);
-    }
     /* Loading state */
     .loading {
       color: #ffffff;
@@ -549,6 +599,30 @@
       border-radius: 10px;
       backdrop-filter: blur(10px);
     }
+    /* Star animation for background (if used) */
+    .star {
+      position: absolute;
+      font-size: 1.5rem;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.85;
+      animation: floatStar 7s linear forwards;
+      will-change: transform, opacity;
+      user-select: none;
+    }
+    @keyframes floatStar {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.85;
+      }
+      80% {
+        opacity: 0.85;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.2);
+        opacity: 0;
+      }
+    }
   </style>
   
   </style>
@@ -556,163 +630,145 @@
 <body>
   <div class="container">
     <!-- Logo Header -->
-    <header class="site-header">
+    <div class="site-header">
       <img src="https://i.ibb.co/ZRrgQ9db/IMG-2055.png" alt="Site Logo" class="site-logo">
-    </header>
-
-    <h1>Mystical Tarot Reading</h1>
-
-    <p class="intro">
-      Click on a reading type below to begin your mystical journey. Cards will flip on hover/click to reveal their secrets.<br>
-      ✨ Let the universe guide you ✨
-    </p>
-
-    <div class="reading-types">
-      <p onclick="drawCards(1, 'daily')"><strong>✨ Daily Oracle:</strong> Unveil the cosmic whispers meant just for you today—a single card to illuminate your path forward.</p>
-      <p onclick="drawCards(3, 'three')"><strong>🌙 Mystical Trinity:</strong> Journey through the sacred realms of Past, Present, and Future with three powerful cards revealing your soul's story.</p>
-      <p onclick="drawCards(5, 'love')"><strong>💝 Heart's Compass:</strong> Let the cards unlock the mysteries of love and connection, guiding your heart to its destined truth.</p>
-    </div>
-
-    <p class="card-instruction">Hover over a card to reveal its secrets ✨</p>
-    
-    <div class="card-container" id="cardContainer"></div>
-    <div class="reading-text" id="readingText"></div>
-
-    <!-- Shopping Section -->
-    <div class="shopping-section" id="shoppingSection" style="display: none;">
-      <div class="shop-header">🔮 Crystals Chosen for Your Reading</div>
-      <div class="shop-description">
-        Based on your reading's themes, these crystals are specially chosen to support your journey. Each crystal comes with guidance on how it can help with your specific situation.
-      </div>
-      <div class="crystal-recommendations" id="crystalRecommendations">
-        <!-- Crystal cards will be dynamically generated here -->
-      </div>
-      <a href="https://eastcoastgemsbycara.myshopify.com" target="_blank" class="shop-cta">🛒 Visit My Crystal Shop</a>
-      <div class="why-crystals">
+      <h1>Mystical Tarot Reading</h1>
+      <div class="why-crystals" style="color: #ffe66f;">
         Each crystal is personally selected to resonate with the energies revealed in your reading.
       </div>
     </div>
-
+    <div class="reading-types" style="margin-top:2rem;">
+      <div class="button-group">
+        <div class="floating-stars">
+          <span class="star-emoji s1">✨</span>
+          <span class="star-emoji s2">🌟</span>
+          <span class="star-emoji s3">✨</span>
+          <span class="star-emoji s4">🌟</span>
+        </div>
+        <button onclick="drawCards(1, 'daily')"><strong>Daily Oracle:</strong> The universe speaks through this sacred card. Perfect for a quick daily check-in or guidance.</button>
+        <button onclick="drawCards(3, 'three')"><strong>Mystical Trinity:</strong> Past, present, and future dance together to reveal your path. Great for deeper insight into your journey.</button>
+        <button onclick="drawCards(5, 'love')"><strong>Heart's Compass:</strong> The cosmos illuminates the mysteries of your heart. Ideal for love, relationships, and emotional guidance.</button>
+      </div>
+    </div>
+    <div id="cardContainer" class="card-container"></div>
+    <div id="readingText" class="reading-text"></div>
+    <div id="shoppingSection" style="display:none;">
+      <div id="crystalRecommendations" class="crystal-recommendations"></div>
+      <!-- Shop button will be shown only when shoppingSection is displayed, after results and crystal recommendations -->
+      <a href="https://eastcoastgemsbycara.myshopify.com/" class="shop-cta" target="_blank" style="display:block; margin-top:2rem;">Visit My Shop</a>
+    </div>
     <p class="disclaimer">
-      <small>🔮 <i>Tarot readings are for entertainment and spiritual reflection purposes only. They are not a substitute for medical, legal, or professional advice. Please use your own judgment and intuition when interpreting the messages.</i></small>
+      <small><i>Tarot readings are for entertainment and spiritual reflection purposes only. They are not a substitute for medical, legal, or professional advice. Please use your own judgment and intuition when interpreting the messages.</i></small>
     </p>
   </div>
 
 <script>
+// ...existing code...
 const cardBackImage = "https://i.ibb.co/HpfSCHb2/image.png";
 
 // Crystal database with customer-friendly categories and expanded selection
 const crystalDatabase = {
-  // 💖 LOVE & RELATIONSHIPS - Perfect for Heart's Compass readings
+  // LOVE & RELATIONSHIPS - Perfect for Heart's Compass readings
   'Rose Quartz': {
     properties: 'The ultimate love stone - attracts love, heals heartbreak, encourages self-love',
-    category: '💖 Love & Relationships',
+    category: 'Love & Relationships',
     themes: ['emotions', 'love', 'healing'],
     price: '$12',
     bestFor: 'Attracting love, healing after breakups, improving self-worth'
   },
   'Green Aventurine': {
     properties: 'Heart chakra healer - brings emotional calm and attracts luck in love',
-    category: '💖 Love & Relationships',
+    category: 'Love & Relationships',
     themes: ['material', 'emotions'],
     price: '$11',
     bestFor: 'New relationships, emotional healing, attracting positive connections'
   },
   'Moonstone': {
     properties: 'Enhances intuition in relationships and emotional understanding',
-    category: '💖 Love & Relationships',
+    category: 'Love & Relationships',
     themes: ['emotions', 'transformation'],
     price: '$16',
     bestFor: 'Understanding emotions, enhancing empathy, new beginnings in love'
   },
-
-  // 🧠 CLARITY & INTUITION - Perfect for when you need mental clarity
-  'Amethyst': {
-    properties: 'Third eye activator - enhances psychic abilities and spiritual wisdom',
-    category: '🧠 Clarity & Intuition',
-    themes: ['thoughts', 'transformation', 'growth'],
-    price: '$15',
-    bestFor: 'Meditation, enhancing intuition, spiritual growth'
-  },
   'Clear Quartz': {
-    properties: 'Master healer - amplifies energy and brings crystal-clear thinking',
-    category: '🧠 Clarity & Intuition',
+    properties: 'Amplifies energy and thought, aids concentration and unlocks memory',
+    category: 'Clarity & Intuition',
     themes: ['thoughts', 'transformation', 'growth'],
     price: '$10',
     bestFor: 'Mental clarity, amplifying other crystals, general healing'
   },
   'Fluorite': {
     properties: 'Mental focus enhancer - perfect for decision-making and concentration',
-    category: '🧠 Clarity & Intuition',
+    category: 'Clarity & Intuition',
     themes: ['thoughts', 'action'],
     price: '$14',
     bestFor: 'Studying, important decisions, clearing mental fog'
   },
 
-  // 💰 ABUNDANCE & SUCCESS - For material and career goals
+  // ABUNDANCE & SUCCESS - For material and career goals
   'Citrine': {
     properties: 'Merchant stone - attracts wealth, success, and personal confidence',
-    category: '💰 Abundance & Success',
+    category: 'Abundance & Success',
     themes: ['material', 'action', 'growth'],
     price: '$18',
     bestFor: 'Business success, manifesting money, boosting confidence'
   },
   'Pyrite': {
-    properties: 'Fool\'s gold - attracts abundance and protects from financial loss',
-    category: '💰 Abundance & Success',
+    properties: "Fool's gold - attracts abundance and protects from financial loss",
+    category: 'Abundance & Success',
     themes: ['material', 'action'],
     price: '$13',
     bestFor: 'Career advancement, financial planning, business ventures'
   },
-  'Tiger\'s Eye': {
+  "Tiger's Eye": {
     properties: 'Stone of courage - brings good luck and protection in money matters',
-    category: '💰 Abundance & Success',
+    category: 'Abundance & Success',
     themes: ['material', 'action'],
     price: '$12',
     bestFor: 'Taking calculated risks, building confidence, practical decisions'
   },
 
-  // 🛡️ PROTECTION & GROUNDING - For feeling safe and centered
+  // PROTECTION & GROUNDING - For feeling safe and centered
   'Black Tourmaline': {
     properties: 'Ultimate protection stone - shields from negative energy and stress',
-    category: '🛡️ Protection & Grounding',
+    category: 'Protection & Grounding',
     themes: ['transformation', 'material'],
     price: '$14',
     bestFor: 'Workplace stress, negative people, EMF protection'
   },
   'Smoky Quartz': {
     properties: 'Gentle grounding stone - releases negativity and brings emotional stability',
-    category: '🛡️ Protection & Grounding',
+    category: 'Protection & Grounding',
     themes: ['material', 'transformation'],
     price: '$17',
     bestFor: 'Anxiety relief, letting go of the past, staying grounded'
   },
   'Hematite': {
     properties: 'Grounding powerhouse - keeps you centered and focused on reality',
-    category: '🛡️ Protection & Grounding',
+    category: 'Protection & Grounding',
     themes: ['material', 'action'],
     price: '$9',
     bestFor: 'Staying present, reducing overwhelm, building inner strength'
   },
 
-  // ✨ TRANSFORMATION & GROWTH - For major life changes
+  // TRANSFORMATION & GROWTH - For major life changes
   'Labradorite': {
     properties: 'Stone of magic - awakens psychic abilities and facilitates transformation',
-    category: '✨ Transformation & Growth',
+    category: 'Transformation & Growth',
     themes: ['transformation', 'growth'],
     price: '$20',
     bestFor: 'Life transitions, developing intuition, embracing change'
   },
   'Carnelian': {
     properties: 'Courage activator - ignites passion and motivation for new ventures',
-    category: '✨ Transformation & Growth',
+    category: 'Transformation & Growth',
     themes: ['action', 'emotions'],
     price: '$13',
     bestFor: 'Starting new projects, overcoming fear, creative blocks'
   },
   'Garnet': {
     properties: 'Manifestation booster - energizes goals and brings passion to life',
-    category: '✨ Transformation & Growth',
+    category: 'Transformation & Growth',
     themes: ['action', 'emotions', 'material'],
     price: '$16',
     bestFor: 'Achieving goals, increasing motivation, passionate pursuits'
@@ -1266,9 +1322,11 @@ function generateCrystalRecommendations(drawnCards, readingType) {
 function displayCrystalRecommendations(crystals) {
   const container = document.getElementById('crystalRecommendations');
   const shoppingSection = document.getElementById('shoppingSection');
-  
+
   container.innerHTML = '';
-  
+
+  // Remove duplicate header creation
+
   crystals.forEach(crystal => {
     const crystalCard = document.createElement('div');
     crystalCard.className = 'crystal-card';
@@ -1280,7 +1338,7 @@ function displayCrystalRecommendations(crystals) {
     `;
     container.appendChild(crystalCard);
   });
-  
+
   shoppingSection.style.display = 'block';
 }
 
@@ -1490,78 +1548,74 @@ function generateSummary(drawnCards, readingType) {
   const reflectionQuestions = generateReflectionQuestions(drawnCards, readingType);
   const actionableGuidance = generateActionableGuidance(drawnCards, readingType);
   
-  // Build the narrative
+  // Build the narrative in a more conversational, warm, and personal style
   let summary = "";
   const dominantTheme = Object.keys(themeScores).reduce((a, b) => themeScores[a] > themeScores[b] ? a : b);
-  
+
   // Opening with card-specific narrative
   switch (readingType) {
     case "daily":
-      summary += "🌟 **Your Daily Oracle Reveals:** ";
+      summary += "Here's what your daily card wants you to know: ";
       break;
     case "three":
-      summary += "🌙 **Your Soul's Story Unfolds:** ";
+      summary += "Let's see how your story is unfolding: ";
       break;
     case "love":
-      summary += "💝 **Your Heart's Truth:** ";
+      summary += "Matters of the heart are in focus: ";
       break;
   }
 
-  // Create narrative flow between cards
+  // Multi-card journey
   if (drawnCards.length > 1) {
     const firstCard = drawnCards[0];
     const lastCard = drawnCards[drawnCards.length - 1];
-    
-    summary += `Your journey moves from ${firstCard.card.name} to ${lastCard.card.name}, `;
-    
-    // Analyze the emotional arc
+    summary += `Your path today moves from <strong>${firstCard.card.name}</strong> to <strong>${lastCard.card.name}</strong>. `;
     const journeyStart = emotionalJourney[0];
     const journeyEnd = emotionalJourney[emotionalJourney.length - 1];
-    
     if (journeyEnd > journeyStart) {
-      summary += "showing a path from challenge toward hope and resolution. ";
+      summary += "It looks like you're moving from challenge toward hope—keep going, brighter days are ahead. ";
     } else if (journeyEnd < journeyStart) {
-      summary += "indicating that deeper inner work and reflection may be needed. ";
+      summary += "This reading suggests some deeper inner work is calling you right now. ";
     } else {
-      summary += "revealing a steady energy that supports your current path. ";
+      summary += "There's a steady, supportive energy around you—trust in your current path. ";
     }
   }
 
-  // Theme-based insights with more nuance
+  // Theme-based insights, more like a guide
   if (dominantTheme === 'emotions' || readingType === 'love') {
-    summary += "Your emotional landscape is the key to understanding this reading. ";
+    summary += "Emotions are at the heart of your reading. ";
     if (hasReversed) {
-      summary += "Some feelings may be blocked or need healing, but this emotional work is opening doors to deeper self-understanding. ";
+      summary += "You might notice some feelings are a bit tangled or need gentle attention, but that's how real growth happens. ";
     } else {
-      summary += "Your heart is open and ready to receive the connections and joy that are flowing toward you. ";
+      summary += "Your heart feels open and ready for connection—let yourself receive it. ";
     }
   } else if (dominantTheme === 'action') {
-    summary += "This is your moment to step into your creative power. ";
+    summary += "There's a spark of action and creativity here. ";
     if (hasReversed) {
-      summary += "What feels like creative block is actually energy redirecting toward a more authentic expression of who you are. ";
+      summary += "If things feel blocked, it's just your energy asking to be expressed in a new way. ";
     } else {
-      summary += "Your passion and energy are aligned with your purpose - trust yourself to take bold action. ";
+      summary += "You're in the flow—trust your instincts and take that next step. ";
     }
   } else if (dominantTheme === 'thoughts') {
-    summary += "Mental clarity and communication are your superpowers right now. ";
+    summary += "Your mind is especially sharp right now. ";
     if (hasReversed) {
-      summary += "Confusion or conflict in thinking is clearing, making way for wisdom and better decision-making. ";
+      summary += "Any confusion is clearing, so be patient with yourself as you find clarity. ";
     } else {
-      summary += "Your ability to see truth and communicate clearly is opening new paths forward. ";
+      summary += "You have the words and wisdom you need—don't be afraid to speak your truth. ";
     }
   } else if (dominantTheme === 'material') {
-    summary += "Your practical world and material circumstances are the focus. ";
+    summary += "Practical matters and the material world are highlighted. ";
     if (hasReversed) {
-      summary += "Current challenges with money or career are actually redirecting you toward more sustainable abundance. ";
+      summary += "If money or work feels tricky, it's a nudge to rethink your approach and trust that things will rebalance. ";
     } else {
-      summary += "You're building something solid and lasting that will support your dreams and security. ";
+      summary += "You're building something real and lasting—celebrate your progress, even if it's slow. ";
     }
   } else if (dominantTheme === 'transformation') {
-    summary += "You're in a powerful transformation phase. ";
+    summary += "Big changes are in the air. ";
     if (hasReversed) {
-      summary += "Resistance to change is natural, but the universe is gently (or not so gently) moving you toward your next evolution. ";
+      summary += "Change can feel uncomfortable, but you're being gently guided to let go and grow. ";
     } else {
-      summary += "You're ready to shed old patterns and step into a new version of yourself with confidence. ";
+      summary += "You're ready for a fresh start—embrace it with courage. ";
     }
   }
 
@@ -1572,28 +1626,27 @@ function generateSummary(drawnCards, readingType) {
 
   // Major Arcana significance
   if (majorArcana > 0) {
-    summary += `With ${majorArcana} Major Arcana card${majorArcana > 1 ? 's' : ''} in your reading, this is about soul-level lessons and spiritual growth. `;
+    summary += `This reading features ${majorArcana} Major Arcana card${majorArcana > 1 ? 's' : ''}, so the lessons here run deep. `;
   }
 
-  // Closing with reflection questions and guidance
+  // Reflection and guidance, with a softer intro (no emojis)
   if (reflectionQuestions.length > 0) {
-    summary += `\n\n💭 **Reflection:** ${reflectionQuestions[0]}`;
+    summary += `\n\n<strong>Something to reflect on:</strong> ${reflectionQuestions[0]}`;
   }
-  
   if (actionableGuidance.length > 0) {
-    summary += `\n\n✨ **Guidance:** ${actionableGuidance[0]}`;
+    summary += `\n\n<strong>A gentle nudge:</strong> ${actionableGuidance[0]}`;
   }
 
-  // Reading-type specific closing
+  // Closing, more like a supportive friend
   switch (readingType) {
     case "daily":
-      summary += "\n\n🌟 Trust yourself today - you have everything you need to handle whatever comes your way.";
+      summary += "\n\nRemember, you've got this—trust yourself and let the day unfold.";
       break;
     case "three":
-      summary += "\n\n🌙 Your story is unfolding perfectly, even when it doesn't feel that way. Trust the journey.";
+      summary += "\n\nYour story is unfolding, one step at a time. Be kind to yourself along the way.";
       break;
     case "love":
-      summary += "\n\n💝 Love in all its forms - self-love, romantic love, and love of life - is your guiding light.";
+      summary += "\n\nLet love—of all kinds—be your guide today.";
       break;
   }
 
@@ -1683,13 +1736,13 @@ function drawCards(num, type) {
     let typeMessage = "";
     switch (type) {
       case "daily":
-        typeMessage = "✨ Daily Oracle: The universe speaks through this sacred card.";
+        typeMessage = "Daily Oracle: The universe speaks through this sacred card.";
         break;
       case "three":
-        typeMessage = "🌙 Mystical Trinity: Past, present, and future dance together to reveal your path.";
+        typeMessage = "Mystical Trinity: Past, present, and future dance together to reveal your path.";
         break;
       case "love":
-        typeMessage = "💝 Heart's Compass: The cosmos illuminates the mysteries of your heart.";
+        typeMessage = "Heart's Compass: The cosmos illuminates the mysteries of your heart.";
         break;
     }
     if (typeMessage) {
@@ -1698,56 +1751,47 @@ function drawCards(num, type) {
       readingText.prepend(intro);
     }
 
-    // Add personalized summary for multi-card readings
-    if (drawnCards.length > 1) {
-      const summaryDiv = document.createElement("div");
-      summaryDiv.className = "reading-summary";
-      
-      const summaryText = generateSummary(drawnCards, type);
-      
-      // Parse the summary to separate main text from reflection and guidance
-      const parts = summaryText.split('\n\n');
-      let mainText = parts[0];
-      let reflection = '';
-      let guidance = '';
-      
-      parts.forEach(part => {
-        if (part.includes('💭 **Reflection:**')) {
-          reflection = part.replace('💭 **Reflection:**', '').trim();
-        } else if (part.includes('✨ **Guidance:**')) {
-          guidance = part.replace('✨ **Guidance:**', '').trim();
-        } else if (!part.includes('🌟') && !part.includes('🌙') && !part.includes('💝') && part !== mainText) {
-          mainText += ' ' + part;
-        }
-      });
-      
-      // Create the formatted summary
-      let formattedSummary = `<h3>✨ Your Personal Reading Summary ✨</h3>`;
-      formattedSummary += `<p>${mainText}</p>`;
-      
-      if (reflection) {
-        formattedSummary += `<div class="reflection-section">
-          <h4>💭 Reflection Question</h4>
-          <p>${reflection}</p>
-        </div>`;
+    // Add personalized summary for all readings (single or multi-card)
+    const summaryDiv = document.createElement("div");
+    summaryDiv.className = "reading-summary";
+    const summaryText = generateSummary(drawnCards, type);
+    // Parse the summary to separate main text from reflection and guidance (no emojis)
+    const parts = summaryText.split('\n\n');
+    let mainText = parts[0];
+    let reflection = '';
+    let guidance = '';
+    parts.forEach(part => {
+      if (part.includes('<strong>Something to reflect on:</strong>')) {
+        reflection = part.replace('<strong>Something to reflect on:</strong>', '').trim();
+      } else if (part.includes('<strong>A gentle nudge:</strong>')) {
+        guidance = part.replace('<strong>A gentle nudge:</strong>', '').trim();
+      } else if (part !== mainText) {
+        mainText += ' ' + part;
       }
-      
-      if (guidance) {
-        formattedSummary += `<div class="guidance-section">
-          <h4>✨ Personalized Guidance</h4>
-          <p>${guidance}</p>
-        </div>`;
-      }
-      
-      // Add the closing message
-      const closingMessage = parts[parts.length - 1];
-      if (closingMessage.includes('🌟') || closingMessage.includes('🌙') || closingMessage.includes('💝')) {
-        formattedSummary += `<p style="text-align: center; font-weight: bold; font-style: italic; margin-top: 1.5rem; color: #b23cf0;">${closingMessage}</p>`;
-      }
-      
-      summaryDiv.innerHTML = formattedSummary;
-      readingText.appendChild(summaryDiv);
+    });
+    // Create the formatted summary
+    let formattedSummary = `<h3>Your Personal Reading Summary</h3>`;
+    formattedSummary += `<p>${mainText}</p>`;
+    if (reflection) {
+      formattedSummary += `<div class="reflection-section">
+        <h4>Reflection Question</h4>
+        <p>${reflection}</p>
+      </div>`;
     }
+    if (guidance) {
+      formattedSummary += `<div class="guidance-section">
+        <h4>Personalized Guidance</h4>
+        <p>${guidance}</p>
+      </div>`;
+    }
+    // Add the closing message
+    const closingMessage = parts[parts.length - 1];
+    if (closingMessage.trim().length > 0) {
+      // Make the closing message smaller and gold
+      formattedSummary += `<p style="text-align: center; font-weight: bold; font-style: italic; margin-top: 1.5rem; color: #FFD700; font-size: 1rem;">${closingMessage}</p>`;
+    }
+    summaryDiv.innerHTML = formattedSummary;
+    readingText.appendChild(summaryDiv);
 
     // Generate and display crystal recommendations
     const crystalRecommendations = generateCrystalRecommendations(drawnCards, type);
